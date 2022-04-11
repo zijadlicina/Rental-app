@@ -1,2 +1,2 @@
-# Sarajevo-Rental
+# Rental app
 MERN stack application - internship
