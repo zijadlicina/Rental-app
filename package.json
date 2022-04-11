@@ -1,0 +1,28 @@
+{
+  "name": "rental-app",
+  "version": "1.0.0",
+  "description": "MERN stack application - internship",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zijadlicina/Rental-app.git"
+  },
+  "author": "Zijad Ličina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zijadlicina/Rental-app/issues"
+  },
+  "homepage": "https://github.com/zijadlicina/Rental-app#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
