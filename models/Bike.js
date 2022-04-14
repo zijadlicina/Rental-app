@@ -6,9 +6,10 @@ const BikeSchema = new Schema({
     provider: { type: mongoose.Schema.Types.ObjectId, ref: 'Provider', required: true},
     status: { type: Boolean, default: false},
     category: { type: String, default: 'Bike' },
-    type: { type: String, default: 'Family' },
-    seat: { type: Number, default: 1 },
-    color: { type: String, default: 'black' }
+    type: { type: String, default: 'family' },
+    seat: { type: String, default: 'normal' },
+    color: { type: String, default: 'black' },
+    weight: { type: String, default: '12kg'}
 })
 
 module.exports = Bike = mongoose.model('Bike', BikeSchema)

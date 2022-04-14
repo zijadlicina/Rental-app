@@ -2,10 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const mongoURI = require('./config/keys').mongoURI;
+const expressLayouts = require('express-ejs-layouts')
 
 const app = express();
-
+// configure app
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.set('layout', 'layouts/layout') 
+app.use(expressLayouts) // tell the app that we will user 'expressLayouts' files
+app.use(express.static('public'))
 // 
+const index = require('./api/routes/index')
 const users = require('./api/routes/users')
 const bikes = require('./api/routes/bikes')
 const providers = require('./api/routes/providers')
@@ -22,6 +29,7 @@ mongoose.connect(mongoURI)
 const port = process.env.PORT || 5000;
 
 // routes
+app.use('/api/', index)
 app.use('/api/users', users)
 app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
