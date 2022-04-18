@@ -1,17 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const mongoURI = require('./config/keys').mongoURI;
-const expressLayouts = require('express-ejs-layouts')
+require('dotenv').config()
 
 const app = express();
-// configure app
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
-app.set('layout', 'layouts/layout') 
-app.use(expressLayouts) // tell the app that we will user 'expressLayouts' files
-app.use(express.static('public'))
-// 
+
 const index = require('./api/routes/index')
 const users = require('./api/routes/users')
 const bikes = require('./api/routes/bikes')
@@ -22,7 +15,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 // Database connection
-mongoose.connect(mongoURI)
+mongoose.connect(process.env.DATABASE_URL)
     .then(() => console.log("MongoDB connected..."))
     .catch((err) => console.log(err))
 

@@ -78,7 +78,7 @@ router.get('/:id', (req, res, next) => {
 // @desc Create one bike
 // @acces Public
 router.post('/', (req, res, next) => {
-    const providerId = req.body.providerId;
+    const providerId = req.body.provider;
     // Is succeeds this provider
     Provider.findById(providerId)
     .then(provider => {
@@ -122,6 +122,7 @@ router.post('/', (req, res, next) => {
             error: err
         })
     })
+  
 })
 
 // @route DELETE api/bikes/:id
