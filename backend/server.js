@@ -8,9 +8,8 @@ connectDB()
 
 const app = express();
 
-const index = require('./api/routes/index')
 const users = require('./api/routes/users')
-const bikes = require('./api/routes/bikes')
+const bikes = require('./api/routes/bikeRouter')
 const providers = require('./api/routes/providers')
 const rentals = require('./api/routes/rentals')
 
@@ -21,7 +20,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 // Routes
-app.use('/api/', index)
 app.use('/api/users', users)
 app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
