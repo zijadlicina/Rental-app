@@ -1,7 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 require('dotenv').config()
+
+const express = require('express');
+const connectDB = require('./config/db')
+
+connectDB()
 
 const app = express();
 
@@ -11,23 +14,20 @@ const bikes = require('./api/routes/bikes')
 const providers = require('./api/routes/providers')
 const rentals = require('./api/routes/rentals')
 
+const port = process.env.PORT || 5000;
+
+// Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-// Database connection
-mongoose.connect(process.env.DATABASE_URL)
-    .then(() => console.log("MongoDB connected..."))
-    .catch((err) => console.log(err))
-
-const port = process.env.PORT || 5000;
-
-// routes
+// Routes
 app.use('/api/', index)
 app.use('/api/users', users)
 app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
 app.use('/api/rentals', rentals)
 
+// Error handling
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404
