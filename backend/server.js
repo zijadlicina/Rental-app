@@ -27,7 +27,7 @@ app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
 app.use('/api/rentals', rentals)
 app.use('/api/auth', auths)
-// Error handler
+// Error handler (Should be a last piece of middleware)
 app.use(errorHandler)
 
 const server = app.listen(port, () => console.log(`Server is running on port: ${port}`));

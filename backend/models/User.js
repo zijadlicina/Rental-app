@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema;
+const jwt = require('jsonwebtoken')
 
 const UserSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -48,6 +49,11 @@ UserSchema.pre("save", async function (next) {
 // in mongoose we can create a method with object
 UserSchema.methods.matchPasswords = async function (password) {
     return await bcrypt.compare(password, this.password)
+}
+
+// in mongoose we can create a method with object
+UserSchema.methods.getSignedToken = async function (password) {
+    return jwt.sign({ id: this._id}, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE })
 }
 
 module.exports = User = mongoose.model('User', UserSchema)
