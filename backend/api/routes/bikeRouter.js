@@ -11,7 +11,7 @@ router.route('/').get(BikeController.getAllBikes)
 // @route POST api/bikes/add
 // @desc Create one bike
 // @acces Public
-router.route('/add').get(BikeController.createOneBike)
+router.route('/add').post(BikeController.createOneBike)
 
 // @route GET/DELETE api/bikes/:id
 // @desc Get one bike, Delete one bike

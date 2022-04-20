@@ -3,6 +3,7 @@ require('dotenv').config()
 
 const express = require('express');
 const connectDB = require('./config/db')
+const errorHandler = require('./middleware/errorHandler')
 
 connectDB()
 
@@ -25,21 +26,8 @@ app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
 app.use('/api/rentals', rentals)
 
-// Error handling
-app.use((req, res, next) => {
-    const error = new Error('Not Found');
-    error.status = 404
-    next(error)
-})
-
-app.use((err, req, res, next) => {
-    res.status(err.status || 500)
-    res.json({
-        error: {
-            message: err.message
-        }
-    })
-})
+// Error handler
+app.use(errorHandler)
 
 app.listen(port, () => console.log(`Server is running on port: ${port}`));
 
