@@ -45,4 +45,9 @@ UserSchema.pre("save", async function (next) {
     next()
 })
 
+// in mongoose we can create a method with object
+UserSchema.methods.matchPasswords = async function (password) {
+    return await bcrypt.compare(password, this.password)
+}
+
 module.exports = User = mongoose.model('User', UserSchema)

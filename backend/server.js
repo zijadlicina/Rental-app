@@ -30,4 +30,9 @@ app.use('/api/auth', auths)
 // Error handler
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`Server is running on port: ${port}`));
+const server = app.listen(port, () => console.log(`Server is running on port: ${port}`));
+
+process.on("unhandledRejection", (err, promise) => {
+    console.log(`Logged Error: ${err}`)
+    server.close(() => process.exit(1))
+})
