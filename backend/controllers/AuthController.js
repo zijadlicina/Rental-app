@@ -4,6 +4,7 @@ const User = require('../models/User')
 const errorHandler  = require('../middleware/errorHandler')
 const asyncHandler  = require('../middleware/asyncHandler');
 const ErrorResponse = require('../utils/errorResponse');
+const sendEmail = require('../utils/sendEmail');
 
 exports.register = asyncHandler(async (req, res, next) => {
     const { username, email, password } = req.body;
@@ -32,14 +33,14 @@ exports.login = asyncHandler(async (req, res, next) => {
     }
     sendToken(user, 200, res)
 })
-exports.forgotPassword = async (req, res, next) => {
+exports.forgotPassword = asyncHandler (async (req, res, next) => {
     const { email } = req.body;
     const user = await User.findOne( {email })
     if (!user) {
         next(new ErrorResponse("Email could not be sent", 404))
     }
     // save new field "resetPasswordToken" for user in database
-    const resetToken = user.getResetPasswordToken()
+    const resetToken = await user.getResetPasswordToken()
     await user.save()
 
     const resetUrl = `http://localhost:5001/passwordReset/${resetToken}`
@@ -47,7 +48,25 @@ exports.forgotPassword = async (req, res, next) => {
     <h1>You have requested a new password reset</h1>
     <p>Please go to this link to reset your password</p>
     <a href=${resetUrl} clicktracking=off>${resetUrl}</a>`
-}
+    try {
+        // function from utils
+        await sendEmail({
+            to: user.email,
+            subject: "Password Reset Request",
+            text: message
+        })
+        res.status(200).json({
+            succes: true,
+            data: "Email sent"
+        })
+    } catch (error) {
+        // remove values of this fields
+        user.getResetPasswordToken = undefined
+        user.getResetPasswordExpire = undefined
+        await user.save()
+        return next(new ErrorResponse(`Email could not be sent`, 500))
+    }
+})
 
 exports.resetPassword = (req, res, next) => {
     res.send("This is Reset password route")
