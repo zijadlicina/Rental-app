@@ -32,8 +32,21 @@ exports.login = asyncHandler(async (req, res, next) => {
     }
     sendToken(user, 200, res)
 })
-exports.forgotPassword = (req, res, next) => {
-    res.send("This is forgot password route")
+exports.forgotPassword = async (req, res, next) => {
+    const { email } = req.body;
+    const user = await User.findOne( {email })
+    if (!user) {
+        next(new ErrorResponse("Email could not be sent", 404))
+    }
+    // save new field "resetPasswordToken" for user in database
+    const resetToken = user.getResetPasswordToken()
+    await user.save()
+
+    const resetUrl = `http://localhost:5001/passwordReset/${resetToken}`
+    const message = `
+    <h1>You have requested a new password reset</h1>
+    <p>Please go to this link to reset your password</p>
+    <a href=${resetUrl} clicktracking=off>${resetUrl}</a>`
 }
 
 exports.resetPassword = (req, res, next) => {
