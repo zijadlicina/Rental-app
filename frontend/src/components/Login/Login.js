@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { loginUser } from "../../redux";
 import "./Login.module.css";
 
-const Login = () => {
+const Login = ({ userLogin }) => {
   const [user, setUser] = useState({ email: "", password: "" });
 
   const changeHandler = (e) => {
@@ -9,9 +11,9 @@ const Login = () => {
     const value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const loginHandler = async (e) => {
+  const loginHandler = (e) => {
     e.preventDefault();
-    console.log(user);
+    userLogin(user);
     setUser({ email: "", password: "" });
   };
   return (
@@ -49,4 +51,14 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogin: (user) => dispatch(loginUser(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

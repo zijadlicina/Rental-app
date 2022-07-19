@@ -4,11 +4,21 @@ require('dotenv').config()
 const express = require('express');
 const connectDB = require('./config/db')
 const errorHandler = require('./middleware/errorHandler')
+const cors = require('cors')
 
 connectDB()
 
 const app = express();
 
+app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 const users = require('./api/routes/users')
 const bikes = require('./api/routes/bikeRouter')
 const providers = require('./api/routes/providers')
