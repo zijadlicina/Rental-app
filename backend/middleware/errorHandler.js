@@ -2,7 +2,7 @@ const ErrorResponse = require('../utils/errorResponse')
 
 // This is global error handler
 const errorHandler = (err, req, res, next) => {
- //   console.log(err)    // we can see everything about error
+  //  console.log(err)    // we can see everything about error
     let error = { ...err }
     error.message = err.message
     // !???
@@ -21,7 +21,7 @@ const errorHandler = (err, req, res, next) => {
         const message = Object.values(err.errors).map(error => error.message).join(', ');
         error = new ErrorResponse(message, 400)
     }
-    // add more check...
++    // add more check...
     res.status(error.statusCode || 500).json({
         succes: false,
         error: error.message || 'Server Error'

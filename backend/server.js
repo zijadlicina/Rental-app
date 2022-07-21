@@ -24,6 +24,7 @@ const bikes = require('./api/routes/bikeRouter')
 const providers = require('./api/routes/providers')
 const rentals = require('./api/routes/rentals')
 const auths = require('./api/routes/authRouter')
+const privates = require('./api/routes/private')
 
 const port = process.env.PORT || 5000;
 
@@ -37,6 +38,8 @@ app.use('/api/bikes', bikes)
 app.use('/api/providers', providers)
 app.use('/api/rentals', rentals)
 app.use('/api/auth', auths)
+app.use('/api/private', privates)
+
 // Error handler (Should be a last piece of middleware)
 app.use(errorHandler)
 
