@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../../redux";
 import "./Login.module.css";
 
 const Login = ({ userLogin }) => {
@@ -57,7 +56,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLogin: (user) => dispatch(loginUser(user))
+    userLogin: () => console.log("user Login")
   }
 }
 
