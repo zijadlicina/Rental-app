@@ -12,12 +12,11 @@ form {
     height: 200px;
     width: 20%;
     margin: auto;
-    margin-top: auto;
     background-color: #FCFCFC;
     border: 2px solid #FCFCFC;
     border-radius: 12.5px;
     padding: 30px;
-    box-shadow: 1px 4px 6px grey;
+    box-shadow: 3px 4px 6px grey;
 }
 form h4 {
     margin: 40px 0px;

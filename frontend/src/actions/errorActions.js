@@ -1,37 +1,14 @@
-import { LOGIN_REQUEST, LOGIN_SUCCES, LOGIN_FAILURE } from "./types";
-import axios from 'axios';
-const API_URL = '/api/auth/login';
+import { SET_ERRORS, CLEAN_ERRORS } from "./types";
 
-export const loginRequest = () => {
-    return {
-        type: LOGIN_REQUEST
-    }
-}
-export const loginSucces = (user) => {
+export const setErrors = (msg, status, id) => {
   return {
-    type: LOGIN_SUCCES,
-    payload: user
-  };
-};
-export const loginFailure = (error) => {
-  return {
-    type: LOGIN_FAILURE,
-    payload: error,
+    type: SET_ERRORS,
+    payload: { msg, status, id },
   };
 };
 
-//--------------
-export const loginUser = (user) => {
-    return (dispatch) => {
-        dispatch(loginRequest)
-        axios
-          .post("http://localhost:5001/api/auth/login", user)
-          .then((response) => {
-            dispatch(loginSucces(response.data));
-          })
-          .catch((err) => {
-            const errMsg = err.message;
-            dispatch(loginFailure(errMsg));
-          });
-    }
-}
+export const cleanErrors = () => {
+  return {
+    type: CLEAN_ERRORS,
+  };
+};
