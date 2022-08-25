@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const multer = require("multer")
 
 const User = require("../models/User");
 const errorHandler = require("../middleware/errorHandler");
@@ -7,20 +8,35 @@ const ErrorResponse = require("../utils/errorResponse");
 const sendEmail = require("../utils/sendEmail");
 
 exports.loadUser = asyncHandler(async (req, res, next) => {
-    const user = req.user;
-    res.status(200).json    ({user});
+  const user = req.user;
+  res.status(200).json({ user });
 });
 
-exports.register = asyncHandler(async (req, res, next) => {
-  const { username, email, password } = req.body;
-  const newUser = await User.create({
-    _id: mongoose.Types.ObjectId(),
-    username,
-    email,
-    password,
-  });
-  sendToken(newUser, 201, res);
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "---" + file.orginalname);
+  },
 });
+
+const upload = multer({ storage: fileStorageEngine });
+
+exports.register = (
+  upload.single("image"),
+  async (req, res, next) => {
+    console.log(req.file)
+    const { username, email, password } = req.body;
+    const newUser = await User.create({
+      _id: mongoose.Types.ObjectId(),
+      username,
+      email,
+      password,
+    });
+    sendToken(newUser, 201, res);
+  }
+);
 
 exports.login = asyncHandler(async (req, res, next) => {
   console.log(req.body);
@@ -43,7 +59,6 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 exports.forgotPassword = asyncHandler(async (req, res, next) => {
   res.send("This is Forgot password route");
-
 });
 
 exports.resetPassword = (req, res, next) => {

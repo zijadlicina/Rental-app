@@ -33,3 +33,8 @@ export const AUTH_ERROR = "AUTH_ERROR";
 // ----------errors
 export const SET_ERRORS = "SET_ERRORS";
 export const CLEAN_ERRORS = "CLEAN_ERRORS";
+
+//-----------bikes
+export const FETCH_BIKES_REQ = "FETCH_BIKES_REQ";
+export const FETCH_BIKES = "FETCH_BIKES";
+export const FETCH_BIKES_FAIL = "FETCH_BIKES_FAIL";

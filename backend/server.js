@@ -9,7 +9,23 @@ const cors = require('cors')
 connectDB()
 
 const app = express();
+const multer = require("multer");
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "---" + file.orginalname);
+  },
+});
 
+const upload = multer({ storage: fileStorageEngine });
+
+app.post("/single", upload.single("image"), (req, res, next) => {
+  console.log(req.file);
+  console.log(req.body)
+  res.send("Single File uploaded");
+});
 app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');

@@ -1,0 +1,105 @@
+.container-rental .data .content .items-listSlider {
+  flex: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:unset;
+  align-content: flex-start;
+  width: 100%;
+}
+.container-rental .data .content .items-listSlider .input {
+  flex: 25%;
+  text-align: center;
+  padding-top: 2%;
+  margin-bottom: 0;
+}
+.container-rental .data .content .items-listSlider .output {
+  flex: 100%;
+  padding: 3% 0;
+  text-align: center;
+}
+.container-rental .data .content .items-listSlider .output {
+  flex: 100%;
+  padding: 3% 0;
+  text-align: center;
+}
+.items-listSlider .input .detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.items-listSlider .input .detail .category {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+.items-listSlider .input .detail .category span {
+  color: rgb(65, 108, 248);
+  text-align: center;
+  border-radius: 8px;
+  background-color: rgb(216, 223, 251);
+  width: 100%;
+  margin: 1% 2%;
+  cursor: pointer;
+}
+.items-listSlider .input .detail .category span:nth-child(2) {
+  background: orange;
+  color: whitesmoke;
+}
+.items-listSlider .input .detail .category span:hover {
+  background-color: lightgrey;
+}
+.items-listSlider .input .detail table {
+  margin-top: 2%;
+  border: 2px solid lightgrey;
+  background-color: rgb(252, 253, 255);
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.items-listSlider .input .detail table .table {
+  font-size: x-small;
+  color: rgb(94, 94, 94);
+}
+.items-listSlider .input .detail table tr td {
+  font-size: medium;
+}
+.items-listSlider .input .detail .replies {
+  padding: 3% 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 25%;
+}
+.items-listSlider .input .detail .replies span .like:hover {
+}
+.items-listSlider .input .detail .replies span *:hover {
+  background: lightskyblue;
+  border-radius: 4px;
+}
+.items-listSlider .input .detail .replies span {
+  font-size: medium;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+/*----*/
+.items-listSlider .div-images{
+  flex: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1py solid red;
+  width: 100%;
+  padding: 5%;
+}
+.items-listSlider .output{
+  flex: 25%;
+}
+
+@media screen and (max-width: 1000px) {
+  .items-listSlider .input .detail table {
+    width: 80%;
+  }
+  .items-listSlider .input .detail .replies {
+    width: 50%;
+  }
+}

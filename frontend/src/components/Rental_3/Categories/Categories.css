@@ -1,0 +1,31 @@
+/*---*/
+.container-rental .data .categories {
+  display: flex;
+  border-bottom: 2px solid lightgrey;
+}
+.container-rental .data .categories ul {
+  flex: 100%;
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.container-rental .data .categories ul li {
+  padding: 1% 0;
+  padding-left: 2%;
+}
+.container-rental .data .categories ul li a {
+  display: block;
+  cursor: pointer;
+  color: black;
+  padding: 0 15px;
+}
+.container-rental .data .categories ul li a:hover {
+  background-color: violet;
+  border-radius: 5px;
+}
+.container-rental .data .categories ul li .active {
+  font-weight: bold;
+  border-bottom: 2px solid rgb(131, 157, 246);
+}

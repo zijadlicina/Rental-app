@@ -1,8 +1,8 @@
-import "./About.module.css";
+import './About.css';
 
 const About = () => {
   return (
-    <div>
+    <div className="container">
       <h2>About page</h2>
     </div>
   );

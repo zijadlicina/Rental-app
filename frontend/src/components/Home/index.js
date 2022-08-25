@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { fetchBikes } from "../../actions/bikeActions.js";
 import Home from "./View.js";
 
 const mapStateToProps = (state) => {
@@ -8,7 +9,8 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

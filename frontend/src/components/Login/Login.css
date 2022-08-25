@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.body-div {
+  display: flex;
+  justify-content: center;
+  background-color: #f2f2f2;
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.container-login {
+  background-color: white;
+  box-shadow: 3px 3px 10px rgb(194, 192, 192);
+  height: auto;
+  border-radius: 10px;
+  width: 40%;
+  margin-top: 3%;
+}
+.container-login .text {
+  text-align: center;
+  margin-top: 10%;
+}
+.container-login .text h3 {
+  font-style: bold;
+  color: #6a7187;
+  font-family: "Lato";
+  font-size: 25px;
+  font-family: "Open Sans", sans-serif;
+}
+.container-login .text p {
+  font-weight: 200;
+  color: #80879b;
+  font-size: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+.container-login form {
+  border: none;
+  background-color: white;
+  box-shadow: none;
+  width: 60%;
+  margin-top: 0;
+  height: auto;
+}
+.container-login form .row {
+  margin: 0;
+}
+.container-login form label {
+  color: #5c616e;
+  text-transform: uppercase;
+  width: 100%;
+  font-family: "Lato";
+  margin: 10px 0px;
+  box-sizing: border-box;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 1000;
+}
+.container-login form input {
+  width: 100%;
+  padding: 20px;
+  font-size: x-small;
+  padding-left: 30px;
+  border-radius: 0;
+  border: 0.5px solid #a6a9b4;
+  color: #7c7e82;
+  font-style: bold;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Open Sans", sans-serif;
+}
+.container-login form input:focus {
+  background-color: whitesmoke;
+}
+.container-login form .check {
+  text-align: left;
+}
+.container-login form .check #rememberCheck {
+  width: 45%;
+  text-transform: none;
+  float: left;
+  padding-left: 10px;
+  margin: 15px 0;
+  font-weight: lighter;   
+  font-family: "Open Sans", sans-serif;
+}
+
+.container-login form .check input {
+  float: left;
+  width: 30%;
+  padding: 0;
+  height: 20px;
+  border: 0.4px solid #6a7187;
+  border-radius: 0;
+  font-family: "Open Sans", sans-serif;
+}
+.container-login form .check .checkbox {
+  text-transform: none;
+  width: 10%;
+  left: 0;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.container-login form .check #forgotLabel {
+  text-transform: none;
+  color: #9679ff;
+  font-family: "Lato";
+  float: right;
+  width: 45%;
+  margin: 15px 0;
+  font-weight: lighter;
+  font-family: "Open Sans", sans-serif;
+}
+.container-login form .check::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.container-login form input[type="submit"] {
+  background-color: #4d78ff;
+  text-align: center;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0px 4px 7px #91a9ff;
+  color: white;
+  padding: 0;
+  margin: 20px 0;
+  background: linear-gradient(to right, #4c73f5, #b2acf3);
+  cursor: pointer;
+  height: 40px;
+  font-family: "Open Sans", sans-serif;
+  font-size: small;
+}
+.container-login form p {
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  color: #b2acf3;
+  padding: 0;
+  cursor: pointer;
+  font-size: medium;
+  font-family: "Open Sans", sans-serif;
+}
+@media screen and (max-width: 1200px) {
+  .container-login form {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .container-login {
+    top: 60%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-login form {
+    width: 100%;
+  }
+  .container-login {
+    width: 80%;
+    left: 10%;
+  }
+}

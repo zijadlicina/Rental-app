@@ -1,0 +1,129 @@
+.container-rental .actions {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+/*  height: 20%;*/
+  width: 100%;
+}
+.container-rental .actions .row-1{
+  display: flex;
+  justify-content: space-between;
+  flex: 0.2;
+  background-color: white;
+/*  height: 20%;*/
+  width: 100%;
+  padding: 2% 0;
+  border-bottom: 1px solid lightgrey;
+}
+.container-rental .actions .row-1 .sort {
+  text-align: left;
+  font-size: small;
+  flex: 30%;
+  margin: 0.7% 1%;
+}
+.container-rental .actions .row-1 .sort label {
+  color: black;
+  font-size: larger;
+}
+.container-rental .actions .row-1 .sort select {
+  border: none;
+  background: transparent;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+.container-rental .actions .row-1 .search {
+  border: none;
+  background-color: none;
+  flex: 50%;
+}
+.container-rental .actions .row-1 .search input {
+  border: none;
+  width: 80%;
+  transition: linear 14s ease-in-out;
+  color: black;
+  border-radius: 0;
+  border-bottom: 2px solid rgb(131, 157, 246);
+}
+.container-rental .actions .row-1 .search input:focus {
+  border: none;
+  width: 80%;
+  border-bottom: 2px solid rgb(131, 157, 246);
+}
+.container-rental .actions .row-1 .view {
+  flex: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.container-rental .actions .row-1 .view div {
+  color: rgb(131, 157, 246);
+  cursor: pointer;
+  height: 100%;
+  flex: 1;
+}
+.container-rental .actions .row-1 .view div > * {
+  width: 50%;
+  height: 50%;
+}
+.container-rental .actions .row-1 .view div *:hover {
+  background-color: violet;
+  color: white;
+  border-radius: 5px;
+}
+.container-rental .actions .row-1 .view div .active {
+  background-color: rgb(131, 157, 246);
+  color: white;
+  border-radius: 5px;
+}
+/*-----*/
+.container-rental .actions .row-filter{
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.container-rental .actions .row-filter-display{
+  background-color: white;
+  height: 300px;
+  border: 2px dashed rgb(131, 157, 246);
+  transition: all 0.3s linear;
+  margin-top: 1%;
+}
+
+.container-rental .actions .row-filter{
+
+}
+/*-----*/
+.container-rental .actions .row-filter-icon {
+  flex: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.container-rental .actions .row-filter-icon span{
+  color: rgb(131, 157, 246);
+}
+.container-rental .actions .row-filter-icon .filter-icon {
+  color: rgb(131, 157, 246);
+  cursor: pointer;
+  border-radius: 5px;
+  height: 100%;
+  width: 3%;
+  padding: 1% 0;
+}
+
+.container-rental .actions .row-filter-icon .filter-icon:hover {
+  background-color: violet;
+  color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  .container-rental .actions .row-filter-icon .filter-icon {
+    width: 7%;
+  }
+  .container-rental .actions .row-1 .view div > * {
+    width: 70%;
+    height: 50%;
+  }
+}
