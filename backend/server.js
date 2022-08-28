@@ -6,26 +6,9 @@ const connectDB = require('./config/db')
 const errorHandler = require('./middleware/errorHandler')
 const cors = require('cors')
 
+const app = express()
+
 connectDB()
-
-const app = express();
-const multer = require("multer");
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "---" + file.orginalname);
-  },
-});
-
-const upload = multer({ storage: fileStorageEngine });
-
-app.post("/single", upload.single("image"), (req, res, next) => {
-  console.log(req.file);
-  console.log(req.body)
-  res.send("Single File uploaded");
-});
 app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');
@@ -41,6 +24,7 @@ const providers = require('./api/routes/providers')
 const rentals = require('./api/routes/rentals')
 const auths = require('./api/routes/authRouter')
 const privates = require('./api/routes/private')
+const categories = require("./api/routes/categories");
 
 const port = process.env.PORT || 5000;
 
@@ -55,6 +39,7 @@ app.use('/api/providers', providers)
 app.use('/api/rentals', rentals)
 app.use('/api/auth', auths)
 app.use('/api/private', privates)
+app.use("/api/categories", categories);
 
 // Error handler (Should be a last piece of middleware)
 app.use(errorHandler)

@@ -4,26 +4,26 @@ const ErorResponse = require("../utils/errorResponse");
 
 const Bike = require("../models/Bike");
 const Provider = require("../models/Provider");
+
 const providerUrl = "http://localhost:" + process.env.PORT + "/api/providers";
 
-const multer = require("multer");
-
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "---" + file.orginalname);
-  },
-});
-
-const upload = multer({ storage: fileStorageEngine });
-
 exports.getAllBikes = asyncHandler(async (req, res, next) => {
-  const bikes = await Bike.find();
+  let query = Bike.find()
+  // Pagination
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const total = await Bike.countDocuments()
+  const pages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+
+  query = query.skip(skip).limit(limit);
+
+  const bikes = await query;
   res.status(200).json({
     message: "GET all bikes",
     count: bikes.length,
+    page,
+    pages,
     bikes: bikes.map((bike) => {
       return bikeDetails(bike);
     }),
