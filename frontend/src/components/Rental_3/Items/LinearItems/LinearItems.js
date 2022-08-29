@@ -3,12 +3,10 @@ import "./LinearItems.css";
 
 import Item from './Item/Item'
 
-function LinearItems({ items, view }) {
-  return (
-    items.map((item) => {
-      return <Item item={item} view={view}/>
-    })
-  )
+function LinearItems({ items, view, setLimit }) {
+  return items.map((item) => {
+    return <Item key={item._id} item={item} view={view} setLimit={setLimit} />;
+  });
 }
 
 export default LinearItems;

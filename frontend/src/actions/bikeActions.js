@@ -11,11 +11,13 @@ export const fetchBikesRequest = () => {
     type: FETCH_BIKES_REQ,
   };
 };
-export const fetchBikesSucces = (bikes) => {
+export const fetchBikesSucces = (data) => {
   return {
     type: FETCH_BIKES,
     payload: {
-      bikes
+      bikes: data.bikes,
+      page: data.page,
+      pages: data.pages
     },
   };
 };
@@ -26,13 +28,15 @@ export const fetchBikesFailure = (error) => {
   };
 };
 //--------------
-export const fetchBikes = () => {
+export const fetchBikes = (query) => {
   return (dispatch) => {
     dispatch(fetchBikesRequest());
+    if (query) query = "?" + query;
+    else query = "";
     axios
-      .get("http://localhost:5001/api/bikes")
+      .get(`http://localhost:5001/api/bikes${query}`)
       .then((response) => {
-        dispatch(fetchBikesSucces(response.data.bikes));
+        dispatch(fetchBikesSucces(response.data));
         dispatch(cleanErrors());
       })
       .catch((err) => {

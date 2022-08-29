@@ -21,8 +21,10 @@ import "./Item.css";
 
 import imgBike from "../../../../../images/pexels-philipp-m-100582(1).jpg";
 
-function Item({ view }) {
+function Item({ view, item, setLimit }) {
+  const { name, price, rating } = item;
   if (view === 2) {
+    setLimit(8)
     return (
       <article className="item-f25">
         <div className="icons">
@@ -30,7 +32,7 @@ function Item({ view }) {
           <MdOutlineLocationOn className="location-icon" />
         </div>
         <div className="heading">
-          <h2>Just for kids</h2>
+          <h2>{name}</h2>
           <span>
             <FiMoreVertical />
           </span>
@@ -44,10 +46,12 @@ function Item({ view }) {
           <tr className="table">
             <th>UNIT</th>
             <th>PRICE</th>
+            <th>RATING</th>
           </tr>
           <tr>
             <th>Hour</th>
-            <th>$25</th>
+            <th>${price}</th>
+            <th>{rating}</th>
           </tr>
         </table>
         <div className="replies">
@@ -64,6 +68,7 @@ function Item({ view }) {
       </article>
     );
   } else {
+    setLimit(5) // if limit === 5 ? null
     return (
       <article className="item-f100">
         <div className="div-images">
@@ -71,7 +76,7 @@ function Item({ view }) {
             <img src={imgBike} alt="bikeImage" />
             <div className="left-arrow">
               <span>
-                <AiOutlineLeft className="left"/>
+                <AiOutlineLeft className="left" />
               </span>
             </div>
             <div className="right-arrow">
@@ -88,7 +93,7 @@ function Item({ view }) {
             <MdOutlineLocationOn className="location-icon" />
           </div>
           <div className="heading">
-            <h2>Just for kids</h2>
+            <h2>{name}</h2>
             <span>
               <FiMoreVertical />
             </span>
@@ -102,10 +107,12 @@ function Item({ view }) {
             <tr className="table">
               <th>UNIT</th>
               <th>PRICE</th>
+              <th>RATING</th>
             </tr>
             <tr>
               <th>Hour</th>
-              <th>$25</th>
+              <th>${price}</th>
+              <th>{rating}</th>
             </tr>
           </table>
           <div className="replies">

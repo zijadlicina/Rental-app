@@ -4,21 +4,32 @@ const ErorResponse = require("../utils/errorResponse");
 
 const Bike = require("../models/Bike");
 const Provider = require("../models/Provider");
+const Category = require("../models/Category");
 
 const providerUrl = "http://localhost:" + process.env.PORT + "/api/providers";
 
 exports.getAllBikes = asyncHandler(async (req, res, next) => {
-  let query = Bike.find()
+  let query = Bike.find();
+
+  // Category
+  let category = req.query.category;
+  if (category && category === "all") {
+  } else if (category) {
+    let cat = await Category.find({ name: category }, "_id");
+    query = query.find({ category: cat[0]._id });
+  }
+
   // Pagination
   const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 10;
-  const total = await Bike.countDocuments()
-  const pages = Math.ceil(total / limit);
+  const limit = parseInt(req.query.limit) || 3;
   const skip = (page - 1) * limit;
-
+  const total = await Bike.countDocuments(query); // await Bike.countDocuments();
+  console.log(total)
+  const pages = Math.ceil(total / limit);
   query = query.skip(skip).limit(limit);
 
   const bikes = await query;
+
   res.status(200).json({
     message: "GET all bikes",
     count: bikes.length,
@@ -122,6 +133,6 @@ function bikeDetails(bike) {
     seat: bike.seat,
     color: bike.color,
     description: bike.description,
-    image: bike.image
+    image: bike.image,
   };
 }

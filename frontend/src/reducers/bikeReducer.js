@@ -6,7 +6,9 @@ import {
 
 const initialState = {
   isLoading: false,
-  bikes: []
+  bikes: [],
+  page: 1,
+  pages: 1
 };
 
 const bikeReducer = (state = initialState, action) => {
@@ -14,14 +16,17 @@ const bikeReducer = (state = initialState, action) => {
     case FETCH_BIKES_REQ: {
         return {
             ...state,
-            isLoading: true
+            isLoading: true,
+
         }
     }
     case FETCH_BIKES:
       return {
         ...state,
         isLoading: false,
-        bikes: action.payload.bikes
+        bikes: action.payload.bikes,
+        page: action.payload.page,
+        pages: action.payload.pages
       }
     default:
       return state;

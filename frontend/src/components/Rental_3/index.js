@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { } from "../../actions/authActions";
+import { fetchBikes } from "../../actions/bikeActions";
 import Rental from "./View.js";
 
 const mapStateToProps = (state) => {
@@ -7,11 +7,14 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error.msg,
     userState: state.auth.user,
+    items: state.bike.bikes,
+    statePage: state.bike.page,
+    loading: state.bike.loading
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    fetchBikes: (query) => dispatch(fetchBikes(query)),
   };
 };
 

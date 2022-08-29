@@ -6,7 +6,7 @@ import {
 } from "react-icons/tb";
 
 import {
-  AiOutlineLeft,
+  AiOutlineDoubleLeft,
   AiOutlineRight,
 } from "react-icons/ai";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
