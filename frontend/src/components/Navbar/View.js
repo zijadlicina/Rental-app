@@ -25,10 +25,7 @@ const Navbar = ({ isAuthenticated, user, logout }) => {
         <div className="row">
           <div className="logo">
             <a href="/">
-              <img
-                src={logoImage}
-                alt="logo image"
-              ></img>
+              <img src={logoImage} alt="logo image"></img>
             </a>
           </div>
           <button className="nav-toggle" onClick={navbarShow}>

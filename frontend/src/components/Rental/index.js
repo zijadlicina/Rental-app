@@ -1,17 +1,21 @@
 import { connect } from "react-redux";
-import {  } from "../../actions/authActions.js";
-import { fetchBikes } from "../../actions/bikeActions.js";
+import { fetchBikes, getCategory } from "../../actions/bikeActions";
 import Rental from "./View.js";
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    bikes: state.bike.bikes,
+    error: state.error.msg,
+    userState: state.auth.user,
+    items: state.bike.bikes,
+    statePage: state.bike.page,
+    loading: state.bike.loading
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBikes: (category) => dispatch(fetchBikes(category)),
+    fetchBikes: (query) => dispatch(fetchBikes(query)),
+    getCategory: (id) => dispatch(getCategory(id))
   };
 };
 

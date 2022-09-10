@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BikeSchema = new Schema({
@@ -15,7 +15,7 @@ const BikeSchema = new Schema({
   },
   rating: {
     type: Number,
-    required: [true, "Please provide a rating to the bike"],
+    default: 1,
   },
   model: {
     type: String,
@@ -29,20 +29,17 @@ const BikeSchema = new Schema({
     type: String,
     default: "No description",
   },
-  image: {
-    type: String,
-    default: "pexels-leandro-boogalu-1149601.jpg",
-  },
+  images: [{ type: String }],
   status: { type: Boolean, default: false },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
     required: [true, 'Please provide a field "category_id" to the bike'],
   },
-  type: { type: String, default: "family" },
+  types: [{ type: String }],
   seat: { type: String, default: "normal" },
   color: { type: String, default: "black" },
   weight: { type: String, default: "12kg" },
-});
+}, {timestamps: true});
 
-module.exports = Bike = mongoose.model('Bike', BikeSchema)
+module.exports = Bike = mongoose.model("Bike", BikeSchema);

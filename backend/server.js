@@ -42,7 +42,7 @@ app.use('/api/private', privates)
 app.use("/api/categories", categories);
 
 // Error handler (Should be a last piece of middleware)
-app.use(errorHandler)
+app.use(errorHandler) 
 
 const server = app.listen(port, () => console.log(`Server is running on port: ${port}`));
 

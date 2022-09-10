@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+.body-div {
+  display: flex;
+  justify-content: center;
+}
+.container-add_rental {
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  margin-top: 3%;
+  padding: 2%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+}
+.container-add_rental form {
+  height: auto;
+}
+.container-add_rental .text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container-add_rental .input-div {
+  display: flex;
+  padding: 2% 2%;
+  align-items: center;
+  margin: 0 2%;
+}
+.container-add_rental .input-div label {
+  flex: 25%;
+  justify-self: center;
+  font-size: smaller;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 2%;
+  text-align: center;
+}
+.container-add_rental form .drop {
+  /* width: 100%;
+    border: 1px solid lightgrey;
+    margin: 3%;
+    height: 0;
+    */
+  display: flex;
+  flex-direction: column;
+}
+.container-add_rental form .drop .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+  padding: 1%;
+}
+.container-add_rental form .drop .content {
+  overflow: hidden;
+  transition: all 0.1s linear;
+}
+.container-add_rental form .drop .content {
+  overflow: hidden;
+  transition: all 0.1s linear;
+}
+.container-add_rental form .drop .notcontent {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in;
+}
+.container-add_rental form .drop .input-div div label {
+  font-size: x-small;
+  text-transform: capitalize;
+  color: black;
+  margin-top: 40%;
+  margin-left: 35%;
+}
+.container-add_rental form .drop .input-div div div input {
+  font-size: xx-large;
+
+}
+.container-add_rental form .drop .basicinfo {
+}
+.container-add_rental form .drop .header span {
+  font-weight: bold;
+  margin: 0 2%;
+}
+.container-add_rental form .drop .header :nth-child(2) {
+  height: 100%;
+  width: 5%;
+  cursor: pointer;
+}
+.container-add_rental .input-div *:is(input, select) {
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid rgb(242, 129, 0);
+  padding: 2%;
+  background-color: transparent;
+}
+.container-add_rental form .next {
+  /*   width: 100%;
+    border: 1px solid lightgrey;
+    margin: 3%;
+    */
+}
+.container-add_rental form {
+  width: 100%;
+  margin: 0px;
+  padding: 0;
+}
+.container-add_rental .type {
+  display: flex;
+  justify-content: space-evenly;
+}
+.container-add_rental .type *:is(.div_notselected, .div_selected) {
+  border: 1px solid rgb(242, 129, 0);
+  padding: 2%;
+  border-radius: 10px;
+  margin: 0 2%;
+  width: 60px;
+  text-align: center;
+  cursor: pointer;
+}
+.container-add_rental .type div:hover {
+  background-color: lightcyan;
+}
+.container-add_rental .type .div_selected {
+  background-color: lightgreen;
+}
+.container-add_rental .type .div_notselected {
+  background-color: lightgray;
+}
+.container-add_rental form .btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+.container-add_rental form .btns button {
+  width: 15%;
+  font-size: medium;
+  color: white;
+  background-color: rgb(242, 129, 0);
+  border: rgb(242, 129, 0);
+}
+.container-add_rental form .btns button * {
+  color: white;
+}

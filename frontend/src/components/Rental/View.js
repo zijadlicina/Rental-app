@@ -1,87 +1,102 @@
 import "./Rental.css";
 import { useEffect, useState } from "react";
-import Items from "./Items/items";
+import { useNavigate, Link } from "react-router-dom";
 
-let array = ["All"];
+import { AiOutlinePlus } from "react-icons/ai";
 
-const Rental = ({ fetchBikes, bikes, isAuthenticated }) => {
-  const [tabs, setTabs] = useState([]);
-  const [currentTab, setCurrentTab] = useState("All");
-  const [items, setItems] = useState(bikes);
+import { CircularProgress, LinearProgress } from "@mui/material";
 
-  const fetchTabs = () => {
-    items.map((item) => {
-      array.push(item.category);
-    });
-    let array2 = [];
-    array2 = Array.from(new Set(array));
-    setTabs(array2);
-  };
+import Actions from "./Actions/Actions";
+import Categories from "./Categories/Categories";
+import Items from "./Items/Items";
+import Pagination from "./Pagination";
 
-  const changeCurrentTab = (tab) => {
-    setCurrentTab(tab);
-  };
-  const changeItems = () => {
-    let array = bikes;
-    if (currentTab === "All") {
-      setItems(bikes);
-      return;
-    }
-    let array2 = [];
-    array.map((item) => {
-      if (item.category === currentTab) array2.push(item);
-    });
-    setItems(array2);
-  };
+const Rental = ({ fetchBikes, getCategory, items, statePage, loading }) => {
+  // states for view
+  const [dropDownFilter, setDropDownFilter] = useState(false);
+  const [view, setView] = useState(1);
+
+  //
+  const [bikes, setBikes] = useState([]); // ???
+  const [page, setPage] = useState(statePage);
+  const [limit, setLimit] = useState(8);
+  const [category, setCategory] = useState("all");
+  const [search, setSearch] = useState();
+  const [filter, setFilter] = useState({ price: [0, 500], rating: [1, 5] });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchTabs();
-    changeItems()
+    let query = `page=${page}&limit=${limit}&category=${category}`;
+    if (search) query += `&search=${search}`;
+    if (filter.price[0] != 0 || filter.price[1] != 500)
+      /// ??????
+      query += `&price[gte]=${filter.price[0]}&price[lte]=${filter.price[1]}`;
+    if (filter.rating[0] != 1 || filter.rating[1] != 5)
+      /// ??????
+      query += `&rating[gte]=${filter.rating[0]}&rating[lte]=${filter.rating[1]}`;
+    fetchBikes(query);
+    navigate("?" + query);
+  }, [page, category, limit, search, filter]);
 
-  }, [currentTab]);
-  const aa = () => {
-    // id_catgory
-    // poslati u fetchBikes
-  }
   return (
-    <div style={mainStyle}>
-      <h2>Rent your vehicle</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        laudantium libero repudiandae ut quo sed! Libero blanditiis, voluptatum
-        fuga quis vero molestias iste debitis qui voluptates rerum velit eveniet
-        dolorum.
-      </p>
-      <div style={{ marginLeft: "180px", marginBottom: "30px" }}>
-        {tabs.map((tab) => {
-          return (
-            <div
-              style={{
-                cursor: "pointer",
-                borderLeft: "3px solid blue",
-                padding: "0px 10px",
-                float: "left",
-                background: "lightgrey",
-                margin: "0px 10px",
-                borderRadius: "3px",
-                width: "130px",
-              }}
-              onClick={() => changeCurrentTab(tab)}
-            >
-              {tab}
+    <div className="body-rental">
+      <div className="container-rental">
+        {/* intro, heading and button - button for new item */}
+        <div className="intro">
+          <h1>Items</h1>
+          <Link to="/rental/add">
+            <div className="btn-newitem">
+              <AiOutlinePlus className="plus-icon" />
+              <span>
+                {" "}
+                <Link to="/rental/add">New Item</Link>
+              </span>
             </div>
-          );
-        })}
+          </Link>
+        </div>
+
+        {/* actions (sort, search, view of items, filter) */}
+        <Actions
+          view={view}
+          setView={setView}
+          changePage={setPage}
+          changeLimit={setLimit}
+          changeSearch={setSearch}
+          changeFilter={setFilter}
+        />
+        {/* container "data" - categories and items */}
+        <div className="data">
+          {/*Categories */}
+          <Categories changeCategory={setCategory} changePage={setPage} />
+          {/*Categories */}
+
+          {/*Loading or List of items */}
+          {loading ? (
+            <div className="text-div">
+              <CircularProgress />
+            </div>
+          ) : items && items.length === 0 ? (
+            <div className="text-div">
+              <p>No Result Found</p>
+            </div>
+          ) : (
+            <Items
+              bikes={items}
+              getCategory={getCategory}
+              view={view}
+              dropDownFilter={dropDownFilter}
+              setDropDownFilter={setDropDownFilter}
+            />
+          )}
+          {/*Loading or List of items */}
+        </div>
+        {/*Pagination */}
+        <Pagination page={page} setPage={setPage} limit={limit} />
+        {/*Pagination */}
       </div>
-      <Items items={items}isAuthenticated={isAuthenticated} />
     </div>
   );
 };
-var mainStyle = {
-  background: "rgb(76,115,245)",
-  background:
-    "linear-gradient(90deg, rgba(76,115,245,1) 0%, rgba(178,172,243,1) 100%)",
-  padding: "5px 250px",
-  height: "650px",
-};
+
 export default Rental;

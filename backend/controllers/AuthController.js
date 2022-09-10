@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const multer = require("multer")
 
 const User = require("../models/User");
 const errorHandler = require("../middleware/errorHandler");
@@ -11,20 +10,7 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
   const user = req.user;
   res.status(200).json({ user });
 });
-
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "---" + file.orginalname);
-  },
-});
-
-const upload = multer({ storage: fileStorageEngine });
-
 exports.register = (
-  upload.single("image"),
   async (req, res, next) => {
     console.log(req.file)
     const { username, email, password } = req.body;

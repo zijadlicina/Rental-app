@@ -38,3 +38,6 @@ export const CLEAN_ERRORS = "CLEAN_ERRORS";
 export const FETCH_BIKES_REQ = "FETCH_BIKES_REQ";
 export const FETCH_BIKES = "FETCH_BIKES";
 export const FETCH_BIKES_FAIL = "FETCH_BIKES_FAIL";
+export const ADD_BIKE_REQ = "ADD_BIKE_REQ";
+export const ADD_BIKE_SUCCES = "ADD_BIKE_SUCCES";
+export const ADD_BIKE_FAIL = "ADD_BIKE_FAIL";

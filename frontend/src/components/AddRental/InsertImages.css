@@ -1,0 +1,47 @@
+.input-file {
+  border-bottom: none;
+  margin: 0% 3%;
+  padding: 0% 1%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+.input-file input {
+  padding: 1% 2%;
+  width: 50%;
+  height: 50%;
+  background-color: rgb(253, 178, 92);
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+}
+.input-file :nth-child(2) {
+  background-color: lightgray;
+  border-radius: 15px;
+  padding: 2%;
+  cursor: pointer;
+  font-weight: bold;
+}
+.input-file :nth-child(2):hover {
+  border: 1px solid rgb(253, 178, 92);
+}
+.images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border: 1px solid rgb(253, 178, 92);
+  border-radius: 15px;
+  height: auto;
+  margin: 2% 0;
+  padding: 2% 0;
+  width: 100%;
+}
+.images img {
+  height: 120px;
+  width: 120px;
+  border-radius: 15px;
+  margin: 2%;
+  border: 0.5px solid grey;
+  cursor: pointer;
+}
