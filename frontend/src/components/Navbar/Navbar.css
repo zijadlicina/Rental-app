@@ -65,10 +65,14 @@
   padding: 20px 20px;
   color: white;
   font-family: "Open Sans", sans-serif;
-  font-size: medium;
+  font-size: large;
 }
-.header-div nav ul a:hover {
-  border-bottom: 2.5px solid violet;
+.header-div nav ul a:hover:not(.active) {
+  border-bottom: 3px solid violet;
+/*  background-color: #4d78ff;*/
+}
+.header-div nav ul .active {
+  border-bottom: 3px solid rgb(28, 77, 238);
 /*  background-color: #4d78ff;*/
 }
 .header-div nav .text-div {
@@ -81,6 +85,18 @@
 }
 .notShow {
   display: none;
+}
+.header-div nav .auth p{
+  font-size: larger;
+  font-style: oblique;
+  font-weight: bold;
+}
+.header-div nav .auth button{
+  background-color: transparent;
+  border-radius: 10px;
+  border: none;
+  font-size: medium;
+  padding-bottom: 10px;
 }
 @media screen and (max-width: 1000px) {
   .header-div {

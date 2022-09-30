@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ItemsSlider.css";
 import {
   AiOutlinePlus,
@@ -11,18 +11,43 @@ import { IoMdHeartEmpty } from "react-icons/io";
 
 import ImagesGallery from "./ImagesGallery";
 
-function ItemsSlider() {
+function ItemsSlider({ items }) {
+  const [current, setCurrent] = useState(0);
+  const [previous, setPrevious] = useState(() => {
+    if (current - 1 < 1) return items.length - 1;
+    return current - 1;
+  })
+  const [next, setNext] = useState(() => {
+    if (items.length > 1) return current + 1;
+    return current;
+  });
+
+  const { name, types, rating, weight, price } = items[current];
+
+  const [nextItem, setNextItem] = useState(items[next]);
+  const [currentItem, setCurrentItem] = useState(items[current]);
+  const [prevItem, setPrevItem] = useState(items[previous])
+  console.log("prevItem", prevItem)
+
+  const handlerChangeImage = (type) => {
+    console.log(type);
+    if (type === "right"){
+
+      setNext(() => {
+
+      })
+    }
+  };  
   return (
     <div className="items-listSlider">
-      
       <div className="input">
         <div className="detail">
-         <div className="icons">
-         </div>
-          <h1>Just for kids</h1>
-          <div className="category">
-            <span>Bike</span>
-            <span>Family</span>
+          <div className="icons"></div>
+          <h1>{name}</h1>
+          <div className="types">
+            {types.map((type) => {
+              return <span>{type}</span>;
+            })}
           </div>
           <table>
             <tr className="table">
@@ -33,9 +58,9 @@ function ItemsSlider() {
             </tr>
             <tr>
               <td>Hour</td>
-              <td>$25</td>
-              <td style={{ color: "orange" }}>4.25</td>
-              <td>13kg</td>
+              <td>${price}</td>
+              <td style={{ color: "orange" }}>{rating}</td>
+              <td>{weight}kg</td>
             </tr>
           </table>
           <div className="replies">
@@ -51,7 +76,14 @@ function ItemsSlider() {
           </div>
         </div>
       </div>
-      <div className="div-images"><ImagesGallery /></div>
+      <div className="div-images">
+        <ImagesGallery
+          currentItem={currentItem}
+          nextItem={nextItem}
+          prevItem={prevItem}
+          handlerChangeImage={handlerChangeImage}
+        />
+      </div>
       <div className="output" style={{ border: "1px solid blue" }}></div>
     </div>
   );

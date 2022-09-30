@@ -1,0 +1,41 @@
+.timeline {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 4%;
+}
+.timeline .row {
+  display: flex;
+}
+.timeline .row .graphic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline .row .graphic .line {
+  height: 75px;
+  width: 2px;
+  border-right: 1px solid #60679f;
+}
+.timeline .row .graphic .circle {
+  height: 15px;
+  width: 15px;
+  border: 1px solid #60679f;
+  border-radius: 50%;
+}
+.timeline .row .graphic .active {
+  border: 5px solid #60679f;
+}
+
+.timeline .row .text .head {
+  font-size: small;
+  font-family: "Poppins", sans-serif;
+  color: #10153e;
+  margin-left: 5%;
+}
+.timeline .row .text .sub {
+  font-size: smaller;
+  font-family: "Poppins", sans-serif;
+  color: #60679f;
+  margin-left: 5%;
+}

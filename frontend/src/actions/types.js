@@ -38,6 +38,22 @@ export const CLEAN_ERRORS = "CLEAN_ERRORS";
 export const FETCH_BIKES_REQ = "FETCH_BIKES_REQ";
 export const FETCH_BIKES = "FETCH_BIKES";
 export const FETCH_BIKES_FAIL = "FETCH_BIKES_FAIL";
+export const FETCH_ONE_REQ = "FETCH_ONE_REQ";
+export const FETCH_ONE = "FETCH_ONE";
+export const FETCH_ONE_FAIL = "FETCH_ONE_FAIL";
 export const ADD_BIKE_REQ = "ADD_BIKE_REQ";
 export const ADD_BIKE_SUCCES = "ADD_BIKE_SUCCES";
 export const ADD_BIKE_FAIL = "ADD_BIKE_FAIL";
+
+// -----------rentals
+export const FETCH_RENTALS_REQ = "FETCH_RENTALS_REQ";
+export const FETCH_RENTALS = "FETCH_RENTALS";
+export const FETCH_RENTALS_FAILURE = "FETCH_RENTALS_FAILURE";
+export const ADD_RENTAL_REQ = "ADD_RENTAL_REQ";
+export const ADD_RENTAL_SUCCES = "ADD_RENTAL_SUCCES";
+export const ADD_RENTAL_FAIL = "ADD_RENTAL_FAIL";
+
+// ----------users
+export const FETCH_USERS_REQ = "FETCH_USERS_REQ";
+export const FETCH_USERS_SUCCES = "FETCH_USERS_SUCCES";
+export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";

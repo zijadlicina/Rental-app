@@ -1,0 +1,39 @@
+/**-----------------*/
+.body-rent .container-rent .tabs{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1B2142;
+  color: #C0C7F7;
+  font-family: "Mulish", serif;
+  height: 40px;
+  margin-bottom: 3%;
+}
+.body-rent .container-rent .tabs div{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: medium;
+  border: none;
+}
+
+.body-rent .container-rent .tabs .active{
+  background-color: #C0C7F7;
+  color: #1B2142;
+  cursor: default;
+  border: #C0C7F7;;
+}
+.body-rent .container-rent .tabs .locked{
+  background-color: lightgrey;
+  color: grey;
+  cursor: not-allowed;
+}
+.body-rent .container-rent .tabs div:nth-child(1):is(.active){
+}
+.body-rent .container-rent .tabs div:hover:not(.active, .locked){
+  color: violet;
+}

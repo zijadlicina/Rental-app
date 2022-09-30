@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchBikes, getCategory } from "../../actions/bikeActions";
+import { fetchBikes } from "../../actions/bikeActions";
 import Rental from "./View.js";
 
 const mapStateToProps = (state) => {
@@ -9,13 +9,13 @@ const mapStateToProps = (state) => {
     userState: state.auth.user,
     items: state.bike.bikes,
     statePage: state.bike.page,
-    loading: state.bike.loading
+    loading: state.bike.loading,
+    authorization: state.auth.authorization
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchBikes: (query) => dispatch(fetchBikes(query)),
-    getCategory: (id) => dispatch(getCategory(id))
   };
 };
 

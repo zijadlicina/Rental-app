@@ -7,8 +7,11 @@ import userIcon from "../../images/user-solid.svg";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 
-const Navbar = ({ isAuthenticated, user, logout }) => {
+const Navbar = ({ isAuthenticated, user, logout, authorization }) => {
   const [isShow, setShowNav] = useState(false);
+  const [activeTab, setActiveTab] = useState(0)
+
+  const {isAdmin, isUser, isGuest, isAgency} = authorization;
   const navigate = useNavigate();
   const logoutHandler = () => {
     logout();
@@ -35,22 +38,51 @@ const Navbar = ({ isAuthenticated, user, logout }) => {
         <nav className={isShow ? "showNav" : "notShow"}>
           <ul>
             <li>
-              <Link to="/" onClick={() => setShowNav(!isShow)}>
+              <Link
+                to="/"
+                className={activeTab === 0 ? "active" : null}
+                onClick={() => {
+                  setShowNav(!isShow);
+                  setActiveTab(0);
+                }}
+              >
                 Home
               </Link>
             </li>
+
             <li>
-              <Link to="/" onClick={() => setShowNav(!isShow)}>
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link to="/rental" onClick={() => setShowNav(!isShow)}>
+              <Link
+                to="/rental"
+                className={activeTab === 1 ? "active" : null}
+                onClick={() => {
+                  setShowNav(!isShow);
+                  setActiveTab(1);
+                }}
+              >
                 Rental
               </Link>
             </li>
+            {isAuthenticated && ( isAdmin || isAgency || isUser) ? <li>
+              <Link
+                to="/rents"
+                className={activeTab === 5 ? "active" : null}
+                onClick={() => {
+                  setShowNav(!isShow);
+                  setActiveTab(5);
+                }}
+              >
+                My Rents
+              </Link>
+            </li> : null }
             <li>
-              <Link to="/about" onClick={() => setShowNav(!isShow)}>
+              <Link
+                to="/about"
+                className={activeTab === 2 ? "active" : null}
+                onClick={() => {
+                  setShowNav(!isShow);
+                  setActiveTab(2);
+                }}
+              >
                 About
               </Link>
             </li>
@@ -60,65 +92,41 @@ const Navbar = ({ isAuthenticated, user, logout }) => {
                   <span>Please login or register</span>
                 </li>
                 <li>
-                  <Link to="/login" onClick={() => setShowNav(!isShow)}>
+                  <Link
+                    to="/login"
+                    className={activeTab === 3 ? "active" : null}
+                    onClick={() => {
+                      setShowNav(!isShow);
+                      setActiveTab(3);
+                    }}
+                  >
                     SING IN
                   </Link>
                 </li>
                 <li>
-                  <Link to="/register" onClick={() => setShowNav(!isShow)}>
+                  <Link to="/register" className={activeTab === 4 ? "active" : null}
+                    onClick={() => {
+                      setShowNav(!isShow);
+                      setActiveTab(4);
+                    }}>
                     SING UP
                   </Link>
                 </li>
               </>
-            ) : null}
+            ) : (
+              <>
+                <li className="text-div auth">
+                  <p>Welcome {user.username}!</p>
+                </li>
+                <li className="text-div auth">
+                  <button onClick={logoutHandler}>LOG OUT</button>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>
     </>
-
-    /*
-    <div className="header">
-      <nav>
-        <ul>
-          <li className="logo-item">
-            <div>
-              <img src={logoImage} alt="logo image"
-              ></img>
-            </div>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/">Features</Link>
-          </li>
-          <li>
-            <Link to="/rental">Rental</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          {!isAuthenticated ? (
-          <div className="auth-div">
-            <li className="text-div">
-              <span>Please login or register</span>
-            </li>
-            <li>
-              <Link to="/login">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/register">
-                Register
-              </Link>
-            </li>
-          </div>
-        ) : null}
-        </ul>
-      </nav>
-    </div>
-    */
   );
 };
 

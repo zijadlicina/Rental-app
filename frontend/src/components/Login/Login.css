@@ -15,6 +15,14 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
+.body-div-fixed {
+  margin-top: 15%;
+  display: flex;
+  justify-content: center;
+  background-color: #f2f2f2;
+  height: 500px;
+  width: 100%;
+}
 .container-login {
   background-color: white;
   box-shadow: 3px 3px 10px rgb(194, 192, 192);
@@ -22,6 +30,14 @@ body {
   border-radius: 10px;
   width: 40%;
   margin-top: 3%;
+}
+.container-loading {
+  background-color: transparent;
+  box-shadow: 3px 3px 10px rgb(194, 192, 192);
+  height: 10px;
+  border-radius: 10px;
+  width: 40%;
+  margin-top: 10%;
 }
 .container-login .text {
   text-align: center;
@@ -50,6 +66,15 @@ body {
 }
 .container-login form .row {
   margin: 0;
+}
+.container-login form .row .error {
+  background-color: rgb(252, 197, 197);
+  color: rgb(167, 42, 42);
+  padding: 2%;
+  font-size: small;
+  cursor: default;
+  border-radius: 3px;
+  border: 0.2px solid rgb(248, 112, 112);;
 }
 .container-login form label {
   color: #5c616e;

@@ -15,7 +15,10 @@ import {
   USER_FAIL,
   RESETPASSWORD_REQUEST,
   RESETPASSWORD_SUCCESS,
-  RESETPASSWORD_FAIL
+  RESETPASSWORD_FAIL,
+  FETCH_USER_REQ,
+  FETCH_USER_SUCCES,
+  FETCH_USER_FAILURE
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
@@ -110,15 +113,16 @@ export const resetPasswordFailure = (error) => {
     payload: error,
   };
 };
+
 //--------------
 export const loginUser = (user) => {
+  console.log("user", user)
   return (dispatch) => {
     dispatch({ type: USER_LOADING });
     axios
       .post("http://localhost:5001/api/auth/login", user)
       .then((response) => {
-        dispatch(loginSucces(response.data));
-        dispatch(cleanErrors());
+        time(dispatch, response);
       })
       .catch((err) => {
         const errMsg = err.message;
@@ -127,6 +131,14 @@ export const loginUser = (user) => {
       });
   };
 };
+
+  const time = (dispatch, response) => {
+    setTimeout(() => {
+      dispatch(loginSucces(response.data));
+      dispatch(cleanErrors());
+    }, 3000);
+  };
+
 
 export const logoutUser = () => {
   return (dispatch) => {
@@ -209,7 +221,6 @@ export const resetPassword = ({object}) => {
       */
   };
 };
-
 
 // get token from local storage
 const getToken = (getState) => {

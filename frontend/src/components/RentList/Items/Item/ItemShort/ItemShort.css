@@ -1,0 +1,94 @@
+.body-div .rentlist .items .rent-item .shortitem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons span{
+}
+.body-div .rentlist .items .rent-item .shortitem .icons span .bike{
+   height: 30px;
+   width: 30px;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons span .circle{
+   border-radius: 60%;
+   height: 20px;
+   width: 20px;
+   margin-bottom: 15%;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons span .active{
+   background-color: lightgreen;
+   color: lightgreen;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons span .notactive{
+   background-color: pink;
+   color: pink;
+}
+.body-div .rentlist .items .rent-item .shortitem .item{
+  flex: 99%;
+  display: flex;
+  justify-content: space-between;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons{
+  display: flex;
+  justify-content: flex-end;
+}
+.body-div .rentlist .items .rent-item .shortitem .icons .row {
+  display: flex;
+   font-family: 'Poppins', sans-serif;
+    font-size: small;
+    font-weight: bold;
+    color: #0C1033;
+    margin-right: 1%;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .image{
+  flex: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 3%;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns{
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1%;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns span{
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns span *{
+  width: 100%;
+  height: 50px;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns button{
+  width: 45%;
+  margin-right: 10%;
+  background-color: #0C1033;
+  font-size: small;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns button:hover{
+  background-color: #3b4ad3;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns .feedback{
+  background-color: #F870A0;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns .feedback:hover{
+  background-color: #EC9EBD;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns button .ic{
+  font-size: medium;
+}
+.body-div .rentlist .items .rent-item .shortitem .item .btns button span{
+  font-size: small;
+  color: white;
+  border: none;
+  margin: 0 2%;
+}

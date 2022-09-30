@@ -1,0 +1,117 @@
+.body-rent .container-rent .formrent form{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.body-rent .container-rent .formrent form .input-div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2%;
+}
+.body-rent .container-rent .formrent form .dateInput {
+  display: flex;
+  flex-direction: row;
+}
+.body-rent .container-rent .formrent form .dateInput .hourInput {
+  display: flex;
+  flex-direction: row;
+}
+.body-rent .container-rent .formrent form .input-div .label{
+  display: flex;
+  align-items: center;
+}
+.body-rent .container-rent .formrent form .input-div .label span{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 7px;
+  font-size: smaller;
+}
+.body-rent .container-rent .formrent form .input-div .label span *{
+  height: 100%;
+  cursor: pointer;
+  width: 100%;
+}
+.body-rent .container-rent .formrent form .input-div .label label {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  position: relative;
+}
+.body-rent .container-rent .formrent form .input-div .label .textmsg {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  height: 0px;
+  width: 30%;
+  top: 5%;
+  left: 20%;
+  border: 1px solid #0d1c52; 
+  border: none;
+  background-color: #8f9dce;
+  border-radius: 6px;
+}
+.body-rent .container-rent .formrent form .input-div .label .textmsgShow {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  height: auto;
+  width: auto;
+  top: 100%;
+  left: 25%;
+  border: 1px solid #0d1c52; 
+  border: none;
+  padding: 1%;
+  background-color: #8f9dce;
+  border-radius: 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.body-rent .container-rent .formrent form .input-div input {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid #8f9dce;
+  padding: 0 4%;
+  margin-top: 2%;
+}
+.body-rent .container-rent .formrent form .input-div input::placeholder {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-size: medium;
+  font-weight: bolder;
+  opacity: 0.8;
+}
+.body-rent .container-rent .formrent form .check {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0%;
+  align-items: center;
+}
+.body-rent .container-rent .formrent form .check .checkinput{
+  flex: 5%;
+  background-color: red;
+}
+.body-rent .container-rent .formrent form .check label{
+  flex: 95%;
+}
+.body-rent .container-rent .formrent form .input-div button {
+  background: linear-gradient(to right,#fe6f4f, #f2bbae);
+  margin: 2% 0;
+  font-size: medium;
+  border: none;
+  border-radius: 15px;
+  height: 100%;
+  padding: 5%;
+}
+.body-rent .container-rent .formrent form .nextbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

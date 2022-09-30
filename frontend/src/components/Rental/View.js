@@ -11,7 +11,8 @@ import Categories from "./Categories/Categories";
 import Items from "./Items/Items";
 import Pagination from "./Pagination";
 
-const Rental = ({ fetchBikes, getCategory, items, statePage, loading }) => {
+const Rental = ({ fetchBikes, items, statePage, loading, authorization }) => {
+  const {isAdmin, isUser, isAgency} = authorization;
   // states for view
   const [dropDownFilter, setDropDownFilter] = useState(false);
   const [view, setView] = useState(1);
@@ -45,15 +46,16 @@ const Rental = ({ fetchBikes, getCategory, items, statePage, loading }) => {
         {/* intro, heading and button - button for new item */}
         <div className="intro">
           <h1>Items</h1>
-          <Link to="/rental/add">
-            <div className="btn-newitem">
-              <AiOutlinePlus className="plus-icon" />
-              <span>
-                {" "}
-                <Link to="/rental/add">New Item</Link>
-              </span>
-            </div>
-          </Link>
+          {isAdmin || isAgency ? (
+            <Link to="/rental/add">
+              <div className="btn-newitem">
+                <AiOutlinePlus className="plus-icon" />
+                <span>
+                  <Link to="/rental/add">New Item</Link>
+                </span>
+              </div>
+            </Link>
+          ) : null}
         </div>
 
         {/* actions (sort, search, view of items, filter) */}
@@ -83,7 +85,6 @@ const Rental = ({ fetchBikes, getCategory, items, statePage, loading }) => {
           ) : (
             <Items
               bikes={items}
-              getCategory={getCategory}
               view={view}
               dropDownFilter={dropDownFilter}
               setDropDownFilter={setDropDownFilter}

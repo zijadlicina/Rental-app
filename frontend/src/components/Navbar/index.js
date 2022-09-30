@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
+    authorization: state.auth.authorization
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -1,0 +1,69 @@
+/**-----------------*/
+.body-rent .container-rent .formrent form .column{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    margin: 2%;
+    margin-top: 0;
+    padding: 2%;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 15%;
+    padding: 5%;
+}
+.body-rent .container-rent .formrent form .column .image-vehicle {
+    width: 40%;
+}
+.body-rent .container-rent .formrent form .column .image-vehicle img{
+    width: 100%;
+    border-radius: 25%;
+    opacity: 85%;
+    border: none;
+}
+.body-rent .container-rent .formrent form .column .info-vehicle{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.body-rent .container-rent .formrent form .column .info-vehicle .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.body-rent .container-rent .formrent form .column .info-vehicle *:is(.headers,.dates) p{
+    font-size: medium;
+    color: #0d1c52;
+    font-family: "Mulish", sans-serif;
+}
+.body-rent .container-rent .formrent form .column .info-vehicle .dates p{
+    border-bottom:1px solid #0d1c52;    
+}
+.body-rent .container-rent .formrent form .nextbtn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.body-rent .container-rent .formrent form .nextbtn button{
+    text-align: center;
+}
+.body-rent .container-rent .formrent form .nextbtn button {
+  border: none;
+  width: 35%;
+  color: #8ec5fc;
+  text-align: center;
+  border-radius: 15px;
+  font-size: medium;
+  margin-top: 1%;
+}
+.body-rent .container-rent .formrent form .nextbtn .cencel{
+    background-color: #8f9dce;
+    color: #0d1c52;
+}
+.body-rent .container-rent .formrent form .nextbtn .next{
+  background: linear-gradient(to right,#0d1c52, #f2bbae);
+}

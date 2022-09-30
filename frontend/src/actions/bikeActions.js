@@ -5,6 +5,7 @@ import {
   ADD_BIKE_REQ,
   ADD_BIKE_SUCCES,
   ADD_BIKE_FAIL,
+  FETCH_ONE,
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
@@ -30,6 +31,25 @@ export const fetchBikesFailure = (error) => {
     payload: error,
   };
 };
+export const fetchOneBikeRequest = () => {
+  return {
+    type: FETCH_BIKES_REQ,
+  };
+};
+export const fetchOneBikeSucces = (data) => {
+  return {
+    type: FETCH_ONE,
+    payload: {
+      current: data.bike
+    },
+  };
+};
+export const fetchOneBikeFail = (error) => {
+  return {
+    type: FETCH_BIKES_FAIL,
+    payload: error,
+  };
+};
 export const addBikeRequest = () => {
   return {
     type: ADD_BIKE_REQ,
@@ -49,7 +69,7 @@ export const addBikeFailure = (error) => {
 };
 //--------------
 export const addBike = (bike) => {
-  console.log(bike)
+  console.log(">bike",bike)
   return (dispatch) => {
     dispatch(addBikeRequest());
     axios
@@ -85,6 +105,25 @@ export const fetchBikes = (query) => {
         const errMsg = err.message;
         dispatch(setErrors(errMsg, err.response.status, null));
         dispatch(fetchBikesFailure(errMsg));
+      });
+  };
+};
+
+//--------------
+export const fetchOneBike = (id) => {
+  return (dispatch) => {
+    dispatch(fetchOneBikeRequest());
+    axios
+      .get(`http://localhost:5001/api/bikes/${id}`)
+      .then((response) => {
+        console.log("response", response.data)
+        dispatch(fetchOneBikeSucces(response.data));
+        dispatch(cleanErrors());
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+        dispatch(setErrors(errMsg, err.response.status, null));
+        dispatch(fetchOneBikeFail(errMsg));
       });
   };
 };

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+
 .container-rental .data .content .items-listSlider {
   flex: 100%;
   display: flex;
@@ -11,6 +13,9 @@
   text-align: center;
   padding-top: 2%;
   margin-bottom: 0;
+}
+.container-rental .data .content .items-listSlider .input .detail h1{
+  font-family: 'Montserrat', sans-serif;
 }
 .container-rental .data .content .items-listSlider .output {
   flex: 100%;
@@ -28,26 +33,19 @@
   align-items: center;
   flex-direction: column;
 }
-.items-listSlider .input .detail .category {
+.items-listSlider .input .detail .types {
   display: flex;
   justify-content: space-around;
   width: 50%;
 }
-.items-listSlider .input .detail .category span {
-  color: rgb(65, 108, 248);
+.items-listSlider .input .detail .types span {
+  background: rgb(94, 94, 94);
+  color: whitesmoke;
   text-align: center;
   border-radius: 8px;
-  background-color: rgb(216, 223, 251);
   width: 100%;
   margin: 1% 2%;
-  cursor: pointer;
-}
-.items-listSlider .input .detail .category span:nth-child(2) {
-  background: orange;
-  color: whitesmoke;
-}
-.items-listSlider .input .detail .category span:hover {
-  background-color: lightgrey;
+  cursor: default;
 }
 .items-listSlider .input .detail table {
   margin-top: 2%;

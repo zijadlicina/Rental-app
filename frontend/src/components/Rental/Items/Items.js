@@ -6,11 +6,11 @@ import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import ItemsSlider from "./ItemsSlider/ItemsSlider";
 import LinearItems from "./LinearItems/LinearItems";
 
-function Items({ view, bikes, getCategory }) {
+function Items({ view, bikes }) {
   if (view === 1) {
     return (
       <div className="content">
-        <ItemsSlider />
+        <ItemsSlider items={bikes}/>
       </div>
     );
   }
@@ -18,7 +18,7 @@ function Items({ view, bikes, getCategory }) {
     /* two options f25 and f100*/
     <div className="content">
       <div className="items">
-        <LinearItems items={bikes} view={view} getCategory={getCategory} />
+        <LinearItems items={bikes} view={view}  />
       </div>
     </div>
   );

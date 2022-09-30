@@ -62,6 +62,7 @@ exports.getAllBikes = asyncHandler(async (req, res, next) => {
 });
 
 exports.createOneBike = asyncHandler(async (req, res, next) => {
+  console.log("quantity", req.body.quantity)
   const providerId = req.body.provider;
   // Is succeeds this provider
   const provider = await Provider.findById(providerId);
@@ -87,8 +88,11 @@ exports.createOneBike = asyncHandler(async (req, res, next) => {
       seat: req.body.seat,
       color: req.body.color,
       images: req.body.images,
+      quantity: req.body.quantity,
+      available: req.body.available || req.body.quantity,
     });
     const result = await newBike.save();
+    console.log(result)
     res.status(201).json({
       message: "Successfully created new bike!",
       bike: bikeDetails(result),
@@ -107,8 +111,8 @@ exports.getOneBike = asyncHandler(async (req, res, next) => {
   }
 
     res.status(201).json({
-        message: "Successfully updated a bike",
-        bike: bikeDetails(result, category),
+        message: "Successfully get a bike",
+        bike: bikeDetails(result),
       });
 });
 
@@ -166,5 +170,7 @@ function bikeDetails(bike) {
     description: bike.description,
     images: bike.images,
     createdAt: bike.createdAt || null,
+    quantity: bike.quantity,
+    available: bike.available
   };
 }

@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+.body-div {
+  display: flex;
+  justify-content: center;
+  background-color: #f2f2f2;
+  height: 100%;
+  width: 100%;
+}
+.body-div .rentlist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 75%;
+  background-color: #b7def9;
+  background-image: linear-gradient(135deg, #b7def9 0%, #b8bbfa 100%);
+  padding: 2%;
+}
+.body-div .rentlist .head {
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+}
+.body-div .rentlist .tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5%;
+}
+.body-div .rentlist .tabs div {
+  width: 70px;
+  background-color: white;
+  cursor: pointer;
+  padding: 1%;
+  font-family: "Montserrat";
+  border-left: 1px solid #8f9dce;
+}
+.body-div .rentlist .tabs .active {
+  background-color: #b8bbfa;
+}
+.body-div .rentlist .tabs div:hover {
+  background-color: #8f9dce;
+}
+.body-div .rentlist .items {
+  display: flex;
+  flex-direction: column;
+}
+.body-div .rentlist .items  {
+  background-color: white;
+  width: 100%;
+  cursor: pointer;
+}
+.body-div .rentlist .items .modal {
+  position: fixed;
+}
+.body-div .rentlist .items .content {
+  top: 25%;
+  left: 30%;
+  width: 40%;
+  height: 55%;
+}
+.body-div .rentlist .items .left {
+  background-color: rgb(202, 235, 255);
+  top: 50%;
+  left: 27%;
+  cursor: pointer;
+  border-radius: 30%;
+  opacity: 50%;
+}
+.body-div .rentlist .items .right {
+  background-color: rgb(166, 221, 255);
+  top: 50%;
+  right: 27%;
+  cursor: pointer;
+  border-radius: 30%;
+  opacity: 50%;
+}
+
+.body-div .rentlist .items *:is(.right, .left):hover {
+  opacity: 100%;
+}
+.body-div .rentlist .items :is(.right, .left, .close) * {
+  height: 50px;
+  width: 30px;
+  cursor: pointer;
+}
+.body-div .rentlist .items .rent-item {
+  width: 100%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: flex-start;
+  padding: 3%;
+}
+.body-div .rentlist .items .item-modal {
+  opacity: 50%;
+}
+
+.body-div .rentlist .items .rent-item h2 {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+}
+.body-div .rentlist .items .rent-item img {
+  width: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.body-div .rentlist .items .rent-item .detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.body-div .rentlist .items .rent-item .info {
+  margin: 0 3%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.body-div .rentlist .items .rent-item .info .desc * {
+  font-size: small;
+}
+.body-div .rentlist .items .rent-item .info .row {
+  display: flex;
+}
+.body-div .rentlist .items .rent-item .info .first {
+  margin-left: 75%;
+}
+.body-div .rentlist .items .rent-item .info .center {
+  margin-top: 3%;
+  margin-left: 30%;
+}
+.body-div .rentlist .items .rent-item .info .center * {
+  border: none;
+  padding: 3%;
+}
+.body-div .rentlist .items .rent-item .info .center * {
+  cursor: pointer;
+}
+
+.body-div .rentlist .items .rent-item .info .first span {
+  font-size: large;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border: none;
+}
+.body-div .rentlist .items .rent-item .info label {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: small;
+  width: 40%;
+}
+
+.body-div .rentlist .items .rent-item .info span {
+  color: #0d1c52;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: medium;
+  border-bottom: 1px solid #0d1c52;
+}
+
+.body-div .rentlist .items .rent-item .info .btns {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2% 0;
+  margin-top: 2%;
+}
+.body-div .rentlist .items .rent-item .info .btns button {
+  padding: 2% 0;
+  width: 30%;
+  font-size: small;
+  border: none;
+}
+.body-div .rentlist .items .rent-item .info .btns button:hover {
+  background-color: #8f9dce;
+}
+
+.body-div .rentlist .items .rent-item .icon {
+  display: flex;
+  justify-content: space-between;
+}
+.body-div .rentlist .items .rent-item .icon span {
+  border-radius: 55%;
+}
+.body-div .rentlist .items .rent-item .icon span * {
+  height: 30px;
+  width: 20px;
+  border-radius: 45%;
+  padding: 0;
+}
+.body-div .rentlist .items .rent-item .icon span .circle {
+  margin: 0 13%;
+}
+.body-div .rentlist .items .rent-item .info .features {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+.body-div .rentlist .items .rent-item .info .features span {
+  border: none;
+  margin-right: 5%;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+}
+.body-div .rentlist .items .rent-item .info .features span .icon {
+  margin-left: 10%;
+}
+.body-div .rentlist .items .rent-item .info .features span .icon:hover {
+  background-color: #8f9dce;
+  cursor: pointer;
+}
+.body-div .rentlist .items {
+  background-color: #8f9dce;
+}
+.body-div .rentlist .itemsmodal {
+  opacity: 30%;
+}

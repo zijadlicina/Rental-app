@@ -1,0 +1,117 @@
+/**-----------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+.body-rent .container-rent .formrent form .pricing-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFFFFF;
+    margin: 2%;
+    margin-top: 0;
+    padding: 2%;
+    box-shadow: 2px 2px 5px lightgrey;
+    border-radius: 15%;
+}
+.body-rent .container-rent .formrent form .pricing-column .row1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.body-rent .container-rent .formrent form .pricing-column .row1 h2{
+   color: #0C1033;
+    font-family: "Merriweather", serif;
+    font-size: x-large;
+    font-weight:600;
+}
+.body-rent .container-rent .formrent form .pricing-column .row1 p{
+   color: #0C1033;
+    font-family: 'Poppins', sans-serif;
+    font-size:  medium;
+    font-weight: bold;
+}
+.body-rent .container-rent .formrent form .pricing-column .row2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer{
+    border: 4px solid #E9EBF8;
+    border-radius: 3px;
+    padding: 2%;
+    margin-bottom: 2%;
+    width: 55%;
+    cursor: pointer;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row2 .active{
+    border: 2px solid #2F42EE;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer:hover{
+    background-color: lightcyan;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div p{
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: small;
+    font-weight:800;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div span {
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div span *{
+   width: 100%;
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div h3{
+    font-family: 'Poppins', sans-serif;
+    font-size:  medium;
+    font-weight: 700;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div small{
+    font-family: 'Poppins', sans-serif;
+    font-size: small;
+    font-weight:800;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .pricing-column .row2 .offer div .best{
+    background-color: #2F42EE;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+    text-transform: capitalize;
+    font-size: smaller;
+    font-family: 'Poppins', sans-serif;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row3{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row3 button{
+    width: 50%;
+    font-family: 'Poppins', sans-serif;
+    font-size: smaller;
+    margin: 1%;
+    border-radius: 30px;
+    color: white;
+    font-weight: bolder;
+    border: none;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row3 .first{
+    background-color: #0C1033;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row3 .second{
+    border: 1px solid #E9EBF8;
+}  
+.body-rent .container-rent .formrent form .pricing-column .row3 .second .icon{
+    margin-left: 1%;
+}  

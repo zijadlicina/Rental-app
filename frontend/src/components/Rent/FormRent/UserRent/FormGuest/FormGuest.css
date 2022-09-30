@@ -1,0 +1,66 @@
+.body-rent .container-rent .formrent form .column-guest{
+    display: flex;
+    flex-direction: column;
+}
+
+.body-rent .container-rent .formrent form .column-guest .btns{
+    display: flex;
+    justify-content: space-evenly;
+}
+.body-rent .container-rent .formrent form .column-guest .btns p{
+    font-family: 'Poppins', sans-serif;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .column-guest .btns button{
+    font-family: 'Poppins', sans-serif;
+    background-color: #0C1033;
+    padding: 1%;
+    width: 20%;
+    color: #8f9dce;
+    font-size: small;
+    border: none;
+    border-radius: 25%;
+}
+.body-rent .container-rent .formrent form .column-guest .btns button:hover{
+    color: white;
+}
+.body-rent .container-rent .formrent form .column-guest p{
+    font-family: 'Poppins', sans-serif;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    margin: 2%;
+    margin-top: 0;
+    padding: 2%;
+    box-shadow: 2px 2px 5px lightgrey;
+    border-radius: 15%;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form .input-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form .input-div label{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+    color: #0C1033;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form .input-div input{
+    width: 65%;
+    border: none;
+    border-bottom: 2px solid #0C1033;
+    border-radius: 0;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form .input-div input:focus{
+    border-bottom: 2px solid #0C1033;
+}
+.body-rent .container-rent .formrent form .column-guest .guest-form .nextbtn button{
+    background-color: #0C1033;
+}
+

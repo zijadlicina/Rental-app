@@ -12,26 +12,25 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
 });
 exports.register = (
   async (req, res, next) => {
-    console.log(req.file)
-    const { username, email, password } = req.body;
+    const { username, email, password, roles } = req.body;
     const newUser = await User.create({
       _id: mongoose.Types.ObjectId(),
       username,
       email,
       password,
+      roles
     });
     sendToken(newUser, 201, res);
   }
 );
 
 exports.login = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
-  const { email, password } = req.body;
-  if (!email || !password) {
-    next(new ErrorResponse(`Please provide email and password`, 400));
+  const { username, password } = req.body;
+  if (!username || !password) {
+    next(new ErrorResponse(`Please provide username and password`, 400));
   }
   // is exist User with 'email'
-  const user = await User.findOne({ email }).select("+password"); // everything return
+  const user = await User.findOne({ username }).select("+password"); // everything return
   if (!user) {
     return next(new ErrorResponse(`Invalid credentials`, 401)); // 401 - "unauthorized"
   }

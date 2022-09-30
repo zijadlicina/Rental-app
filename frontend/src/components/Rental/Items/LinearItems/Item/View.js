@@ -28,15 +28,35 @@ import { Rating } from "@mui/material";
 import first from "../../../../../images/pexels-philipp-m-100582(1).jpg";
 import second from "../../../../../images/pexels-pixabay-159192.jpg";
 import third from "../../../../../images/pexels-leandro-boogalu-1149601.jpg";
+import { useNavigate } from "react-router-dom";
 
-function Item({ view, item, getCategory}) {
-  const { name, price, rating, images, createdAt, category } = item;
-  const categoryName = getCategory(category)
-  console.log(categoryName)
+function Item({ view, item, user, authorization }) {
+  const {isGuest, isAdmin, isUser} = authorization;
+  const {
+    _id,
+    name,
+    price,
+    rating,
+    images,
+    createdAt,
+    category,
+    available,
+    fetchOneBike,
+  } = item;
   let image = images[0];
   let i = parseInt(createdAt);
   const [slideImage, setSlideImage] = useState(0);
   const [circles, setCircles] = useState(Array(images.length).fill(0));
+
+  const navigate = useNavigate();
+
+  const navigateToRent = () => {
+    if (isGuest) {
+      navigate(`/rental/rent/guest/${_id}`);
+    }
+    else navigate(`/rental/rent/${user._id}/${_id}/`);
+  };
+
   if (view === 2) {
     return (
       <article className="item-f25">
@@ -77,11 +97,13 @@ function Item({ view, item, getCategory}) {
             <th>UNIT</th>
             <th>PRICE</th>
             <th>RATING</th>
+            <th>AVAILABLE</th>
           </tr>
           <tr>
             <th>Hour</th>
             <th>${price}</th>
             <th>{rating}</th>
+            <th>{available}</th>
           </tr>
         </table>
         <div className="replies">
@@ -202,7 +224,7 @@ function Item({ view, item, getCategory}) {
             </span>
           </div>
           <div className="btns">
-            <button>Rent Now</button>
+            <button onClick={() => navigateToRent()}>Rent Now</button>
             <button>Read More</button>
           </div>
         </div>

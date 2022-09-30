@@ -1,7 +1,7 @@
 import React from "react";
 import "./LinearItems.css";
 
-import Item from './Item/Item'
+import Item from './Item'
 
 function LinearItems({ items, view, getCategory }) {
   return items.map((item) => {

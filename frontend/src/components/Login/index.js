@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error.msg,
     userState: state.auth.user,
+    loading: state.auth.isLoading
   };
 };
 const mapDispatchToProps = (dispatch) => {

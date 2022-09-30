@@ -44,6 +44,7 @@ const AddRental = ({ addItem, loading, error }) => {
     seat: "standard",
     color: "black",
     images: [],
+    quantity: 1
   });
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const AddRental = ({ addItem, loading, error }) => {
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log(bike);
+    console.log("<bike", bike);
     addItem(bike);
     console.log(error)
     if (error) {
@@ -85,6 +86,7 @@ const AddRental = ({ addItem, loading, error }) => {
         seat: "standard",
         color: "black",
         images: [],
+        quantity: 1
       });
       setTypes(typesData);
       setArray([]);
@@ -278,6 +280,17 @@ const AddRental = ({ addItem, loading, error }) => {
                     </select>
                   </>
                 )}
+                <div>
+                <label htmlFor="quantity">Quantity</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value={bike.quantity}
+                  onChange={changeHandler}
+                />
+                
+              </div>
                 <label htmlFor="weight">Weight</label>
                 <input
                   type="number"

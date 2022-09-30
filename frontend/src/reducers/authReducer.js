@@ -17,8 +17,14 @@ const token = localStorage.getItem("token");
 const initialState = {
   isLoading: false,
   isAuthenticated: false,
+  authorization: {
+    isGuest: true,
+    isUser: false,
+    isAgency: false,
+    isAdmin: false,
+  },
   user: null,
-  token: token ? token : ''
+  token: token ? token : "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -31,20 +37,53 @@ const authReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case USER_LOADED:
+      let roles1 = action.payload.user.roles;
+      let auth1 = {
+        isUser: false,
+        isAgency: false,
+        isAdmin: false,
+      };
+      if (roles1.includes("2001")) { auth1.isUser = true; auth1.isGuest = false; }
+      if (roles1.includes("5501")) { auth1.isAdmin = true; auth1.isGuest = false; }
+      if (roles1.includes("1994")) {
+        auth1.isAdmin = true;
+        auth1.isGuest = false;
+      }
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
         user: action.payload.user,
+        authorization: auth1,
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem('token', action.payload.token)
+      let roles = action.payload.user.roles;
+      console.log("roles", roles)
+      let auth = {
+        isUser: false,
+        isAgency: false,
+        isAdmin: false,
+      };
+      if (roles.includes("2001")) {
+        auth.isUser = true;
+        auth.isGuest = false;
+      }
+      if (roles.includes("5501")) {
+        auth.isAdmin = true;
+        auth.isGuest = false;
+      }
+      if (roles.includes("1994")) {
+        auth.isAdmin = true;
+        auth.isGuest = false;
+      }
       return {
         ...state,
         ...action.payload,
         isLoading: false,
-        isAuthenticated: true
+        isAuthenticated: true,
+        authorization: auth
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
@@ -56,7 +95,13 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         isAuthenticated: false,
         token: "",
-        user: null
+        user: null,
+        authorization: {
+          isUser: false,
+          isAgency: false,
+          isAdmin: false,
+          isGuest: true,
+        },
       };
     default:
       return state;

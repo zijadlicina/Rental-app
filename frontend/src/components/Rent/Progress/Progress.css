@@ -1,0 +1,40 @@
+/**-----------------*/
+.body-rent .progress {
+  width: 30%;
+  box-sizing: border-box;
+  background-color: #1b2142;
+  border-radius: 15px;
+  background-color: yellow;
+}
+.body-rent .progress h2 {
+  color: #c0c7f7;
+  font-family: "Merriweather", serif;
+  font-size: 20px;
+}
+.body-rent .progress p {
+  color: #c0c7f7;
+  font-family: "Mulish", serif;
+  font-size: 16px;
+}
+.body-rent .progress .boxes {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+.body-rent .progress .boxes .box {
+  background: #4962ff;
+  /* 4962FF, #4AD9EF */
+  height: 16px;
+  width: 60px;
+  border-radius: 15px;
+}
+.body-rent .progress .boxes .middle {
+  background: #4ad9ef;
+}
+.body-rent .progress .boxes .dark {
+  background: #11152f;
+}
+.body-rent .progress .textmsg {
+  font-size: small;
+}
