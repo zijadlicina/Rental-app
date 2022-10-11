@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
 
@@ -14,6 +15,7 @@ import Home from "./components/Home";
 import About from "./components/About/View";
 import Rental from "./components/Rental";
 import Rent from "./components/Rent";
+import Vehicle from "./components/Vehicle";
 import AddRental from "./components/AddRental";
 import Register from "./components/Register";
 import Error from "./components/Error/View";
@@ -28,10 +30,11 @@ import { fetchBikes } from "./actions/bikeActions";
 
 function App() {
   useEffect(() => {
-    console.log("refresh")
+    console.log("refresh");
     store.dispatch(loadUser());
     store.dispatch(fetchBikes());
   });
+
   return (
     <Provider store={store}>
       <Router>
@@ -48,6 +51,11 @@ function App() {
           />
           <Route exact path="/rental/rent/:user/:bike" element={<Rent />} />{" "}
           <Route exact path="/rents" element={<RentList />} />{" "}
+          <Route
+            exact
+            path="/vehicle/:id"
+            element={<Vehicle />}
+          />{" "}
           <Route exact path="/register" element={<Register />} />{" "}
           <Route exact path="/login" element={<Login />} />{" "}
           <Route exact path="/:id" element={<Home />} />
@@ -56,6 +64,7 @@ function App() {
           <Route exact path="*" element={<Error />} />
         </Routes>
       </Router>
+      <Footer />
     </Provider>
   );
 }

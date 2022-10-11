@@ -5,8 +5,8 @@ import { VscCircleLargeOutline } from "react-icons/vsc";
 import { MdOutlineReadMore, MdFeedback } from "react-icons/md";
 import moment from "moment";
 
-function View({ rentItem, bikes, setModal }) {
-  const { dateOut, dateReturned, quantity, status, price } = rentItem;
+function View({ rentItem, bikes, setModal, setCurrentRental }) {
+  const { _id, dateOut, dateReturned, quantity, status, price } = rentItem;
   const [bike, setBike] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -16,17 +16,15 @@ function View({ rentItem, bikes, setModal }) {
     setLoading(false);
   }, []);
 
-
   var dif1 = new Date(dateReturned).getTime() - new Date(dateOut).getTime();
-  var days = Math.floor(dif1 / (1000 * 3600 * 24))
-  
+  var days = Math.floor(dif1 / (1000 * 3600 * 24));
+
   var daysLeft = Math.floor(
     (new Date(dateReturned).getTime() - new Date(Date.now()).getTime()) /
       (1000 * 3600 * 24)
   );
 
-
-  let statusExpire = status;  
+  let statusExpire = status;
   if (new Date(dateReturned) < Date.now()) statusExpire = false;
   return (
     <div className="shortitem">
@@ -35,7 +33,9 @@ function View({ rentItem, bikes, setModal }) {
           {!statusExpire ? (
             <span>Inactive</span>
           ) : (
-            <span>{daysLeft} of {days} days left</span>
+            <span>
+              {daysLeft} of {days} days left
+            </span>
           )}
         </div>
         <span>
@@ -62,12 +62,23 @@ function View({ rentItem, bikes, setModal }) {
                 price={price}
               />
               <div className="btns">
-                <button onClick={() => setModal(true)}>
+                <button
+                  onClick={() => {
+                    setCurrentRental(_id);
+                    setModal(1);
+                  }}
+                >
                   <MdOutlineReadMore className="ic" />
                   <span>Read More</span>
                 </button>
                 {!statusExpire ? (
-                  <button className="feedback">
+                  <button
+                    onClick={() => {
+                      setCurrentRental(_id);
+                      setModal(2);
+                    }}
+                    className="feedback"
+                  >
                     <MdFeedback className="ic" />
                     <span>Feedback</span>
                   </button>

@@ -5,6 +5,7 @@ import { fetchUsers } from "../../../actions/userActions";
 const mapStateToProps = (state) => {
   return {
     users: state.user.users,
+    bikes: state.bike.bikes,
     isLoading: state.user.isLoading
   };
 };

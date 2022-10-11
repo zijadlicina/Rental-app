@@ -12,12 +12,16 @@ const bikeUrl = "http://localhost:5000/api/bikes";
 // @desc Get all rentals
 // @acces Public
 router.get("/", async (req, res, next) => {
-  let query = Rental.find();
-  if (req.query) {
+  let rentals = [];
+  if (req.query.user) {
+    let query = Rental.find();
     query = query.find({ user: req.query.user });
+    rentals = await query;
+  }
+  else {
+    rentals = await Rental.find();
   }
 
-  let rentals = await query;
   res.status(200).json({
     count: rentals.length,
     rentals: rentals.map((rental) => {

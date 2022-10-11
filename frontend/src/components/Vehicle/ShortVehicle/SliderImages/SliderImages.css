@@ -1,0 +1,41 @@
+.body-div-vehicle .vehicle-div div .div-image .images {
+  flex: 80%;
+  height: 100%;
+  width: 85%;
+  margin-left: 15%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-div-vehicle .vehicle-div div .div-image .images .main img {
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
+  transform: rotate(5deg);
+  border: none;
+  box-shadow: 10px 10px 10px grey;
+}
+.body-div-vehicle .vehicle-div div .div-image .slider {
+  margin-top: 7%;
+  height: 100%;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.body-div-vehicle .vehicle-div div .div-image .slider .slide {
+  height: 80px;
+  flex: 10%;
+  margin-right: 1%;
+}
+.body-div-vehicle .vehicle-div div .div-image .slider .slide img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+}
+.body-div-vehicle .vehicle-div div .div-image .slider .active {
+  box-shadow: 1px 1px 7px #FF71A4;
+}
+

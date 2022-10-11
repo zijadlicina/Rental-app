@@ -6,9 +6,16 @@ import {
   ADD_BIKE_SUCCES,
   ADD_BIKE_FAIL,
   FETCH_ONE,
+  FETCH_REVIEW_REQ,
+  FETCH_REVIEW_SUCCES,
+  FETCH_REVIEW_FAIL,
+  ADD_FEEDBACK_SUCCES,
+  ADD_FEEDBACK_REQ,
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
+
+import { addFeedbackAlertFail, addFeedbackAlertSucces } from "./alertActions";
 
 export const fetchBikesRequest = () => {
   return {
@@ -67,6 +74,29 @@ export const addBikeFailure = (error) => {
     payload: error,
   };
 };
+export const fetchReviewsRequest = () => {
+  return {
+    type: FETCH_REVIEW_REQ,
+  };
+};
+export const fetchReviewsSucces = (data) => {
+  return {
+    type: FETCH_REVIEW_SUCCES,
+    payload: data
+  };
+};
+export const addFeedbackRequest = () => {
+  return {
+    type: ADD_FEEDBACK_REQ,
+  };
+};
+export const addFeedbackSucces = (data) => {
+  return {
+    type: ADD_FEEDBACK_SUCCES,
+    payload: data,
+  };
+};
+
 //--------------
 export const addBike = (bike) => {
   console.log(">bike",bike)
@@ -127,6 +157,48 @@ export const fetchOneBike = (id) => {
       });
   };
 };
+//--------------
+export const fetchReviews = (id) => {
+  console.log("id", id)
+  return (dispatch) => {
+    dispatch(fetchReviewsRequest());
+    axios
+      .get(`http://localhost:5001/api/feedbacks/${id}`)
+      .then((response) => {
+        console.log("response", response.data)
+        dispatch(fetchReviewsSucces(response.data.feedbacks1));
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+       // dispatch(setErrors(errMsg, err.response.status, null));
+     //   dispatch(fetchOneBikeFail(errMsg));
+      });
+  };
+};
+//--------------
+export const addFeedback = (feed) => {
+  return (dispatch) => {
+    dispatch(addFeedbackRequest());
+    axios
+      .post(`http://localhost:5001/api/feedbacks/`, feed)
+      .then((response) => {
+        dispatch(addFeedbackSucces(response.data));
+        dispatch(addFeedbackAlertSucces(response.data))
+      //  dispatch(cleanErrors());
+      })
+      .catch((err) => {
+        const errMsg = err.data;
+        console.log(err.response.data.error);
+     /*   dispatch(addBikeFailure(errMsg));
+        dispatch(
+          setErrors(err.response.data.error, err.status, "ADDBIKE_FAIL")
+        );
+        */
+      });
+  };
+};
+
+
 /*
 export const getCategory = (id) => {
   return (dispatch) => {

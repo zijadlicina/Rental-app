@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+
+.body-div-vehicle .vehicle-div div {
+  display: flex;
+  flex-direction: row;
+}
+.body-div-vehicle .vehicle-div div .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+}
+.body-div-vehicle .vehicle-div div .info h2 {
+  text-transform: uppercase;
+  color: white;
+  font-family: "Merriweather", sans-serif;
+  font-size: medium;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+.body-div-vehicle .vehicle-div div .info .rating {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+}
+.body-div-vehicle .vehicle-div div .info .rating .reviews {
+  color: #898b9c;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: medium;
+  margin-left: 3%;
+  text-transform: capitalize;
+}
+.body-div-vehicle .vehicle-div div .info div p {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: small;
+  margin-top: 4%;
+  text-transform: capitalize;
+}
+.body-div-vehicle .vehicle-div div .info div .second {
+  width: 93%;
+}
+.body-div-vehicle .vehicle-div div .info .price-submit {
+  margin-top: 3%;
+}
+.body-div-vehicle .vehicle-div div .info .price-submit button {
+  width: 45%;
+  background-color: white;
+  color: #1F233C;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: medium;
+  height: auto;
+  border-radius: 0;
+  border: none;
+}
+.body-div-vehicle .vehicle-div div .info .price-submit button:hover {
+  background-color: #1F233C;
+  color: white;
+}
+/** second side  --------------------------*/
+.body-div-vehicle .vehicle-div div .div-image {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

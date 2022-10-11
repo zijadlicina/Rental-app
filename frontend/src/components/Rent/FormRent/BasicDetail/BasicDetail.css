@@ -1,4 +1,6 @@
 /**-----------------*/
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+
 .body-rent .progress{
   width: 30%;
   box-sizing: border-box;
@@ -13,6 +15,7 @@
   color: #C0C7F7;
   font-family: "Merriweather", serif;
   font-size: 20px;
+
 }
 .body-rent .progress p{
   color: #C0C7F7;

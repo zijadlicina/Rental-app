@@ -9,8 +9,16 @@ import { AiOutlineDislike, AiOutlineComment } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import ItemShort from "./ItemShort"
 
-const View = ({ rentItem, users, bikes, setModal, modal }) => {
-  const { bikeId, userId, dateOut, dateReturned, price, quantity, status } = rentItem;
+const View = ({
+  rentItem,
+  users,
+  bikes,
+  setModal,
+  modal,
+  setCurrentRental,
+}) => {
+  const { bikeId, userId, dateOut, dateReturned, price, quantity, status } =
+    rentItem;
 
   const [user, setUser] = useState(null);
   const [bike, setBike] = useState(null);
@@ -109,8 +117,13 @@ const View = ({ rentItem, users, bikes, setModal, modal }) => {
       </div>
 */
   return (
-    <div className={modal ? "rent-item item-modal" : "rent-item" }>
-      <ItemShort rentItem={rentItem} bikes={bikes} setModal={setModal} />
+    <div className={modal ? "rent-item item-modal" : "rent-item"}>
+      <ItemShort
+        rentItem={rentItem}
+        bikes={bikes}
+        setModal={setModal}
+        setCurrentRental={setCurrentRental}
+      />
     </div>
   );
 };

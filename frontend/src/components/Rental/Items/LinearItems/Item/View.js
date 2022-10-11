@@ -14,7 +14,8 @@ import { MdSort, MdOutlineFiberNew, MdOutlineLocationOn } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FiMoreVertical } from "react-icons/fi";
 import { MdOutlineDirectionsBike } from "react-icons/md";
-import { GiKickScooter } from "react-icons/gi";
+import { GiKickScooter, GiDutchBike } from "react-icons/gi";
+
 import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarLeftExpand,
@@ -28,10 +29,12 @@ import { Rating } from "@mui/material";
 import first from "../../../../../images/pexels-philipp-m-100582(1).jpg";
 import second from "../../../../../images/pexels-pixabay-159192.jpg";
 import third from "../../../../../images/pexels-leandro-boogalu-1149601.jpg";
+import placeholder from "../../../../../images/picture.png";
+
 import { useNavigate } from "react-router-dom";
 
 function Item({ view, item, user, authorization }) {
-  const {isGuest, isAdmin, isUser} = authorization;
+  const { isGuest, isAdmin, isUser } = authorization;
   const {
     _id,
     name,
@@ -43,7 +46,10 @@ function Item({ view, item, user, authorization }) {
     available,
     fetchOneBike,
   } = item;
-  let image = images[0];
+  let image;
+  if (images.length === 0) image = placeholder;
+  else image = images[0];
+
   let i = parseInt(createdAt);
   const [slideImage, setSlideImage] = useState(0);
   const [circles, setCircles] = useState(Array(images.length).fill(0));
@@ -53,8 +59,7 @@ function Item({ view, item, user, authorization }) {
   const navigateToRent = () => {
     if (isGuest) {
       navigate(`/rental/rent/guest/${_id}`);
-    }
-    else navigate(`/rental/rent/${user._id}/${_id}/`);
+    } else navigate(`/rental/rent/${user._id}/${_id}/`);
   };
 
   if (view === 2) {
@@ -67,16 +72,20 @@ function Item({ view, item, user, authorization }) {
           <MdOutlineLocationOn className="location-icon" />
         </div>
         <div className="div-images">
-          <img
-            src={image}
-            alt="bikeImage"
-            style={{
-              height: "220px",
-              width: "100%",
-              borderRadius: "10px",
-              opacity: "75%",
-            }}
-          />
+          {image === placeholder ? (
+            <GiDutchBike style={{ width: "80%", height: "70%" }} />
+          ) : (
+            <img
+              src={image}
+              alt="bikeImage"
+              style={{
+                height: "220px",
+                width: "100%",
+                borderRadius: "10px",
+                opacity: "75%",
+              }}
+            />
+          )}
         </div>
         <div className="heading">
           <h2>{name}</h2>
@@ -130,7 +139,7 @@ function Item({ view, item, user, authorization }) {
             <BsBicycle style={{ fontSize: "x-larger" }} />
             Rent
           </button>
-          <button>Read More</button>
+          <button onClick={() => navigate(`/vehicle/${_id}`)}>Read More</button>
         </div>
       </article>
     );
@@ -225,7 +234,9 @@ function Item({ view, item, user, authorization }) {
           </div>
           <div className="btns">
             <button onClick={() => navigateToRent()}>Rent Now</button>
-            <button>Read More</button>
+            <button onClick={() => navigate(`/vehicle/${_id}`)}>
+              Read More
+            </button>
           </div>
         </div>
       </article>

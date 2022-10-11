@@ -1,0 +1,23 @@
+.body-div-vehicle .vehicle-div div .info .tabs{
+    width: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 5%;
+}
+.body-div-vehicle .vehicle-div div .info .tabs .tab{
+  margin-right: 6%;
+  text-transform: capitalize;
+  color: #898B9C;
+  font-family: "Merriweather", sans-serif;
+  font-size: medium;
+  font-weight: normal;
+  font-size: large;
+  cursor: pointer;
+}
+.body-div-vehicle .vehicle-div div .info .tabs .active{
+  color: white;
+}
+.body-div-vehicle .vehicle-div div .info .tabs .tab:hover:not(.active){
+  color: #1F233C;
+}

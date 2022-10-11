@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.items .feedbackmodal .cont .box .btns .buttons-container {
+  margin-top: 5%;
+  display: flex;
+  justify-content: flex-end;
+}
+.items .feedbackmodal .cont .box .btns .buttons-container button{
+  width: 22%;
+  margin-right: 2%;
+  border: none;
+  font-size: small;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+.items .feedbackmodal .cont .box .btns .buttons-container button:hover{
+  border: 1px solid #60699A;
+}
+.items .feedbackmodal .cont .box .btns .buttons-container .submit{
+  background-color: #FF71A4;
+}
+.items .feedbackmodal .cont .box .btns .buttons-container .cancel{
+  background-color: #FFFFFF;
+  color: #60699A;
+}

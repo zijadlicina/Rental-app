@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 function TimeItem() {
   return (
     <div className="row">
       <div className="graphic">
-        <div className="circle active"></div>
+        <div className="circle"></div>
         <div className="line"></div>
       </div>
       <div className="text">
@@ -15,4 +15,4 @@ function TimeItem() {
   );
 }
 
-export default TimeItem
+export default TimeItem;

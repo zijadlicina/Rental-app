@@ -7,13 +7,21 @@ import {
   ADD_BIKE_FAIL,
   FETCH_ONE,
   FETCH_ONE_FAIL,
-  FETCH_ONE_REQ
+  FETCH_ONE_REQ,
+  FETCH_REVIEW_REQ,
+  FETCH_REVIEW_SUCCES,
+  FETCH_REVIEW_FAIL,
+  ADD_FEEDBACK_REQ,
+  ADD_FEEDBACK_SUCCES,
 } from "../actions/types";
+
 
 const initialState = {
   loading: false,
   bikes: [],
   current: null,
+  reviews: null,
+  feedback: null,
   page: 1,
   pages: 1,
 };
@@ -58,6 +66,20 @@ const bikeReducer = (state = initialState, action) => {
     }
     case ADD_BIKE_SUCCES: {
       return { ...state, loading: false };
+    }
+    case FETCH_REVIEW_REQ: {
+      return { ...state, loading: true };
+    }
+    case FETCH_REVIEW_SUCCES: {
+      console.log(action.payload);
+      let reviews = action.payload;
+      return { ...state, reviews, loading: false };
+    }
+    case ADD_FEEDBACK_REQ: {
+      return { ...state, loading: true };
+    }
+    case ADD_FEEDBACK_SUCCES: {
+      return { ...state, feedback: action.payload, loading: false };
     }
     default:
       return state;

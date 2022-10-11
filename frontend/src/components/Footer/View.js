@@ -1,64 +1,53 @@
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import logoImage from "../../images/637b0fd82e0b41f5a94674700ed1304c.png";
+import logoImage from "../../images/50f9f8de42454aa1acfdccb9be5e1a34.png";
 
 const Footer = () => {
   return (
     <div className="div-footer">
-      <div className="raw">
-        <div className="div-contact">
-          <article>
-            <h2>Contact Us</h2>
-            <p>Send us message</p>
-            <form>
-              <input type="text" placeholder="Name:" id="name" name="name" />
-              <input type="text" placeholder="Email:" id="email" name="email" />
-              <input
-                type="text"
-                placeholder="Subject:"
-                id="subject"
-                name="subject"
-              />
-              <textarea placeholder="Your message..."/>
-              <input type="submit" value="Submit" />
-            </form>
-          </article>
+      <div className="footer">
+        <div className="contact">
+          <h2>Contact Us</h2>
+          <p>Send us message</p>
+          <form action="">
+            <input type="text" placeholder="name" />
+            <input type="text" placeholder="email" />
+            <input type="text" placeholder="subject" />
+            <textarea placeholder="message" />
+            <button>Submit</button>
+          </form>
         </div>
-        <div className="div-sitemap">
-          <article>
-            <h2>Sitemap</h2>
-            <p>All our pages</p>
-            <ul>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-            </ul>
-          </article>
+        <div className="sitemap">
+          <h2>Sitemap</h2>
+          <p>All our pages</p>
+          <ul>
+            <li>Home</li>
+            <li>Rental</li>
+            <li>Login</li>
+            <li>Register</li>
+            <li>About Us</li>
+          </ul>
         </div>
-        <div className="div-info">
-          <img src={logoImage} ></img>
-          <a href="#">sarajevorental</a>
-          <a href="#">033-123/123</a>
-          <a href="#">sarajevorental@mail.com</a>
-          <a href="#">Sarajevo, B&H</a>
+        <div className="info">
+          <ul>
+            <img src={logoImage} alt="logo_page" />
+            <li>sarajevorental</li>
+            <li>033-123/123</li>
+            <li>sarajevorental@gmail.com</li>
+            <li>Sarajevo, B&H</li>
+            <li>
+              <a
+                href="https://www.flaticon.com/free-icons/photo"
+                title="photo icons"
+              >
+                Photo icons created by Smashicons - Flaticon
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div className="raw">
-        <div className="div-rights">
-          <p>All rights to AntColony - Internship 2022</p>
-        </div>
+      <div className="copyrights">
+        <p>Internsip 2022 - Copyright All rights reserved to AntColony</p>
       </div>
     </div>
   );

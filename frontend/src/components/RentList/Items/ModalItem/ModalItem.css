@@ -1,20 +1,94 @@
-.items .content{
-    background-color: white;
+.items .content {
+  background-color: white;
 }
-.items .content .cont{
-    display: flex;
-    flex-direction: column;
-    padding: 0.5%;
-    background-color: white;
-    cursor:default;
+.items .content .cont {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5%;
+  cursor: default;
 }
-.items .content .cont .close{
-    flex: 5%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding-right: 3%;
+.items .content .cont .header {
+  flex: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 3%;
 }
-.items .content .cont .close:hover{
-    color: grey;
+.items .content .cont .header .close:hover {
+  color: grey;
+}
+.items .content .cont .header .h2 {
+  flex: 55%;
+  display: flex;
+  padding-left: 5%;
+}
+.items .content .cont .header .h2 div *:is(.active, .inactive) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.items .content .cont .box {
+  display: flex;
+  flex-direction: row;
+}
+.items .content .cont .box * {
+}
+.items .content .cont .box .col-2 {
+  flex: 45%;
+  display: flex;
+  padding: 3%;
+}
+.items .content .cont .box .col-2 .col-a {
+  flex: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3%;
+}
+.items .content .cont .box .col-2 .col-b {
+  flex: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.items .content .cont .box .col-2 .col-b img {
+  width: 100%;
+  border-radius: 5%;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row {
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2%;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .head {
+  font-size: medium;
+  color: #10153e;
+  font-weight: bold;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .title {
+  flex: 25%;
+  font-size: x-small;
+  color: #10153e;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .field {
+  flex: 75%;
+  font-size: small;
+  color: #60679f;
+  display: flex;
+  justify-content: flex-end;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .field img {
+  width: 100%;
+  border-radius: 10%;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row button {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #10153e;
+  border: none;
+  padding: 3%;
+}
+.items .content .cont .box .col-2 *:is(.col-a, .col-b) .row button:hover {
+  background-color: #60679f;
 }

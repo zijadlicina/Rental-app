@@ -25,6 +25,7 @@ const rentals = require('./api/routes/rentals')
 const auths = require('./api/routes/authRouter')
 const privates = require('./api/routes/private')
 const categories = require("./api/routes/categories");
+const feedbacks = require("./api/routes/feedbacks");
 
 const port = process.env.PORT || 5000;
 
@@ -40,6 +41,7 @@ app.use('/api/rentals', rentals)
 app.use('/api/auth', auths)
 app.use('/api/private', privates)
 app.use("/api/categories", categories);
+app.use("/api/feedbacks", feedbacks);
 
 // Error handler (Should be a last piece of middleware)
 app.use(errorHandler) 

@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
+.items .feedbackmodal .cont .box .comment .comment-container {
+  margin-top: 5%;
+}
+.items .feedbackmodal .cont .box .comment .comment-container p{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #121C51;
+  font-family: "Merriweather", serif;
+  font-size: small;
+}
+.items .feedbackmodal .cont .box .comment .comment-container textarea{
+  height: 75px;
+  width: 100%;
+  margin: 0;
+  border-radius: 5px;
+  border: 2px solid #A3B8E8;
+  padding: 1%;
+  resize: none;
+  color: #2a3980;
+  font-family: "Merriweather", serif;
+  font-size: small;
+}
+.items .feedbackmodal .cont .box .comment .comment-container textarea:focus{
+  border: 2px solid #A3B8E8;
+  outline: none;
+}

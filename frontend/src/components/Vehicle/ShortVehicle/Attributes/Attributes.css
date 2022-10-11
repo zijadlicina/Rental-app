@@ -1,0 +1,38 @@
+.body-div-vehicle .vehicle-div div .attributes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.body-div-vehicle .vehicle-div div .attributes h3{
+  margin-top: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: medium;
+}
+.body-div-vehicle .vehicle-div div .attributes .types{
+  display: flex;
+  flex-direction: column;
+}
+.body-div-vehicle .vehicle-div div .attributes .type{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.body-div-vehicle .vehicle-div div .attributes .type span{
+  width: 32%;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: small;
+}
+.body-div-vehicle .vehicle-div div .attributes .type div{
+  width: 170px;
+  height: 4px;
+  color: #CCB09B;
+  background-color: #CCB09B;
+}

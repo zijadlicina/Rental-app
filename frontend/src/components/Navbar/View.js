@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import logoImage from "../../images/637b0fd82e0b41f5a94674700ed1304c.png";
+import logoImage2 from "../../images/50f9f8de42454aa1acfdccb9be5e1a34.png";
+
 import userIcon from "../../images/user-solid.svg";
 
 import { FaBars } from "react-icons/fa";
@@ -28,7 +30,7 @@ const Navbar = ({ isAuthenticated, user, logout, authorization }) => {
         <div className="row">
           <div className="logo">
             <a href="/">
-              <img src={logoImage} alt="logo image"></img>
+              <img src={logoImage2} alt="logo image"></img>
             </a>
           </div>
           <button className="nav-toggle" onClick={navbarShow}>

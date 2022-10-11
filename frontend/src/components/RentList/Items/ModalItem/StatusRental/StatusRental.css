@@ -1,0 +1,29 @@
+.items .content .cont .header .h2 div *:is(.active, .inactive) {
+  width: 100%;
+  display: flex;
+}
+.items .content .cont .header .h2 div *:is(.active, .inactive) .circle * {
+  width: 35px;
+  height: 25px;
+}
+.items .content .cont .header .h2 div .active .circle {
+  background-color: lightgreen;
+  border-radius: 70%;
+  color: lightgreen;
+}
+.items .content .cont .header .h2 div .inactive .circle {
+  background-color: pink;
+  border-radius: 70%;
+  color: pink;
+  margin-right: 5%;
+}
+.items .content .cont .header .h2 div .active .iconbike * {
+  width: 45px;
+  height: 33px;
+  color:#0C1033; ;
+}
+.items .content .cont .header .h2 div *:is(.active, .inactive) span {
+    font-size: medium;
+    color: #0C1033;
+    font-family: 'Montserrat', sans-serif;
+}
