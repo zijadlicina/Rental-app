@@ -2,12 +2,19 @@ import {
   ADD_RENTAL_FAIL,
   ADD_RENTAL_REQ,
   ADD_RENTAL_SUCCES,
+  APPROVE_RENTAL_FAILURE,
+  APPROVE_RENTAL_SUCCES,
+  COMPLETE_RENTAL_FAILURE,
+  COMPLETE_RENTAL_SUCCES,
   FETCH_RENTALS,
   FETCH_RENTALS_FAILURE,
-  FETCH_RENTALS_REQ
+  FETCH_RENTALS_REQ,
+  REJECT_RENTAL_FAILURE,
+  REJECT_RENTAL_SUCCES
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
+import { addRentalAlertSucces } from "./alertActions";
 
 export const fetchRentalsReq = () => {
   return {
@@ -43,30 +50,113 @@ export const addRentalFailure = (error) => {
     payload: error,
   };
 };
+export const approveRentalSucces = (id) => {
+  return {
+    type: APPROVE_RENTAL_SUCCES,
+    payload: id
+  };
+};
+export const approveRentalFailure = (error) => {
+  return {
+    type: APPROVE_RENTAL_FAILURE,
+    payload: error,
+  };
+};
+export const rejectRentalSucces = (rental) => {
+  return {
+    type: REJECT_RENTAL_SUCCES,
+  };
+};
+export const rejectRentalFailure = (error) => {
+  return {
+    type: REJECT_RENTAL_FAILURE,
+    payload: error,
+  };
+};
+export const completeRentalSucces = (rental) => {
+  return {
+    type: COMPLETE_RENTAL_SUCCES,
+  };
+};
+export const completeRentalFailure = (error) => {
+  return {
+    type: COMPLETE_RENTAL_FAILURE,
+    payload: error,
+  };
+};
 //--------------
-export const addRental = (rent) => {
-  console.log("ovdjeeee", rent)
+export const addRental = (navigate, to, rent) => {
   return (dispatch) => {
     dispatch(addRentalReq());
     axios
       .post(`http://localhost:5001/api/rentals`, rent)
       .then((response) => {
-        console.log("response", response.data.rentals)
         dispatch(addRentalSucces(response.data));
+        dispatch(addRentalAlertSucces(response.data))
         dispatch(cleanErrors());
+        navigate("/rents?user=", to)
       })
       .catch((err) => {
         const errMsg = err.message;
-        console.log(err.message)
       //  dispatch(setErrors(errMsg, err.response.status, null));
         dispatch(addRentalFailure(errMsg));
       });
   };
-  
+};
+export const completedRental= (id, data) => {
+  return (dispatch) => {
+    axios
+      .put(`http://localhost:5001/api/rentals/${id}`, data)
+      .then((response) => {
+        dispatch(completeRentalSucces(id));
+//        dispatch(addRentalAlertSucces(response.data))
+//        dispatch(cleanErrors());
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+      //  dispatch(setErrors(errMsg, err.response.status, null));
+        dispatch(completeRentalFailure(errMsg));
+      });
+  };
+};
+
+export const approveRental = (id, data, setReload) => {
+  return (dispatch) => {
+    axios
+      .put(`http://localhost:5001/api/rentals/${id}`, data)
+      .then((response) => {
+        dispatch(approveRentalSucces(id));
+        setReload(Math.random())
+//        dispatch(addRentalAlertSucces(response.data))
+//        dispatch(cleanErrors());
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+      //  dispatch(setErrors(errMsg, err.response.status, null));
+        dispatch(approveRentalFailure(errMsg));
+      });
+  };
+};
+
+export const rejectRental = (id, data, setReload) => {
+  return (dispatch) => {
+    axios
+      .put(`http://localhost:5001/api/rentals/${id}`, data)
+      .then((response) => {
+        dispatch(rejectRentalSucces(response.data));
+        setReload(Math.random())
+//        dispatch(addRentalAlertSucces(response.data))
+//        dispatch(cleanErrors());
+      })
+      .catch((err) => {
+        const errMsg = err.message;
+      //  dispatch(setErrors(errMsg, err.response.status, null));
+        dispatch(rejectRentalFailure(errMsg));
+      });
+  };
 };
 
 export const fetchRentals = (query) => {
-  console.log("query", query)
   return (dispatch) => {
     dispatch(fetchRentalsReq());
     if (query) query = "?" + query;
@@ -74,7 +164,6 @@ export const fetchRentals = (query) => {
     axios
       .get(`http://localhost:5001/api/rentals${query}`)
       .then((response) => {
-        console.log("response", response.data)
         dispatch(fetchRentalsSucces(response.data));
         dispatch(cleanErrors());
       })
@@ -85,6 +174,9 @@ export const fetchRentals = (query) => {
       });
   };
 };
+
+
+
 /*
 export const loadUser = () => {
   return (dispatch, getState) => {

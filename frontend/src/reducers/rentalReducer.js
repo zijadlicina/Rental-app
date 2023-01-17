@@ -4,7 +4,13 @@ import {
     FETCH_RENTALS,
     ADD_RENTAL_FAIL,
     ADD_RENTAL_SUCCES,
-    ADD_RENTAL_REQ
+    ADD_RENTAL_REQ,
+    APPROVE_RENTAL_FAILURE,
+    APPROVE_RENTAL_SUCCES,
+    REJECT_RENTAL_SUCCES,
+    REJECT_RENTAL_FAILURE,
+    COMPLETE_RENTAL_SUCCES,
+    COMPLETE_RENTAL_FAILURE
 } from "../actions/types";
 
 const token = localStorage.getItem("token");
@@ -33,12 +39,29 @@ const rentalReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case ADD_RENTAL_REQ: {
-      console.log("ADD_RENTAL_REQ");
       return { ...state, isLoading: true };
     }
     case ADD_RENTAL_SUCCES: {
-      console.log("RENTAL_SUCCES");
       return { ...state, isLoading: false };
+    }
+    case APPROVE_RENTAL_SUCCES: {
+      let id = action.payload;
+      let rentals2 = state.rentals;
+      rentals2.map((rent) => {
+        if (rent._id === id) {
+          rent.status = true;
+        }
+      })
+      return { ...state, rentals: rentals2};
+    }
+    case REJECT_RENTAL_SUCCES: {
+      return { ...state};
+    }
+    case COMPLETE_RENTAL_SUCCES: {
+      return { ...state};
+    }
+    case COMPLETE_RENTAL_FAILURE: {
+      return { ...state};
     }
     default:
       return state;

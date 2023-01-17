@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { cleanAlert } from "../../actions/alertActions";
 import { fetchBikes } from "../../actions/bikeActions";
 import Rental from "./View.js";
 
@@ -10,12 +11,18 @@ const mapStateToProps = (state) => {
     items: state.bike.bikes,
     statePage: state.bike.page,
     loading: state.bike.loading,
-    authorization: state.auth.authorization
+    authorization: state.auth.authorization,
+    alert: state.alert,
+    providerState: state.provider.provider
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBikes: (query) => dispatch(fetchBikes(query)),
+    fetchBikes: (query) => {
+      //  scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+      dispatch(fetchBikes(query))
+    },
+    cleanAlert: () => dispatch(cleanAlert())
   };
 };
 

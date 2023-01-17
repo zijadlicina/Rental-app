@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import Items from "./View.js";
 import { fetchUsers } from "../../../actions/userActions";
+import { fetchBikes } from "../../../actions/bikeActions";
+import { fetchProviders } from "../../../actions/providerActions";
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +14,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: (query) => dispatch(fetchUsers(query)),
-    //  fetchBike: (query) => dispatch(fetchBike(query)),
+    fetchBikes: (query) => dispatch(fetchBikes(query)),
+    fetchProviders: (query) => dispatch(fetchProviders(query)),
   };
 };
 

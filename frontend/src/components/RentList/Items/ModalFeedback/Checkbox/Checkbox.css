@@ -22,9 +22,9 @@
   color: white;
   margin-right: 2%;
 }
-.items .feedbackmodal .cont .box .checkbox .rw p {
+.items .feedbackmodal .cont .box .checkbox .rw .text-check {
   width: 100%;
-  color: #121c51;
+  color: #0d1c52;
   font-family: "Merriweather", serif;
   font-size: small;
 }
@@ -34,4 +34,15 @@
 .items .feedbackmodal .cont .box .checkbox .rw input:checked {
   column-fill: white;
   accent-color: #FF71A4;
+}
+@media screen and (max-width: 600px) {
+  .items .feedbackmodal .cont .box .checkbox{
+    width: 80%;
+  }
+  .items .feedbackmodal .cont .box .checkbox .rw {
+  }
+  .items .feedbackmodal .cont .box .checkbox .rw .text-check {
+    width: 90%;
+    font-size: 11px;
+  }
 }

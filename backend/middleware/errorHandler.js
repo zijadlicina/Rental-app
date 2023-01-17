@@ -2,11 +2,8 @@ const ErrorResponse = require('../utils/errorResponse')
 
 // This is global error handler
 const errorHandler = (err, req, res, next) => {
-  //  console.log(err)    // we can see everything about error
-    console.log(err)
     let error = { ...err }
     error.message = err.message
-    console.log(error)
     // !???
     // when id is invalid, or not found
     if (err.name === "CastError") {

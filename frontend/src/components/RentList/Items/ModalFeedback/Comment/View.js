@@ -14,7 +14,7 @@ function Comment({ feed, setFeed}) {
   return (
     <div className="comment-container">
       <p>What are the main reasons for your rating?</p>
-      <textarea
+      <textarea className="feedarea"
         type="text"
         name="comment"
         id="comment"

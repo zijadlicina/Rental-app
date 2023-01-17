@@ -7,12 +7,13 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error.msg,
     userState: state.auth.user,
-    loading: state.bike.loading
+    loading: state.bike.loading,
+    provider: state.provider.provider
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (bike) => dispatch(addBike(bike)),
+    addItem: (navigate, bike) => dispatch(addBike(navigate, bike)),
   };
 };
 

@@ -3,6 +3,7 @@ import ModalContent from "./View.js";
 
 const mapStateToProps = (state) => {
   return {
+    authorization: state.auth.authorization
   };
 };
 const mapDispatchToProps = (dispatch) => {

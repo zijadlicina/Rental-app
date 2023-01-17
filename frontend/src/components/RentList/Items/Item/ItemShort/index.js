@@ -6,6 +6,8 @@ const mapStateToProps = (state) => {
     isLoadingUser: state.user.isLoading,
     users: state.user.users,
     bikes: state.bike.bikes,
+    providers: state.provider.providers,
+    authorization: state.auth.authorization
   };
 };
 const mapDispatchToProps = (dispatch) => {

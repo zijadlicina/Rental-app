@@ -2,7 +2,7 @@ import React from "react";
 import "./FormReadOnly.css";
 
 function View({ user, setStep, step, setCurrentStep, currentStep, setRent }) {
-  const { username, name, surname, contact, location } = user;
+  const { _id,username, image, name, surname, contact, email, location } = user;
 
   const tabHandler = () => {
     setStep((prev) => {
@@ -25,18 +25,20 @@ function View({ user, setStep, step, setCurrentStep, currentStep, setRent }) {
   return (
     <>
       <div className="column">
-        <div className="imgdiv"></div>
-        <div className="info-vehicle">
+        <div className="imgdiv">
+          <img src={image} />
+        </div>
+        <div className="info-user">
           <div className="headers">
-            <p className="header">Name</p>
-            <p className="header">Surname</p>
-            <p className="header">Contact</p>
+            <p className="header">ID</p>
+            <p className="header">Username</p>
+            <p className="header">Email</p>
             <p className="header">Location</p>
           </div>
           <div className="dates">
-            <p className="date">{name}</p>
-            <p className="date">{surname}</p>
-            <p className="date">{contact}</p>
+            <p className="date">{_id}</p>
+            <p className="date">{username}</p>
+            <p className="date">{email}</p>
             <p className="date">{location}</p>
           </div>
         </div>

@@ -14,13 +14,13 @@ function CheckBox({}) {
     <div className="comment-container">
       <div className="rw">
         <input type="checkbox" />
-        <p>
+        <p className="text-check">
           I may be contacted about this feedback. <span>Privacy Policy</span>
         </p>
       </div>
       <div className="rw">
         <input type="checkbox" />
-        <p>
+        <p className="text-check">
           I’d like to help improve by joining the <span>Reasearch Group</span>
         </p>
       </div>

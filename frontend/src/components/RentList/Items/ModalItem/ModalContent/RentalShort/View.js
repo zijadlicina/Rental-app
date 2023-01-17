@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-
+import moment from "moment";
 import { Rating } from "@mui/material";
+const format1 = "YYYY-MM-DD HH:mm"
 
 function RentalShort({ rental }) {
   const { _id, dateOut, dateReturned, quantity, price, status } =
@@ -20,11 +21,11 @@ function RentalShort({ rental }) {
       </div>
       <div className="row">
         <span className="title">date Out</span>
-        <span className="field">{dateOut}</span>
+        <span className="field">{new Date(dateOut).toLocaleString("en-GB", { timeZone: 'Europe/London' })}</span>
       </div>
       <div className="row">
         <span className="title">date Returned</span>
-        <span className="field">{dateReturned}</span>
+        <span className="field">{new Date(dateReturned).toLocaleString("en-GB", { timeZone: 'Europe/London' })}</span>
       </div>
       <div className="row">
         <span className="title">quantity</span>
@@ -36,11 +37,10 @@ function RentalShort({ rental }) {
           {quantity} x {price / quantity}$ = {price}$
         </span>
       </div>
-      <div className="row">
-        <button>View More</button>
-      </div>
+
     </div>
   );
 }
+/*x {moment(dateReturned).diff(moment(dateOut), "days")}days*/
 
 export default RentalShort;

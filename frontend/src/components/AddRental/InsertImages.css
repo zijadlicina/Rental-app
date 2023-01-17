@@ -10,9 +10,8 @@
   padding: 1% 2%;
   width: 50%;
   height: 50%;
-  background-color: rgb(253, 178, 92);
-  border-radius: 14px;
   border: none;
+  outline: none;
   cursor: pointer;
 }
 .input-file :nth-child(2) {
@@ -23,7 +22,6 @@
   font-weight: bold;
 }
 .input-file :nth-child(2):hover {
-  border: 1px solid rgb(253, 178, 92);
 }
 .images {
   display: flex;

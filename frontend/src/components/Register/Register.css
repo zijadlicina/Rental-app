@@ -8,10 +8,10 @@
 .body-div {
   display: flex;
   padding-top: 3%;
-    justify-content: center;
- background-color: #8EC5FC;
-background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-
+  justify-content: center;
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  background-color: #DDE1F9;;
   height: 100%;
   width: 100%;
   padding-bottom: 5%;
@@ -22,13 +22,39 @@ body {
 .container-register {
   background-color: white;
   box-shadow: 3px 3px 10px rgb(194, 192, 192);
-  height: auto;
+  height: 50%;
   border-radius: 10px;
-  width: 40%;
+  width: 45%;
+  padding: 0;
+  margin: 3%;
 }
 .container-register .text {
   text-align: center;
   margin-top: 10%;
+}
+.container-register .tabs {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 20%;
+  margin-top: 4%;
+  background-color:#E0C3FC;
+}
+.container-register .tabs div{
+  justify-self: flex-end;
+  font-weight: bold;
+  font-family: "Mulish";
+  width: 100%;
+  text-align: center;
+  padding: 2%;
+  cursor: pointer;
+}
+.container-register .tabs div:hover:not(.active){
+  background-color: #c58ff8;
+}
+.container-register .tabs .active{
+  background-color: #5c616e;
+  color: white;
 }
 .container-register .text h3 {
   font-style: bold;
@@ -47,7 +73,7 @@ body {
   border: none;
   background-color: white;
   box-shadow: none;
-  width: 60%;
+  width: 70%;
   margin-top: 0;
   height: auto;
 }
@@ -55,8 +81,58 @@ body {
   width: 100%;
   margin: 0;
 }
+.container-register form .roles {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+}
+.container-register form  .roles .role{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid #E5EDFF;
+  border-radius: 8%;
+  width: 100%;
+  height: 60px;
+  margin: 0 2%;
+  padding: 8% 3%;
+}
+.container-register form  .roles .role{
+  border: 2px solid lightgrey;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25%;
+}
+.container-register form  .roles .role:hover:not(.active){
+  box-shadow: 1px 1px 7px lightgrey;
+}
+.container-register form  .roles .active{
+  box-shadow: 1px 1px 7px violet;
+}
+.container-register form  .roles .role .icon{
+  color: #0d1c52;
+  font-size: x-large;
+}
+.container-register form  .roles .role .text{
+  color: #0d1c52;
+  font-size: small;
+  font-style: normal;
+  text-transform: capitalize;
+  font-family: "Mulish";
+}
+.container-register form .row span{
+  color: red;
+  font-family: "Mulish";
+  font-size: x-small;
+  font-style: italic;
+  text-transform: lowercase;
+}
 .container-register form .row-50 {
-  margin: 0;
+  width: 100%;
+  display: flex;
 }
 .container-register form label {
   color: #5c616e;
@@ -67,9 +143,56 @@ body {
   padding: 0;
   font-family: "Open Sans", sans-serif;
   font-weight: 1000;
+  font-size: x-small;
 }
 .container-register form .label-50 {
   width: 50%;
+}
+.container-register form .label .textmsg {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  height: 0px;
+  width: 30%;
+  top: 5%;
+  left: 20%;
+  border: 1px solid #0d1c52; 
+  border: none;
+  background-color: #8f9dce;
+  border-radius: 6px;
+}
+.container-register form .label .textmsgShow {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  height: auto;
+  width: auto;
+  top: 100%;
+  left: 5%;
+  border: 1px solid #0d1c52; 
+  border: none;
+  padding: 1%;
+  background-color: #8f9dce;
+  border-radius: 6px;
+  font-size: x-small;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 3%;
+}
+.container-register form .label span {
+  cursor: pointer;
+}
+.container-register form .label span .infoIcon{
+  color: #0d1c52; ;
+  width: 15px;
+  height: 20px;
+  padding-top: 1%;
+  margin-left: 4px;
+  margin-top: 5px;
+}
+.container-register form .label span .infoIconRed{
+  color: red; ;
+}
+.container-register form .right {
 }
 .container-register form input {
   width: 100%;
@@ -78,7 +201,7 @@ body {
   padding-left: 30px;
   border-radius: 0;
   border: 0.5px solid #a6a9b4;
-  color: #7c7e82;
+  color: #202124;
   font-style: bold;
   box-sizing: border-box;
   outline: none;
@@ -100,6 +223,7 @@ body {
 }
 .container-register form .input-50 {
   width: 50%;
+  margin-bottom: 3%;
 }
 .container-register form .input-50:nth-child(2) {
   border-left: none;
@@ -151,7 +275,7 @@ body {
   clear: both;
   display: table;
 }
-.container-register form input[type="submit"] {
+.container-register form input[type="submit"], .continueBtn {
   background-color: #4d78ff;
   text-align: center;
   border: none;
@@ -166,6 +290,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: small;
 }
+
 .container-register form p {
   text-align: center;
   border: none;
@@ -184,6 +309,7 @@ body {
 @media screen and (max-width: 900px) {
   .container-register {
     top: 60%;
+    margin-top: 16%;
   }
 }
 @media screen and (max-width: 600px) {

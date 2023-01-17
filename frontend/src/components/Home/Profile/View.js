@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./Profile.module.css";
+import "./Profile.css";
 
 const Profile = ({ user, loadUser }) => {
   const {id} = useParams()
   
   return (
-    <div style={divStyle}>
+    <div>
       <h2>Welcome {user.username}</h2>
       <ul>
         <li>

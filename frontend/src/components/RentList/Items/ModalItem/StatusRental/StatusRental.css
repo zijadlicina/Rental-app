@@ -1,8 +1,9 @@
-.items .content .cont .header .h2 div *:is(.active, .inactive) {
+
+.items .content .cont .header .h2 div *:is(.active, .inactive, .rejected, .completed) {
   width: 100%;
   display: flex;
 }
-.items .content .cont .header .h2 div *:is(.active, .inactive) .circle * {
+.items .content .cont .header .h2 div *:is(.active, .inactive, .rejected, .completed) .circle {
   width: 35px;
   height: 25px;
 }
@@ -11,18 +12,30 @@
   border-radius: 70%;
   color: lightgreen;
 }
+.items .content .cont .header .h2 div .rejected .circle {
+  background-color: red;
+  border-radius: 70%;
+  color: red;
+}
+.items .content .cont .header .h2 div .completed .circle{
+  background-color: orange;
+  border-radius: 70%;
+  color: orange;
+  margin-right: 5%;
+}
 .items .content .cont .header .h2 div .inactive .circle {
   background-color: pink;
   border-radius: 70%;
   color: pink;
   margin-right: 5%;
 }
-.items .content .cont .header .h2 div .active .iconbike * {
+.items .content .cont .header .h2 div *:is(.rejected, .inactive, .active, .completed) .iconbike * {
   width: 45px;
   height: 33px;
   color:#0C1033; ;
 }
-.items .content .cont .header .h2 div *:is(.active, .inactive) span {
+.items .content .cont .header .h2 div *:is(.active, .inactive, .rejected, .completed) span {
+  width: 50%;
     font-size: medium;
     color: #0C1033;
     font-family: 'Montserrat', sans-serif;

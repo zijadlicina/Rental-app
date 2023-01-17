@@ -1,0 +1,89 @@
+.dasboard-body{
+    margin: 3% 10%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-top: 0;
+}
+.dasboard-body h2{
+   margin-top: 8%;
+    font-family: "Mulish";
+    color: #0F0F34;
+    display: flex;
+}
+.dasboard-body .icon-dash{
+    width: 35px;
+    height: 30px;
+    padding: 0;
+}
+.dasboard-body .dashboard-div{
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+}
+.dasboard-body .dashboard-div .column1{
+   flex: 80%;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+}
+.dasboard-body .dashboard-div .column1 .row{
+    flex: 80%;
+    height: auto;
+    display: flex;
+ }
+ .dasboard-body .dashboard-div .column1 .loading-row{
+   background-color: white;
+   height: 400px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+ .dasboard-body .dashboard-div .column1 .row .c25{
+    flex: 35%;
+    height: 100px;
+ }
+ .dasboard-body .dashboard-div .column1 .row *:is(.c25, .c75) .row2{
+   flex: 35%;
+   width: 100%;
+   background-color: white;
+   height: 118px;
+}
+ .dasboard-body .dashboard-div .column1 .row .c75{
+    flex: 65%;
+    height: 100px;
+ }
+.dasboard-body .dashboard-div .column2{
+    flex: 30%;
+    height: auto;
+    display: flex;
+    padding-left: 3%;
+    flex-direction: column;
+    background-color: white;
+ }
+ .dasboard-body .dashboard-div .column2 p{
+    color: #0F0F34;
+ }
+ .dasboard-body .dashboard-div .column2 .bold{
+    font-weight: bolder;
+ }
+ @media screen and (max-width: 600px) { 
+   .dasboard-body h2{
+      margin-top: 18%;
+   }  
+   .dasboard-body{
+      margin: 0% 2%;
+   }
+   .dasboard-body .dashboard-div{
+      flex-direction: column;
+      height: 100%;
+   }
+   .dasboard-body .dashboard-div .column1 .row{
+      flex-direction: column;
+   }
+   .dasboard-body .dashboard-div .column1 .row .c25 .row2{
+      display: none;
+   }
+}

@@ -7,6 +7,7 @@
   flex-direction: row;
 }
 .body-div-vehicle .vehicle-div div .info {
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -21,16 +22,17 @@
   font-size: xx-large;
 }
 .body-div-vehicle .vehicle-div div .info .rating {
-  width: 70%;
+  width: 90%;
   display: flex;
   justify-content: flex-start;
 }
 .body-div-vehicle .vehicle-div div .info .rating .reviews {
+  width: 100%;
   color: #898b9c;
   font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: medium;
-  margin-left: 3%;
+  margin-left: 2%;
   text-transform: capitalize;
 }
 .body-div-vehicle .vehicle-div div .info div p {
@@ -46,6 +48,23 @@
 }
 .body-div-vehicle .vehicle-div div .info .price-submit {
   margin-top: 3%;
+}
+.body-div-vehicle .vehicle-div div .info .provider {
+  margin-top: 3%;
+  width: 50%;
+  color: white;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  font-size: medium;
+}
+.body-div-vehicle .vehicle-div div .info .provider *{
+  margin-right: 2%;
+}
+.body-div-vehicle .vehicle-div div .info .provider .answer{
+  text-decoration: double;
+  font-weight: bold;
+  font-size: medium;
 }
 .body-div-vehicle .vehicle-div div .info .price-submit button {
   width: 45%;

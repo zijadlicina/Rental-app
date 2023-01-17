@@ -71,7 +71,6 @@ const bikeReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case FETCH_REVIEW_SUCCES: {
-      console.log(action.payload);
       let reviews = action.payload;
       return { ...state, reviews, loading: false };
     }

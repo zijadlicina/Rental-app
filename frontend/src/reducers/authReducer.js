@@ -60,7 +60,6 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       localStorage.setItem('token', action.payload.token)
       let roles = action.payload.user.roles;
-      console.log("roles", roles)
       let auth = {
         isUser: false,
         isAgency: false,
@@ -75,7 +74,7 @@ const authReducer = (state = initialState, action) => {
         auth.isGuest = false;
       }
       if (roles.includes("1994")) {
-        auth.isAdmin = true;
+        auth.isAgency = true;
         auth.isGuest = false;
       }
       return {

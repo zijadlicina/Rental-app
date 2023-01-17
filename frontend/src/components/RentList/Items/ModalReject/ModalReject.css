@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
+ .modal-dialog {
+  height: 100%;
+  background-color: #F8FAFF;
+}
+.modal-dialog .cont {
+  display: flex;
+  flex-direction: column;
+  padding: 6%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  cursor: default;
+}
+ .modal-dialog .cont .header {
+  flex: 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+ .modal-dialog .cont .header .close {
+}
+ .modal-dialog .cont .header .close:hover {
+  color: grey;
+}
+.modal-dialog .cont .header .h2 {
+  display: flex;
+}
+/*---------*/
+.modal-dialog .body  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-dialog .body .icon * {
+  height: 45px;
+  width: 40px;
+  color:red;
+}
+.modal-dialog .body .title {
+  color: #242E4C;
+  font-weight: bold;
+  font-size: medium;
+}
+.modal-dialog .body .text {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.modal-dialog .body .text span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #242E4C;
+  font-size: small;
+}
+.modal-dialog .body .reason{
+  margin-top: 4%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 10%;
+}
+.modal-dialog .body .reason label{
+  text-transform: capitalize;
+  font-family: "Lato";
+  font-size: small;
+  color: #242E4C;
+}
+.modal-dialog .body .reason textarea{
+  margin-top: 2%;
+  width: 90%;
+  background-color: white;
+  border: 1px solid #6CB7FF;
+  color: #242E4C;;
+  padding: 2%;
+  resize: none;
+}
+.modal-dialog .body .btns {
+  margin: 5% 0;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+}
+.modal-dialog .body .btns button{
+  margin-right: 5%;
+  width: 200px;
+  height: 40px;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: smaller;
+  font-style: "Lato";
+  text-transform: uppercase;
+}
+.modal-dialog .body .btns .dialog-yes{
+  background: linear-gradient(to right, #6CB7FF, #7985FF);
+  color: white;
+  border: none;
+}
+.modal-dialog .body .btns button:hover{
+  box-shadow: 1px 2px 5px #242E4C;
+}
+.modal-dialog .body .btns .dialog-no{
+  background-color: white;
+  color: #bdbec4;
+  border: none;
+}

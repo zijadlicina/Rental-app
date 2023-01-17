@@ -8,7 +8,7 @@
   color: #C0C7F7;
   font-family: "Mulish", serif;
   height: 40px;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
 }
 .body-rent .container-rent .tabs div{
   cursor: pointer;
@@ -36,4 +36,9 @@
 }
 .body-rent .container-rent .tabs div:hover:not(.active, .locked){
   color: violet;
+}
+@media screen and (max-width: 600px) {
+  .body-rent .container-rent .tabs div{
+    font-size: small;
+  }
 }

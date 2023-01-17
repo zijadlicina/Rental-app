@@ -1,0 +1,8 @@
+.alertbox{
+    position: fixed;
+    left: 40%;
+    top: 15%;
+    border: 1px solid green;
+    border-radius: 5px;
+    z-index: 2;
+}

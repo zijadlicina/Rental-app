@@ -36,16 +36,18 @@
 .items .content .cont .box .col-2 {
   flex: 45%;
   display: flex;
+  flex-direction: column;
   padding: 3%;
+  margin-right: 3%;
 }
 .items .content .cont .box .col-2 .col-a {
-  flex: 30%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   margin-right: 3%;
 }
 .items .content .cont .box .col-2 .col-b {
-  flex: 30%;
+  height: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -55,11 +57,12 @@
 }
 .items .content .cont .box .col-2 *:is(.col-a, .col-b) .row {
   display: flex;
+  justify-content: center;
   font-family: "Poppins", sans-serif;
   margin-bottom: 2%;
 }
 .items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .head {
-  font-size: medium;
+  font-size: large;
   color: #10153e;
   font-weight: bold;
 }
@@ -78,11 +81,12 @@
   justify-content: flex-end;
 }
 .items .content .cont .box .col-2 *:is(.col-a, .col-b) .row .field img {
-  width: 100%;
+  width: 120px;
+  height: 80px;
   border-radius: 10%;
 }
 .items .content .cont .box .col-2 *:is(.col-a, .col-b) .row button {
-  width: 100%;
+  width: 50%;
   height: 100%;
   text-align: center;
   background-color: #10153e;
@@ -92,3 +96,47 @@
 .items .content .cont .box .col-2 *:is(.col-a, .col-b) .row button:hover {
   background-color: #60679f;
 }
+.items .content .cont .box .circles {
+  margin-top: 1%;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.items .content .cont .box .circles .circle{
+  height: 20px;
+  border: 2px solid #60679f;
+  background-color: white;
+  border-radius: 50%;
+  margin-right: 4%;
+  width: 20px;
+  cursor: pointer;
+}
+.items .content .cont .box .circles .active{
+  background-color:#60679f;
+}
+@media screen and (max-width: 600px) {
+  .items .content {
+    
+  }
+  .items .content .cont {
+    padding: 0;
+  }
+  .items .content .cont .header {
+    
+  }
+  .items .content .cont .box {
+    margin: 0;
+    display: flex;
+  }
+  .items .content .cont .box .col-2 .col-a {
+    height: 270px;
+  }
+  .items .content .cont .box .col-2 .col-b {
+    height: 270px;
+  }
+  .items .content .cont .box .circles {
+    margin-top: 8%;
+  }
+}
+

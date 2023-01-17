@@ -1,17 +1,24 @@
 import { connect } from "react-redux";
 import Vehicle from "./View.js";
+import { fetchOneBike } from "../../actions/bikeActions.js";
+import { cleanAlert } from "../../actions/alertActions";
+import { fetchProviders } from "../../actions/providerActions";
 
 const mapStateToProps = (state) => {
   return {
     users: state.user.users,
     bikes: state.bike.bikes,
-    isLoading: state.user.isLoading,
-    alert: state.alert
+    isLoading: state.bike.loading,
+    current: state.bike.current,
+    alert: state.alert,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    //  fetchBike: (query) => dispatch(fetchBike(query)),
+   // fetchBikes: () => dispatch(fetchBikes("limit=20")),
+    fetchOneBike: (query) => dispatch(fetchOneBike(query.id)),
+    cleanAlert: () => dispatch(cleanAlert()),
+    fetchProviders: () => dispatch(fetchProviders())
   };
 };
 

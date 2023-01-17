@@ -3,7 +3,7 @@ import Login from "../Login";
 
 function View({ Component, isAuthenticated, authorization }) {
   const { isAdmin, isUser, isAgency } = authorization;
-  return <>{isAdmin ? <Component /> : <Login />}</>;
+  return <>{isAdmin || isAgency ? <Component /> : <Login />}</>;
 }
 
 export default View;

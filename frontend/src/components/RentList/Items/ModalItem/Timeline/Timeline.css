@@ -1,5 +1,5 @@
 .box .timeline {
-  flex: 23%;
+  flex: 55%;
   width: auto;
   display: flex;
   flex-direction: column;
@@ -40,4 +40,13 @@
   font-family: "Poppins", sans-serif;
   color: #60679f;
   margin-left: 5%;
+}
+@media screen and (max-width: 600px) {
+  .box .timeline {
+    width: 15%;
+    height: 50px;
+  }
+  .box .timeline {
+    flex: 40%;
+  }
 }

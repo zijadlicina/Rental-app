@@ -9,8 +9,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  width: 100%;
   height: auto;
   padding-bottom: 3%;
-  max-height: 1200px;
+  max-height: 1300px;
 }

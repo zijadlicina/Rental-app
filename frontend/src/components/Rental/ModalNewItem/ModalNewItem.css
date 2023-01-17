@@ -1,0 +1,23 @@
+.body-rental .modal-new{
+    bottom: 5%;
+    right: 5%;
+    border: 2px solid #0F0F34;
+    height: 12%;
+    background-color: white;
+    width: 8%;
+    color: #0F0F34;;
+    border-radius: 50%;
+    padding: 1%;
+    font-size: medium;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.body-rental .modal-new .icon{
+    height: 25px;
+    width: 25px;
+}
+.body-rental .modal-new:hover{
+   color: violet;
+}

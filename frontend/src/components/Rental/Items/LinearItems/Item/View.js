@@ -15,6 +15,9 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { FiMoreVertical } from "react-icons/fi";
 import { MdOutlineDirectionsBike } from "react-icons/md";
 import { GiKickScooter, GiDutchBike } from "react-icons/gi";
+import { BsHouse } from "react-icons/bs";
+import { CgUnavailable } from "react-icons/cg";
+import { useScrollTo } from "react-use-window-scroll";
 
 import {
   TbLayoutSidebarLeftCollapse,
@@ -29,12 +32,11 @@ import { Rating } from "@mui/material";
 import first from "../../../../../images/pexels-philipp-m-100582(1).jpg";
 import second from "../../../../../images/pexels-pixabay-159192.jpg";
 import third from "../../../../../images/pexels-leandro-boogalu-1149601.jpg";
-import placeholder from "../../../../../images/picture.png";
 
 import { useNavigate } from "react-router-dom";
 
-function Item({ view, item, user, authorization }) {
-  const { isGuest, isAdmin, isUser } = authorization;
+function Item({ view, item, user, authorization, providerState, setErrorRent }) {
+  const { isGuest, isAdmin, isUser, isAgency } = authorization;
   const {
     _id,
     name,
@@ -43,13 +45,14 @@ function Item({ view, item, user, authorization }) {
     images,
     createdAt,
     category,
+    quantity,
     available,
+    provider,
+    used,
     fetchOneBike,
   } = item;
-  let image;
-  if (images.length === 0) image = placeholder;
-  else image = images[0];
-
+  let image = images[0];
+  const scrollTo = useScrollTo()
   let i = parseInt(createdAt);
   const [slideImage, setSlideImage] = useState(0);
   const [circles, setCircles] = useState(Array(images.length).fill(0));
@@ -62,84 +65,69 @@ function Item({ view, item, user, authorization }) {
     } else navigate(`/rental/rent/${user._id}/${_id}/`);
   };
 
+  const vehicleHandler = () => {
+    scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+      navigate(`/vehicle/${_id}`)
+  };
+
+  const handleRent = () => {
+    if (available === 0) {
+      setErrorRent(true)
+    } 
+    else {
+      if (!user) navigate(`/rental/rent/guest/${_id}`);
+      else navigate(`/rental/rent/${user._id}/${_id}/`);
+    }
+  }
+
   if (view === 2) {
     return (
       <article className="item-f25">
         <div className="icons">
           {createdAt && Date.parse(createdAt) > Date.now() - 20 * 60 * 1000 ? (
-            <MdOutlineFiberNew className="new-icon" style={{ color: "blue" }} />
+            <MdOutlineFiberNew className="new-icon" />
           ) : null}
           <MdOutlineLocationOn className="location-icon" />
+          {isAgency && provider._id === providerState._id ?
+          <BsHouse /> : null}
+          {available === 0 ? <CgUnavailable style={{color: "red"}}/> : null}
         </div>
         <div className="div-images">
-          {image === placeholder ? (
-            <GiDutchBike style={{ width: "80%", height: "70%" }} />
-          ) : (
             <img
               src={image}
               alt="bikeImage"
-              style={{
-                height: "220px",
-                width: "100%",
-                borderRadius: "10px",
-                opacity: "75%",
-              }}
             />
-          )}
         </div>
         <div className="heading">
-          <h2>{name}</h2>
+          <h2 className={name.length > 20 ? "small" : null}>{name}</h2>
           <span>
             <FiMoreVertical />
           </span>
         </div>
         <div className="rating">
-          <Rating value={rating} precision={0.5} readOnly />
+          <Rating value={rating} precision={0.5} readOnly /> 
         </div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-          atque?
-        </p>
-        <div className="category">Bike</div>
         <table>
           <tr className="table">
-            <th>UNIT</th>
             <th>PRICE</th>
-            <th>RATING</th>
+            <th>USED</th>
+            <th>QUANTITY</th>
             <th>AVAILABLE</th>
           </tr>
           <tr>
-            <th>Hour</th>
             <th>${price}</th>
-            <th>{rating}</th>
+            <th>{used}</th>
+            <th>{quantity}</th>
             <th>{available}</th>
           </tr>
         </table>
-        <div className="replies">
-          <span>
-            0
-            {category === "bike" ? (
-              <MdOutlineDirectionsBike />
-            ) : category === "scooter" ? (
-              <GiKickScooter />
-            ) : null}
-          </span>
-          <span>
-            2 <IoMdHeartEmpty className="like" />
-          </span>
-          <span className="dislike">
-            2 <AiOutlineDislike />
-          </span>
-          <span className="comment">
-            1 <AiOutlineComment />
-          </span>
-        </div>
         <div className="btns">
-          <button>
-            <BsBicycle style={{ fontSize: "x-larger" }} />
-            Rent
+        {isUser || isGuest ? 
+          <button onClick={handleRent}>
+            Rent Now
           </button>
-          <button onClick={() => navigate(`/vehicle/${_id}`)}>Read More</button>
+          : null}
+          <button className="read" onClick={() => vehicleHandler()}>Read More</button>
         </div>
       </article>
     );
@@ -149,6 +137,7 @@ function Item({ view, item, user, authorization }) {
         <div className="div-images">
           <div style={{ position: "relative" }}>
             <img src={images[slideImage]} alt="bikeImage" />
+            {images.length === 1 ? null : 
             <div className="left-arrow">
               <span>
                 <AiOutlineLeft
@@ -162,6 +151,8 @@ function Item({ view, item, user, authorization }) {
                 />
               </span>
             </div>
+            }
+            {images.length === 1 ? null : 
             <div className="right-arrow">
               <span>
                 <AiOutlineRight
@@ -175,6 +166,7 @@ function Item({ view, item, user, authorization }) {
                 />
               </span>
             </div>
+            }
             <div className="circles">
               {circles.map((ob, idx) => {
                 return (
@@ -193,10 +185,12 @@ function Item({ view, item, user, authorization }) {
             Date.parse(createdAt) > Date.now() - 20 * 60 * 1000 ? (
               <MdOutlineFiberNew
                 className="new-icon"
-                style={{ color: "blue" }}
               />
             ) : null}{" "}
             <MdOutlineLocationOn className="location-icon" />
+            {isAgency && provider._id === providerState._id ?
+            <BsHouse /> : null}
+            {available === 0 ? <CgUnavailable style={{color: "red"}}/> : null}
           </div>
           <div className="heading">
             <h2>{name}</h2>
@@ -221,7 +215,22 @@ function Item({ view, item, user, authorization }) {
               <th>{rating}</th>
             </tr>
           </table>
-          <div className="replies">
+          
+          <div className="btns">
+            {isUser || isGuest ? 
+            <button onClick={handleRent}>Rent Now</button>
+            : null}
+            <button onClick={() => navigate(`/vehicle/${_id}`)}>
+              Read More
+            </button>
+          </div>
+        </div>
+      </article>
+    );
+  }
+}
+/*
+<div className="replies">
             <span>
               2 <IoMdHeartEmpty className="like" />
             </span>
@@ -232,16 +241,5 @@ function Item({ view, item, user, authorization }) {
               1 <AiOutlineComment />
             </span>
           </div>
-          <div className="btns">
-            <button onClick={() => navigateToRent()}>Rent Now</button>
-            <button onClick={() => navigate(`/vehicle/${_id}`)}>
-              Read More
-            </button>
-          </div>
-        </div>
-      </article>
-    );
-  }
-}
-
+          */
 export default Item;

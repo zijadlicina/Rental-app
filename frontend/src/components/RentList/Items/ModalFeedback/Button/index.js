@@ -10,7 +10,11 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFeedback: (feed) => dispatch(addFeedback(feed))
+    addFeedback: (feed, navigate, rental) => {
+      feed.grade += 1;
+      feed.feedbackSent = new Date().toLocaleString("en-US", {timeZone: "Europe/Berlin"});
+      dispatch(addFeedback(feed, navigate, rental))
+    } 
     //  fetchBike: (query) => dispatch(fetchBike(query)),
   };
 };

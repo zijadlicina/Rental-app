@@ -4,46 +4,57 @@ import BikeRent from "./BikeRent";
 import BasicDetail from "./BasicDetail";
 import UserRent from "./UserRent";
 import PricingRent from "./PricingRent";
+import { useScrollTo } from "react-use-window-scroll";
 
 import { LinearProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function View({
   step,
   hour,
   date,
   vehicle,
+  user,
   bike,
   fetchOneBike,
   current,
   currentStep,
   setStep,
   setCurrentStep,
-  addRental
+  addRental,
+  quantityInput
 }) {
+  const scrollTo = useScrollTo()
+  const navigate = useNavigate()
+
+  const [isFetched, setIsFetched] = useState(false)
   useEffect(() => {
-    const fetchBike = async () => {
-      await fetchOneBike(bike);
-    };
-    fetchBike();
+    fetchOneBike(bike, setIsFetched)
   }, []);
 
   const [rent, setRent] = useState({
+    status: false,
     bike: null,
     user: null,
     dateOut: null,
     dateReturned: null,
-    quantity: 1
+    reqSent: null,
+    quantity: quantityInput ? parseInt(quantityInput) : 1
   });
 
   const rentVehicleHandler = (e) => {
     e.preventDefault();
-    console.log(rent)
-    addRental(rent)
+    let to = user._id;
+    addRental(navigate, to, rent)
+    scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
+  useEffect(() => {
+    scrollTo({ top: 0, left: 0 })
+  }, [])
   return (
     <div className="formrent">
-      {!current ? (
+      {!current || !isFetched ? (
         <LinearProgress />
       ) : current._id === bike ? (
         <form onSubmit={rentVehicleHandler}>
@@ -72,6 +83,7 @@ function View({
               setStep={setStep}
               setCurrentStep={setCurrentStep}
               rent={rent}
+              bike={vehicle}
               setRent={setRent}
             />
           ) : step === 3 ? (

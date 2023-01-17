@@ -10,9 +10,7 @@ function Button({ feed, setFeed, rental, addFeedback, bikes }) {
     });
   });
   const submitHandler = async () => {
-    addFeedback(feed);
-    // if (feedback)
-    navigate("/vehicle/" + rental.bike._id);
+    await addFeedback(feed, navigate, rental);
   };
   return (
     <div className="buttons-container">

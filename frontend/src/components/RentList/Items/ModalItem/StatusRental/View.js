@@ -5,13 +5,12 @@ import "./StatusRental.css"
 import Timer from "./Timer";
 
 function View({ rental }) {
-  const { status, dateReturned } = rental;
+  const { status, dateReturned, rejected, completed } = rental;
   let statusExpire = status;
 
-  if (new Date(dateReturned) < Date.now()) statusExpire = false;
   return (
     <div>
-      {statusExpire ? (
+      {statusExpire && !completed ? (
         <div className="active">
           <div className="circle">
             <VscCircleLargeOutline />
@@ -21,7 +20,27 @@ function View({ rental }) {
           </div>
           <Timer />
         </div>
-      ) : (
+      ): rejected ? 
+        <div className="rejected">
+          <div className="circle">
+            <VscCircleLargeOutline />
+          </div>
+          <div className="iconbike">
+            <GiDutchBike/>
+          </div>
+          <span>Rejected</span>
+        </div> 
+      : completed ? 
+      <div className="completed">
+        <div className="circle">
+          <VscCircleLargeOutline />
+        </div>
+        <div className="iconbike">
+          <GiDutchBike/>
+        </div>
+        <span>Completed</span>
+      </div> 
+     : (
         <div className="inactive">
           <div className="circle">
             <VscCircleLargeOutline />

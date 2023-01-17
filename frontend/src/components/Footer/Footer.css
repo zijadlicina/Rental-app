@@ -7,7 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background-color: black;
+  background-color: hsl(205, 86%, 26%);
 }
 .div-footer .footer {
   display: flex;
@@ -15,11 +15,13 @@
   justify-content: space-between;
   height: auto;
   width: 70%;
-  background-color: black;
+  background-color: hsl(205, 86%, 26%);
   font-family: "Mulish", sans-serif;
 }
 .div-footer .footer div {
-  padding: 4%;
+  width: 80%;
+  padding: 2%;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
 }
@@ -36,19 +38,21 @@
   font-size: medium;
 }
 .div-footer .footer div {
-  flex: 33%;
+}
+.div-footer .footer .contact{
+  margin-top: 6%;
 }
 .div-footer .footer .contact form {
   margin: 0%;
   padding: 0;
   border-radius: 0;
   border: none;
-  background-color: black;
+  background-color: hsl(205, 86%, 26%);
 }
 .div-footer .footer .contact form input[type="text"],
 textarea {
-  width: 170px;
-  background-color: black;
+  width: 300px;
+  background-color: hsl(205, 86%, 26%);
   color: white;
   border: none;
   border-radius: 0;
@@ -69,21 +73,33 @@ textarea:focus {
   align-self: flex-end;
   margin-top: 3%;
   height: 30px;
-  width: 100%;
-  background-color: #2e2e2e;
-  color: white;
+  width: 100px;
+  background-color: white;
+  padding: 5%;
+  color: #2e2e2e;
   border: 0;
   font-family: "Mulish";
   font-size: small;
   border-radius: 5px;
   border: 1px solid white;
 }
-.div-footer .footer .info img {
+.div-footer .footer .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.div-footer .footer .info .footer-logo {
   width: 150px;
-  border-radius: 25px;
+  height: 150px;
+  border-radius: 25%;
+  border: 2px solid #5e66f5;
   margin: 0;
   margin-bottom: 7%;
   padding: 0;
+}
+.div-footer .footer .info ul {
+  list-style-type: none;
 }
 /*-------------*/
 .div-footer .copyrights {
@@ -99,7 +115,8 @@ textarea:focus {
 
 @media screen and (max-width: 1200px) {
   .div-footer .footer{
-   flex-wrap: wrap;
+    margin-top: 4%;
+    flex-wrap: wrap;
   }
 }
 @media screen and (max-width: 900px) {

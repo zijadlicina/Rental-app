@@ -1,0 +1,163 @@
+.nav-drop{
+    position: absolute;
+    height: auto;
+    max-height: 500px;
+    padding: 10% 5%;
+    width: auto;
+    background-color: #FFFFFF;
+    top: 90%;
+    right: 0;
+    overflow-y: scroll;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid lightgrey;
+    z-index: 2;
+}
+    .header-div nav .auth .dropInvisible{
+    height: 0px;
+    width: 120px;
+    transition: height 0.7s linear;
+   }
+  .header-div nav .auth .dropVisible{
+   height: 90px;
+   width: auto;
+   transition: height 0.7s linear;
+   overflow-y: scroll;
+
+  }
+.nav-drop h3{
+    color: black;
+    text-transform: uppercase;
+    font-family: "Mulish";
+    font-size: small;
+    font-weight: bold;
+}
+.nav-drop h2{
+    color: black;
+    text-transform: uppercase;
+    font-family: "Mulish";
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav-drop h2:hover{
+    color: violet;
+}
+.nav-drop .tabs {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.nav-drop .tabs .active{
+    color: blue;
+    padding: 3%;
+}
+.nav-drop .tabs .tab:hover{
+    color: violet;
+    cursor: pointer;
+}
+.nav-drop ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0;
+    width: 100%;
+}
+.nav-drop ul li{
+   font-family: "Mulish";
+    font-size: small;
+   font-weight: bold;
+    padding: 3%;
+    margin: 3%;
+   text-align: center;
+   text-transform: none;
+   display: flex;
+   flex-direction: column;
+}
+.nav-drop ul li .row2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+ }
+ .nav-drop ul li .row2 .type {
+    width: 50%;
+    height: 3px;
+ }
+ .nav-drop ul li .row2 .inactive {
+    background-color: pink;
+ }
+ .nav-drop ul li .row2 .approve {
+    background-color: lightgreen;
+ }
+ .nav-drop ul li .row2 .complete {
+    background-color: orange;
+ }
+ .nav-drop ul li .row2 .reject {
+    background-color: red;
+ }
+ .nav-drop ul li .row2 .feedback {
+    background-color: rgb(180, 36, 120);
+ }
+.nav-drop ul li .row2 span{
+    font-family: "Mulish";
+    font-size: smaller;
+ }
+.nav-drop ul .message{
+    width: 310px;
+ }
+.nav-drop ul .more{
+    width: auto;
+ }
+.nav-drop ul li:hover{
+    color: blue;   
+    cursor: pointer;
+    transition: all linear 0.5s;
+}
+.nav-drop ul li .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .nav-drop ul li .row img{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+ }
+ @media screen and (max-width: 600px) {
+    .nav-drop{
+      left: -160px;
+      right: 0;
+      padding: 0;
+      width: auto;
+    }
+    .dropVisible{
+    }
+    .nav-drop ul li {
+        width: 100%;
+     }
+    .nav-drop ul li .row{
+        font-size: smaller;
+     }
+     .header-div nav .auth .dropInvisible{
+        height: 0px;
+        width: 100%;
+        transition: height 0.7s linear;
+       }
+      .header-div nav .auth .dropVisible{
+       height: 90px;
+       width: 100%;
+       transition: height 0.7s linear;
+      }
+      .nav-drop ul .more{
+        width: 100%;
+     }
+     .nav-drop h3{
+        width: 50px;
+     }
+}

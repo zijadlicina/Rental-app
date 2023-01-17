@@ -32,6 +32,7 @@ const UserSchema = new Schema(
       minlength: 6,
       select: false,
     },
+    image: {type: String, default: "https://res.cloudinary.com/djespjbgy/image/upload/v1665572579/avatar-1577909_1280_xk6sqf.png"},
     roles: [{ type: String }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,

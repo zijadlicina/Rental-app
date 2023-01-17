@@ -34,7 +34,6 @@ function InsertImages({
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         setArray((prev) => {
           let e = { target: { name: "images", value: [...prev, data.url] } }; ///// ????????
           changeHandler(e);

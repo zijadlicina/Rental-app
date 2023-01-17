@@ -54,3 +54,15 @@
   font-family: "Merriweather", serif;
   font-size: small;
 }
+@media screen and (max-width: 600px) {
+  .body-div .rentlist .items {
+    padding: 0 3%;
+  }
+  .items .feedbackmodal .cont {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    padding-top: 3%;
+    cursor: default;
+  }
+}

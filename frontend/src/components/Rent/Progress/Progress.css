@@ -1,40 +1,78 @@
 /**-----------------*/
-.body-rent .progress {
+
+.body-rent .progress{
   width: 30%;
   box-sizing: border-box;
-  background-color: #1b2142;
+  background: linear-gradient(to right, #1B2142, );
+  background-color: #1B2142;
+  margin-bottom: 2%;
+  padding: 2%;
+  margin-top: 3%;
+  padding-bottom: 0;
   border-radius: 15px;
-  background-color: yellow;
 }
-.body-rent .progress h2 {
-  color: #c0c7f7;
+.body-rent .progress h2{
+  color: #C0C7F7;
   font-family: "Merriweather", serif;
   font-size: 20px;
+
 }
-.body-rent .progress p {
-  color: #c0c7f7;
+.body-rent .progress p{
+  color: #C0C7F7;
   font-family: "Mulish", serif;
   font-size: 16px;
 }
-.body-rent .progress .boxes {
+.body-rent .progress .boxes{
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
+  margin-bottom: 3%;
 }
-.body-rent .progress .boxes .box {
-  background: #4962ff;
-  /* 4962FF, #4AD9EF */
-  height: 16px;
-  width: 60px;
-  border-radius: 15px;
+.body-rent .progress .boxes .box{
+   background: #4962FF;
+   /* 4962FF, #4AD9EF */
+   height: 16px;
+   width: 60px;
+   border-radius: 15px;
 }
-.body-rent .progress .boxes .middle {
-  background: #4ad9ef;
+.body-rent .progress .boxes .middle{
+   background: #4AD9EF;
 }
-.body-rent .progress .boxes .dark {
-  background: #11152f;
+.body-rent .progress .boxes .dark{
+   background: #11152F;
 }
-.body-rent .progress .textmsg {
+.body-rent .progress .textmsg{
   font-size: small;
+}
+.body-rent .quantity{
+  width: 100%;
+  display: flex;
+  padding-top: 3%;
+}
+.body-rent .quantity .icon{
+  flex: 25%;
+  height: 40px;
+  color: #11152F;
+  cursor: pointer;
+}
+.body-rent .quantity .input-quantity{
+  text-align: center;
+  font-size: medium;
+}
+@media screen and (max-width: 600px) {
+  .body-rent .progress{
+    width: 60%;
+    margin-top: 13%;
+  }
+  .body-rent .progress h2{
+    font-size: small;
+  }
+  .body-rent .progress p{
+    font-size: small;
+  }
+  .body-rent .progress .boxes .box{ 
+    height: 12px;
+    width: 45px;
+  }
 }

@@ -8,13 +8,24 @@
   height: 100%;
   width: 100%;
 }
+.body-div .rentlist .header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: "Mulish";
+  color: #0F0F34;
+}
+.body-div .rentlist .header *{
+  margin-right: 3%;
+}
 .body-div .rentlist {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 75%;
-  background: radial-gradient(circle, rgb(135, 163, 255) 0%, rgb(226, 223, 255) 100%);
-  padding: 2%;
+  padding: 0 0%;
+  margin: 0% 10%;
+  margin-top: 3%;
+  width: 100%;
 }
 .body-div .rentlist .head {
   font-family: "Mulish", serif;
@@ -24,6 +35,7 @@
   letter-spacing: 1px;
 }
 .body-div .rentlist .tabs {
+  width: 60%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -33,7 +45,7 @@
   text-align: center;
 }
 .body-div .rentlist .tabs div {
-  width: 70px;
+  width: 20%;
   background-color: white;
   cursor: pointer;
   padding: 2%;
@@ -50,10 +62,25 @@
 .body-div .rentlist .items {
   display: flex;
   flex-direction: column;
+  height: auto;
   margin-top: 1%;
 }
 .body-div .rentlist .items {
   width: 100%;
+}
+.body-div .rentlist .rent-empty{
+  border: 1px solid lightgray;
+  width: 100%;
+  background-color: white;
+  height: 400px;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body-div .rentlist .rent-empty h3{
+ font-family: "Mulish";
+
 }
 .body-div .rentlist .items .modal {
   position: fixed;
@@ -61,14 +88,21 @@
 .body-div .rentlist .items .content {
   top: 23%;
   left: 25%;
-  width: 50%;
-  height: 60%;
+  width: 55%;
+  height: 70%;
 }
 .body-div .rentlist .items .feedbackmodal {
-  top: 20%;
+  top: 15%;
   left: 35%;
   width: 35%;
-  height: 68%;
+  height: 80%;
+  border-radius: 5%;
+}
+.body-div .rentlist .items .rejectmodal {
+  top: 18%;
+  left: 35%;
+  width: 40%;
+  height: 65%;
   border-radius: 5%;
 }
 .body-div .rentlist .items .left {
@@ -98,6 +132,7 @@
 }
 .body-div .rentlist .items .rent-item {
   width: 100%;
+  height: auto;
   background-color: white;
   border: 1px solid lightgrey;
   display: flex;
@@ -115,8 +150,8 @@
   font-size: x-large;
 }
 .body-div .rentlist .items .rent-item img {
-  width: 100%;
-  width: 100%;
+  width: 320px;
+  height: 300px;
   border-radius: 10px;
 }
 .body-div .rentlist .items .rent-item .detail {
@@ -227,4 +262,49 @@
 }
 .body-div .rentlist .itemsmodal {
   opacity: 30%;
+}
+@media screen and (max-width: 600px) {
+  .body-div .rentlist .items {
+    padding: 0 3%;
+  }
+  .body-div .rentlist .items .rent-item {
+    flex-direction: column;
+  }
+  .body-div .rentlist .items .rent-item .detail {
+    flex-direction: column;
+  }
+  .body-div .header{
+    margin: 2% 3%;
+    margin-top: 12%;;
+  }
+  .body-div .rentlist{
+    margin: 0;
+  }
+  .body-div .rentlist .tabs {
+    width: 80%;
+    margin: 0 3%;
+  }
+  .body-div .rentlist .tabs div {
+    width: 30%;
+    font-size: small;
+  }
+}
+@media screen and (max-width: 600px) {
+  .body-div .rentlist .items .content {
+    top: 2%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+  }
+  .body-div .rentlist .items .feedbackmodal {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+  }
+  .body-div .rentlist .items .rent-item img {
+    width: 100%;
+    height: 100%;
+  }
 }

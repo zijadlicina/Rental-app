@@ -16,7 +16,7 @@ const BikeSchema = new Schema(
     },
     rating: {
       type: Number,
-      default: 1,
+      default: 0,
     },
     model: {
       type: String,
@@ -44,6 +44,7 @@ const BikeSchema = new Schema(
     quantity: { type: Number, required: true },
     available: { type: Number },
     used: { type: Number, default: 0 },
+    feedbacks: { type: Number, default: 0 },
     like: { type: Number, default: 0 },
     unlike: { type: Number, default: 0 },
   },

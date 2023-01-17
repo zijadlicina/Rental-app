@@ -7,6 +7,6 @@ const FeedbackSchema = new Schema({
     rental: { type: mongoose.Schema.Types.ObjectId, ref: 'Rental', required: true},
     message: { type: String, required: true},
     grade: {type: Number, default: 3, required: true}
-})
+}, {timestamps: true})
 
 module.exports = Feedback = mongoose.model("Feedback", FeedbackSchema);

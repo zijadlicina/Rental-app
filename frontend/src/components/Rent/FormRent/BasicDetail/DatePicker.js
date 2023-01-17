@@ -3,9 +3,7 @@ import { BsCalendar2Date } from "react-icons/bs";
 import "./DatePicker.css"
 
 function DatePicker({date, setDate, id}) {
-  console.log("date picker,", date)
   const dateHandler = (e) => {
-    console.log("Nesto")
     e.preventDefault();
     setDate(e.target.value)
   }

@@ -5,23 +5,25 @@
 
 .body-rental {
   display: flex;
-  padding-top: 3%;
   justify-content: center;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-image: linear-gradient(6D2deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-color: rgb(131, 157, 246); 
+  background-color: #a3b0f7;
   height: 100%;
   width: 100%;
-  padding-bottom: 3%;
 }
+
 .container-rental {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: nowrap;
-  margin: 0 10%;
   height: auto;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  padding: 0 0%;
+ /* background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);*/
+ padding: 0 0%;
+  margin: 2% 10%;
   width: 100%;
+  margin-top: 6%;
 }
 .container-rental .intro {
   display: flex;
@@ -40,23 +42,33 @@
   color: white;
   font-weight: bolder;
 }
-.container-rental .intro h1 {
+.container-rental .intro h2 {
   flex: 6;
+  display: flex;
+}
+.container-rental .intro h2{
+  font-family: "Mulish";
+  color: #0F0F34;
+  display: flex;
+  align-items: center;  
+}
+.container-rental .intro h2 *{
+  margin-right: 10px;
 }
 .container-rental .intro .btn-newitem {
-  flex: 1;
   align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
-  height: 50%;
+  width: 105px;
+  height:  50%;
   text-align: center;
-  background-color: rgb(131, 157, 246);
+  background-color: rgb(75, 112, 235);
   color: white;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 80%;
+  padding: 3%;
 }
 .container-rental .intro .btn-newitem:hover {
   box-shadow: 1px 2px 3px violet;
@@ -76,7 +88,7 @@
   justify-content: center;
   align-items: center;
   font-size: x-large;
-  min-height: 600px;
+  min-height: 1200px;
 }
 /*----*/
 
@@ -84,6 +96,7 @@
   .container-rental {
     margin: 0px;
     padding: 0 3%;
+    margin-top: 16%;
   }
   .container-rental .intro .btn-newitem {
     flex: 2;
@@ -131,5 +144,13 @@
   .container-rental .actions .view > * {
     height: 50%;
     margin: 3% 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-rental {
+    margin-top: 16%;
+  }
+  .container-rental .intro .btn-newitem {
+    width: 120px;
   }
 }

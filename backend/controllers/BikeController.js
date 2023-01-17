@@ -9,8 +9,8 @@ const ErrorResponse = require("../utils/errorResponse");
 
 const providerUrl = "http://localhost:" + process.env.PORT + "/api/providers";
 
-exports.getAllBikes = asyncHandler(async (req, res, next) => {
-  let query = Bike.find();
+exports.getAllBikes = (async (req, res, next) => {
+  let query =  Bike.find();
 
   // Category
   let category = req.query.category;
@@ -19,35 +19,64 @@ exports.getAllBikes = asyncHandler(async (req, res, next) => {
     let cat = await Category.find({ name: category }, "_id");
     query = query.find({ category: cat[0]._id });
   }
+  // Provider
+  let provider = req.query.provider;
+  if (provider && provider === "all") {
+  } else if (provider) {
+    let pro = await Provider.findById(provider);
+    query = query.find({ provider: pro._id.toString() });
+  }
   // Search
   let searchField = req.query.search;
-  console.log(searchField)
   if (searchField) {
     query = query.find({ $text: { $search: searchField } });
   }
+
+  // SOrting
+  let sortField = req.query.sort;
 
   // Filter
   let reqQuery;
   reqQuery = { ...req.query };
 
-  let removeField = ["page", "limit", "sort", "category"]; // clean up filter fields
+  let statusField = req.query.status
+
+  let removeField = ["page", "limit", "sort", "category", "provider", "status"]; // clean up filter fields
   removeField.map((val) => delete reqQuery[val]);
-  console.log(reqQuery);
   let queryStr = JSON.stringify(reqQuery);
   queryStr = queryStr.replace(
     /\b(gt|gte|lt|lte|in)\b/g,
     (match) => `$${match}`
   );
   query = query.find(JSON.parse(queryStr));
+
+  if (statusField) {
+    if (statusField === "yes") {
+      query = query.find({ "available": { $ne: 0 } })
+    } 
+    else if (statusField === "no") {
+      query = query.find({ "available": 0})    
+    } 
+    else {}
+  }
   // Pagination
   const page = parseInt(req.query.page) || 1;
-  let limit = parseInt(req.query.limit) || 3;
+  
+  let limit = parseInt(req.query.limit) || 8;
   const total = await Bike.countDocuments(query); // await Bike.countDocuments();
   const pages = Math.ceil(total / limit);
 
   if (total < limit) limit = total;
   const skip = (page - 1) * limit;
   query = query.skip(skip).limit(limit);
+
+  if (sortField) {
+    if (sortField === "newest") {
+      query = query.sort({createdAt: -1});
+    } 
+    else if (sortField === "used") query = query.sort({used: -1});
+    else query = query.sort('-rating');
+  }
 
   const bikes = await query;
   res.status(200).json({
@@ -61,8 +90,7 @@ exports.getAllBikes = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.createOneBike = asyncHandler(async (req, res, next) => {
-  console.log("quantity", req.body.quantity)
+exports.createOneBike = (async (req, res, next) => {
   const providerId = req.body.provider;
   // Is succeeds this provider
   const provider = await Provider.findById(providerId);
@@ -73,7 +101,6 @@ exports.createOneBike = asyncHandler(async (req, res, next) => {
   }
   try {
     let category = req.body.category;
-    console.log(category);
     let categoryId = await Category.find({ name: category }, "_id");
     const newBike = new Bike({
       _id: mongoose.Types.ObjectId(),
@@ -92,18 +119,16 @@ exports.createOneBike = asyncHandler(async (req, res, next) => {
       available: req.body.available || req.body.quantity,
     });
     const result = await newBike.save();
-    console.log(result)
     res.status(201).json({
       message: "Successfully created new bike!",
       bike: bikeDetails(result),
     });
   } catch (error) {
-    console.log(error)
     return next(new ErrorResponse(error, 400)); // 
   }
 });
 
-exports.getOneBike = asyncHandler(async (req, res, next) => {
+exports.getOneBike = (async (req, res, next) => {
   const id = req.params.id;
   const result = await Bike.findById(id);
   if (!result) {
@@ -116,7 +141,7 @@ exports.getOneBike = asyncHandler(async (req, res, next) => {
       });
 });
 
-exports.updateOneBike = asyncHandler(async (req, res, next) => {
+exports.updateOneBike = (async (req, res, next) => {
   const id = req.params.id;
   const bike = await Bike.findById(id);
   if (!bike) {
@@ -128,14 +153,13 @@ exports.updateOneBike = asyncHandler(async (req, res, next) => {
   });
   let category = await Category.find({ _id: bike.category }, "name");
   let categoryName = category.name
-  console.log(category);
   res.status(201).json({
     message: "Successfully updated a bike",
     bike: bikeDetails(result, categoryName),
   });
 });
 
-exports.removeOneBike = asyncHandler(async (req, res, next) => {
+exports.removeOneBike = (async (req, res, next) => {
   const id = req.params.id;
   const bike = await Bike.findById(id);
   if (!bike) {
@@ -167,10 +191,13 @@ function bikeDetails(bike) {
     types: bike.types,
     seat: bike.seat,
     color: bike.color,
+    weight: bike.weight,
     description: bike.description,
     images: bike.images,
     createdAt: bike.createdAt || null,
     quantity: bike.quantity,
-    available: bike.available
+    available: bike.available,
+    used: bike.used,
+    feedbacks: bike.feedbacks
   };
 }

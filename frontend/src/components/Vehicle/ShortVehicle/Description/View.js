@@ -10,9 +10,6 @@ function Description() {
         possimus odit repudiandae?
       </p>
       <p className="second">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
-        necessitatibus quibusdam obcaecati harum maxime repellat non dolores,
-        possimus odit repudiandae?
       </p>
     </div>
   );

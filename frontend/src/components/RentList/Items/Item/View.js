@@ -10,29 +10,26 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import ItemShort from "./ItemShort"
 
 const View = ({
+  id,
+  rentsRef,
   rentItem,
   users,
   bikes,
   setModal,
   modal,
   setCurrentRental,
+  fetchBikes,
+  authorization,
+  setReload
 }) => {
-  const { bikeId, userId, dateOut, dateReturned, price, quantity, status } =
-    rentItem;
-
   const [user, setUser] = useState(null);
   const [bike, setBike] = useState(null);
-
-  var daysLeft =
-    (new Date(dateReturned).getTime() - new Date(dateOut).getTime()) /
-    (1000 * 3600 * 24);
-
-  let statusExpire = status;
-  if (new Date(dateReturned) < Date.now()) statusExpire = false;
+  const {isUser, isAgency} = authorization;
 
   useEffect(() => {
     setUser(getUserById(users, rentItem.user._id));
-    setBike(getBikeById(bikes, rentItem.bike._id));
+    if (isAgency || rentItem.rejected) setBike(getBikeById(bikes, rentItem.bike._id._id));
+    else setBike(getBikeById(bikes, rentItem.bike._id));
   }, []);
   /*
   <div>{!bike ? <CircularProgress /> : <Vehicle bike={bike} />}</div>
@@ -116,13 +113,22 @@ const View = ({
         </span>
       </div>
 */
-  return (
+  if (!bike || !user) return (
+    <div className="rent-empty">
+      <CircularProgress />
+    </div>
+  )
+  else return (
     <div className={modal ? "rent-item item-modal" : "rent-item"}>
       <ItemShort
+        id={id}
+        rentsRef={rentsRef}
+        bike={bike}
+        user={user}
         rentItem={rentItem}
-        bikes={bikes}
         setModal={setModal}
         setCurrentRental={setCurrentRental}
+        setReload={setReload}
       />
     </div>
   );

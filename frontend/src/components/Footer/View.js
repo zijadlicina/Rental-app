@@ -17,20 +17,9 @@ const Footer = () => {
             <button>Submit</button>
           </form>
         </div>
-        <div className="sitemap">
-          <h2>Sitemap</h2>
-          <p>All our pages</p>
-          <ul>
-            <li>Home</li>
-            <li>Rental</li>
-            <li>Login</li>
-            <li>Register</li>
-            <li>About Us</li>
-          </ul>
-        </div>
         <div className="info">
+          <img className="footer-logo" src={logoImage} alt="logo_page" />
           <ul>
-            <img src={logoImage} alt="logo_page" />
             <li>sarajevorental</li>
             <li>033-123/123</li>
             <li>sarajevorental@gmail.com</li>

@@ -20,7 +20,6 @@ function View({ currentStep, current, step, setStep, setCurrentStep, rent, setRe
 
   }, []);
     
-  console.log("rent finally", rent)
   
   const packetHandler = (val) => {
     setPacket(val);

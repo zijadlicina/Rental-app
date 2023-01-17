@@ -4,14 +4,16 @@ import "antd/dist/antd.css";
 import { Link, useNavigate } from "react-router-dom";
 import { message } from "antd";
 import LinearProgress from "@mui/material/LinearProgress";
+import { useScrollTo } from "react-use-window-scroll";
 
 const Login = ({ userLogin, isAuthenticated, error, userState, loading }) => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [errMsg, setErrMsg] = useState(false);
 
   const navigate = useNavigate();
-
+  const scrollTo = useScrollTo()
   useEffect(() => {
+    scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     if (error) {
       setErrMsg(false);
     }

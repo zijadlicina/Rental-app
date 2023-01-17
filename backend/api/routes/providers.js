@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
         .then((providers) => {
             res.status(200).json({
                 count: providers.length,
-                users: providers
+                providers
             })
         })
         .catch((err) => {
@@ -29,10 +29,10 @@ router.get('/', (req, res, next) => {
 // @acces Public
 router.get('/:id', (req, res, next) => {
     const id = req.params.id;
-    Provider.findById(id)
+    Provider.find({user: id})
         .then((provider) => {
             res.status(200).json({
-                provider: provider
+                provider: provider[0]
             })
         })
         .catch((err) => {

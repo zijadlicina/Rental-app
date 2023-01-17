@@ -1,0 +1,32 @@
+
+.dasboard-body .dashboard-div .items-chart{
+    height: auto;
+    width: 100%;
+    flex: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.dasboard-body .dashboard-div .items-chart .item-chart {
+}
+.dasboard-body .dashboard-div .column{
+    width: 100%;
+    background-color: #FFFFFF;
+}
+.dasboard-body .dashboard-div .items-chart .item-chart .item .pie-chart{
+   display: none;
+   height: 300px;
+   width: 400px;
+}
+@media screen and (max-width: 600px) { 
+    .dasboard-body .dashboard-div .items-chart .item-chart .item .pie-chart{
+        height: 200px;
+        width: 300px;
+    } 
+    .dasboard-body .dashboard-div .items-chart .item-chart .item .bar-chart{
+        height: 200px;
+        width: 300px;
+    } 
+}

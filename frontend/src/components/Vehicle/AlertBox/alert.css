@@ -1,0 +1,36 @@
+.alertbox{
+    position: fixed;
+    left: 40%;
+    top: 10%;
+    height: 130px;
+    width: 25%;
+    border-radius: 5px;
+}
+.alertbox .alert-div{
+    height: 75%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.alertbox .alert-div h3{
+    color: #202842;
+    font-family: "Mulish";
+    font-size: medium;
+    font-weight: bold;
+}
+.alertbox .alert-div p{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #202842;
+    font-family: "Mulish";
+    font-size: small;
+    font-weight: bold;
+}
+.alertbox .alert-div .icon{
+    height: 125px;
+    width: 25px;    
+}

@@ -15,7 +15,8 @@
     width: 40%;
 }
 .body-rent .container-rent .formrent form .column .image-vehicle img{
-    width: 100%;
+    width: 180px;
+    height: 150px;
     border-radius: 25%;
     opacity: 85%;
 }
@@ -63,5 +64,5 @@
     color: #0d1c52;
 }
 .body-rent .container-rent .formrent form .nextbtn .next{
-  background: linear-gradient(to right,#0d1c52, #f2bbae);
+  background:#0d1c52;
 }

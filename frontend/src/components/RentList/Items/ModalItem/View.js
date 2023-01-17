@@ -40,7 +40,7 @@ function ModalItem({
         <p>Loading...</p>
       ) : (
         <div className="box">
-          <Timeline />
+          <Timeline rental={rental}/>
           <ModalContent rental={rental} bikes={bikes}/>
         </div>
       )}

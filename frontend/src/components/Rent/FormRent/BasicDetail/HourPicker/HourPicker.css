@@ -3,19 +3,27 @@
 }
 .hourinput-hour .divicon{
     display: flex;
-    flex: 25%;
+    flex: 50%;
     justify-content: center;
     align-items: center;
-    margin-right: 4%;
+    margin-right: 0%;
 }
 .hourinput-hour .icon{
     text-align: center;
-    width: 100%;
-    height: 100%;
+    width: 25px;
+    height: 25px;
     color: #0D1C52;
-    margin-right: 4%;
+    margin-right: 14%;
 }
 .hourinput-hour input  {
     border: none;
-    margin-right: 4%;
+    margin-right:4%;
+}
+.hourinput-hour .non  {
+    visibility: hidden;
+   flex: 0%;
+ }
+.hourinput-hour .timeInput  {
+    flex: 100%;
+   width: 200px;
 }

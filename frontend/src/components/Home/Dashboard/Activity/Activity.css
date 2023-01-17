@@ -1,0 +1,26 @@
+.dasboard-body .dashboard-div .column2 h3{
+    color: #405169;
+    padding: 6% 5%;
+    font-family: "Mulish";
+    font-weight: bold;
+}
+.dasboard-body .dashboard-div .column1 h3{
+    color: #405169;
+    padding: 6% 5%;
+    font-family: "Mulish";
+    font-weight: bold;
+}
+.dasboard-body .dashboard-div .column2 .items{
+    height: 300px;
+    width: 100%;
+    flex: 25%;
+    display: flex;
+    flex-direction: row;
+}
+.dasboard-body .dashboard-div .column2 .items .item{
+    
+}
+.dasboard-body .dashboard-div .column{
+    width: 100%;
+    background-color: #FFFFFF;
+}

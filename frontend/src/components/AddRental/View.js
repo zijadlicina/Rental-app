@@ -2,12 +2,12 @@ import "./AddRental.css";
 
 import InsertImages from "./InsertImages";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiDownArrowCircle, BiUpArrowCircle } from "react-icons/bi";
-import { GrBike } from "react-icons/gr";
+import {AiOutlineMinusSquare, AiOutlinePlusSquare} from "react-icons/ai"
+import { useScrollTo } from "react-use-window-scroll";
 
 import { Alert, FormControlLabel, Radio, RadioGroup } from "@mui/material";
-
 let modelsBike = ["Vespa", "Hundai", "BMX"];
 let modelsScooter = ["Vespa", "Hundai", "BMX"];
 let modelsE_Bike = ["Vespa", "Hundai", "BMX"];
@@ -20,7 +20,10 @@ let typesData = [
   { name: "Hill", value: false },
 ];
 
-const AddRental = ({ addItem, loading, error }) => {
+const AddRental = ({ addItem, loading, error, provider }) => {
+  const navigate = useNavigate()
+  const scrollTo = useScrollTo()
+
   const [basicInfo, setBasicInfo] = useState(false);
   const [detail, setDetail] = useState(false);
   const [divImages, setDivImages] = useState(false);
@@ -35,21 +38,18 @@ const AddRental = ({ addItem, loading, error }) => {
 
   const [bike, setBike] = useState({
     name: "",
-    provider: "62f2355520425362f968fa76", // static
+    provider: provider._id, 
     category: "bike",
-    price: 0,
+    price: 20,
     types: [],
     model: "Vespa",
     weight: "0kg",
     seat: "standard",
     color: "black",
     images: [],
-    quantity: 1
+    quantity: 1,
+    description: ""
   });
-
-  useEffect(() => {
-    console.log(bike);
-  }, [bike]);
 
   const changeHandler = (e) => {
     const name = e.target.name;
@@ -66,18 +66,16 @@ const AddRental = ({ addItem, loading, error }) => {
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log("<bike", bike);
-    addItem(bike);
-    console.log(error)
+    addItem(navigate, bike);
+    scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     if (error) {
     }
-    // if (ako ima errora) postavi alert validacije ....
     else {
       setAlertMsg("You succesfully added new vehicle!")
       setOpenAlert(true);
       setBike({
         name: "",
-        provider: "62f2355520425362f968fa76", // static
+        provider: provider._id, // static
         category: "bike",
         price: 0,
         types: [],
@@ -86,18 +84,69 @@ const AddRental = ({ addItem, loading, error }) => {
         seat: "standard",
         color: "black",
         images: [],
-        quantity: 1
+        quantity: 1,
+        description: ""
       });
       setTypes(typesData);
       setArray([]);
     }
   };
+
+  const squareHandler = (type) => {
+    if (type === "plus") {
+         setBike((prev) => {
+        return {...prev, quantity: prev.quantity + 1}
+      })
+   } else {
+    setBike((prev) => {
+      return {...prev, quantity: prev.quantity - 1}
+      })
+    }
+  }
+
+  /*
+  <label htmlFor="unit">Unit</label>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <input
+                          style={{ width: "15px" }}
+                          type="radio"
+                          value="hour"
+                          checked={true}
+                        ></input>
+                        <input type="radio" value="day"></input>
+                        <input type="radio" value="month"></input>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <label htmlFor="hour">Hour</label>
+                        <label htmlFor="day">Day</label>
+                        <label htmlFor="month">Month</label>
+                      </div>
+                    </div>
+                    */
   return (
     <div className="body-div">
       <div className="container-add_rental">
         <div className="text">
           <h1>Add New Item</h1>
-          <p>
+          <p className="text-p">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, ullam?
           </p>
         </div>
@@ -152,61 +201,41 @@ const AddRental = ({ addItem, loading, error }) => {
                       >
                         E-Bike
                       </option>
-                      <option value="no_category" onClick={() => setModels([])}>
-                        No Category
+                      <option value="no category" onClick={() => setModels([])}>
+                        Others
                       </option>
                     </select>
                   </div>
                   <div className="input-div">
-                    <label htmlFor="unit">Unit</label>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
-                        <input
-                          style={{ width: "15px" }}
-                          type="radio"
-                          value="hour"
-                          checked={true}
-                        ></input>
-                        <input type="radio" value="day"></input>
-                        <input type="radio" value="month"></input>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
-                        <label htmlFor="hour">Hour</label>
-                        <label htmlFor="day">Day</label>
-                        <label htmlFor="month">Month</label>
-                      </div>
-                    </div>
+                    <label htmlFor="provider">Provider</label>
+                    <span>{provider.name}</span>
                     <label htmlFor="price">Price</label>
                     <input
-                      type="number"
+                      type="text"
                       id="price"
                       name="price"
                       value={bike.price}
                       onChange={changeHandler}
                     />
                   </div>
+                  <div className="input-div quantity">
+              <label htmlFor="color">Quantity</label>
+              <AiOutlineMinusSquare className="icon" onClick={() => squareHandler("minus")}/>
+                <input
+                  className="input-quantity"
+                  type="text"
+                  id="quantity"
+                  name="quantity"
+                  value={bike.quantity}
+                  onChange={changeHandler}
+                />
+                <AiOutlinePlusSquare className="icon" onClick={() => squareHandler("plus")}/>
+              </div>
                   <div
                     className="input-div"
                     style={{ flexDirection: "column" }}
                   >
-                    <label htmlFor="type">Select Types of using vehicle</label>
+                    <label htmlFor="type">Select types of using vehicle</label>
                     <div className="type">
                       {types.map((type, id) => {
                         return (
@@ -245,6 +274,7 @@ const AddRental = ({ addItem, loading, error }) => {
                       })}
                     </div>
                   </div>
+                  
                 </div>
               </>
             ) : null}
@@ -281,15 +311,6 @@ const AddRental = ({ addItem, loading, error }) => {
                   </>
                 )}
                 <div>
-                <label htmlFor="quantity">Quantity</label>
-                <input
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  value={bike.quantity}
-                  onChange={changeHandler}
-                />
-                
               </div>
                 <label htmlFor="weight">Weight</label>
                 <input
@@ -300,6 +321,7 @@ const AddRental = ({ addItem, loading, error }) => {
                   onChange={changeHandler}
                 />
                 kg
+                
               </div>
               <div className="input-div">
                 <label htmlFor="seat">Seat</label>
@@ -318,6 +340,16 @@ const AddRental = ({ addItem, loading, error }) => {
                   type="text"
                   id="color"
                   name="color"
+                  onChange={changeHandler}
+                />
+              </div>
+              
+              <div className="input-div">
+                <label htmlFor="description">Description</label>
+                <textarea className="description"
+                  type="text"
+                  id="description"
+                  name="description"
                   onChange={changeHandler}
                 />
               </div>

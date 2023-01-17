@@ -22,6 +22,7 @@ import {
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
+import {  cleanProvider } from "./providerActions";
 
 export const loginUserRequest = () => {
   return {
@@ -116,7 +117,6 @@ export const resetPasswordFailure = (error) => {
 
 //--------------
 export const loginUser = (user) => {
-  console.log("user", user)
   return (dispatch) => {
     dispatch({ type: USER_LOADING });
     axios
@@ -133,16 +133,17 @@ export const loginUser = (user) => {
 };
 
   const time = (dispatch, response) => {
-    setTimeout(() => {
+//    setTimeout(() => {
       dispatch(loginSucces(response.data));
       dispatch(cleanErrors());
-    }, 3000);
+//    }, 0);
   };
 
 
 export const logoutUser = () => {
   return (dispatch) => {
     dispatch(logoutSucces());
+    dispatch(cleanProvider())
     localStorage.removeItem("token");
   };
 };
@@ -164,6 +165,7 @@ export const loadUser = () => {
 };
 
 export const registerUser = (user, navigate) => {
+  if (user.image === "") user.image = "https://res.cloudinary.com/djespjbgy/image/upload/v1665572579/avatar-1577909_1280_xk6sqf.png"  
   return (dispatch) => {
     dispatch(registerUserRequest());
     axios

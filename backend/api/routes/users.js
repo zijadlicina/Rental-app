@@ -29,7 +29,6 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
 
     const id = req.params.id.slice(1);
-    console.log(id)
     User.findById(id)
         .then((user) => {
             res.status(200).json({

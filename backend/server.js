@@ -10,14 +10,7 @@ const app = express()
 
 connectDB()
 app.use(cors());
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
 const users = require('./api/routes/users')
 const bikes = require('./api/routes/bikeRouter')
 const providers = require('./api/routes/providers')
@@ -26,8 +19,9 @@ const auths = require('./api/routes/authRouter')
 const privates = require('./api/routes/private')
 const categories = require("./api/routes/categories");
 const feedbacks = require("./api/routes/feedbacks");
+const messages = require("./api/routes/messages");
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Middleware
 app.use(bodyParser.json())
@@ -42,13 +36,15 @@ app.use('/api/auth', auths)
 app.use('/api/private', privates)
 app.use("/api/categories", categories);
 app.use("/api/feedbacks", feedbacks);
+app.use("/api/messages", messages);
 
 // Error handler (Should be a last piece of middleware)
-app.use(errorHandler) 
+//app.use(errorHandler) 
 
 const server = app.listen(port, () => console.log(`Server is running on port: ${port}`));
-
+/*
 process.on("unhandledRejection", (err, promise) => {
     console.log(`Logged Error: ${err}`)
     server.close(() => process.exit(1))
 })
+*/

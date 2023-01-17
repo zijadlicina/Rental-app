@@ -2,7 +2,9 @@ import { connect } from "react-redux";
 import VehicleShort from "./View.js";
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    providers: state.provider.providers
+  };
 };
 const mapDispatchToProps = (dispatch) => {
   return {

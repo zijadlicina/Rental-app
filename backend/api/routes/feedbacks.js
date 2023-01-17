@@ -6,6 +6,8 @@ const Bike = require("../../models/Bike");
 const Rental = require("../../models/Rental");
 const User = require("../../models/User");
 const Feedback = require("../../models/Feedback");
+const Provider = require("../../models/Provider");
+const Message = require("../../models/Message");
 
 const userUrl = "http://localhost:5001/api/users";
 const bikeUrl = "http://localhost:5001/api/bikes";
@@ -69,7 +71,6 @@ router.get("/:id", async (req, res, next) => {
     .populate("rental")
     .exec((err, feedbacks) => {
       feedbacks.map((feed) => {
-        console.log("Rental is " + feed.rental.bike, id);
         let bikeId = feed.rental.bike.toString();
         if (bikeId === id) feedbacks1.push(feed);
       });
@@ -93,7 +94,7 @@ router.get("/:id", async (req, res, next) => {
               },
             },
             bike: id,
-
+            createdAt: feed.createdAt,
             grade: feed.grade,
             message: feed.message,
           };
@@ -102,9 +103,6 @@ router.get("/:id", async (req, res, next) => {
     });
 });
 
-const utilFunc = async (feedbacks1, id) => {
-  console.log("kraajjjjjj");
-};
 
 // @route POST api/rentals
 // @desc Create one rental
@@ -112,7 +110,6 @@ const utilFunc = async (feedbacks1, id) => {
 router.post("/", (req, res, next) => {
   const userId = req.body.userId;
   const rentalId = req.body.rentalId;
-  console.log(rentalId)
   const grade = req.body.grade;
   const message = req.body.message;
   // Is succeeds this user
@@ -122,16 +119,34 @@ router.post("/", (req, res, next) => {
         return res.status(404).json("User Not Found!");
       }
       // Is succeeds this rental
-      Rental.findById(rentalId).then((rental) => {
+      Rental.findById(rentalId).then(async (rental) => {
         if (!rental) {
           return res.status(404).json("Rental Not Found!");
         }
-        /* ipdate bike or user
-        bike["available"] = bike["available"] - quantity;
+        let bike = await Bike.findById(rental.bike)
+       // bike.rating += grade;
+        bike.feedbacks++;
+        let gradesBike = await Feedback.find().populate("rental")
+        let sumGrades = 0;
+        if (bike.feedbacks > 2){
+          gradesBike.map((item) => {
+            if (item.rental.bike.toString() === bike._id.toString()) sumGrades += item.grade;
+          })
+          bike.rating = (sumGrades + grade) / bike.feedbacks;
+        } else if (bike.feedbacks === 2){
+          bike.rating += grade;
+          bike.rating /= 2;
+        } else {
+          bike.rating = grade;
+        }
         bike.save();
-         
-        let priceOfRental = bike["price"] * quantity;
-         */
+
+
+
+        rental.feedback = true;
+        rental.feedbackSent = req.body.feedbackSent;
+        rental.save();
+
         const newFeedback = new Feedback({
           _id: mongoose.Types.ObjectId(),
           user: userId,
@@ -139,7 +154,19 @@ router.post("/", (req, res, next) => {
           grade,
           message,
         });
-        newFeedback.save().then((feed) => {
+        const provider = await Provider.findById(bike.provider)
+        const agency = await User.findById(provider.user)
+        const newMessage = new Message({
+          _id: mongoose.Types.ObjectId(),
+          type: "FEEDBACK",
+          user: userId,
+          userTo: agency._id,
+          rental: rentalId,
+          text: "You succesfully add the feedback to the item: " + bike.name + "!",
+          textToUser: "You have received a feedback to the item: " + bike.name + "!"})
+          
+          newMessage.save();
+          newFeedback.save().then((feed) => {
           res.status(201).json({
             message: "Feedback created!",
             feedback: {

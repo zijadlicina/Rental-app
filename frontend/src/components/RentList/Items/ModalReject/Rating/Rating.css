@@ -1,0 +1,22 @@
+.items .feedbackmodal .cont .box .rating-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.items .feedbackmodal .cont .box .rating-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+.items .feedbackmodal .cont .box .rating-div .rating-input{
+  align-self: center;
+  width: 50%;
+  margin-top: 2%;
+}
+.items .feedbackmodal .cont .box .rating-div .rating-input input{
+  align-self: center;
+  width: 50%;
+  margin-top: 2%;
+}
+

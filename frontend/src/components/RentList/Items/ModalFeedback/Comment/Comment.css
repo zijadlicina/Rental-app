@@ -11,7 +11,7 @@
   font-family: "Merriweather", serif;
   font-size: small;
 }
-.items .feedbackmodal .cont .box .comment .comment-container textarea{
+.items .feedbackmodal .cont .box .comment .comment-container .feedarea{
   height: 75px;
   width: 100%;
   margin: 0;
@@ -22,8 +22,9 @@
   color: #2a3980;
   font-family: "Merriweather", serif;
   font-size: small;
+  background-color: white;
 }
-.items .feedbackmodal .cont .box .comment .comment-container textarea:focus{
+.items .feedbackmodal .cont .box .comment .comment-container .feedarea:focus{
   border: 2px solid #A3B8E8;
   outline: none;
 }

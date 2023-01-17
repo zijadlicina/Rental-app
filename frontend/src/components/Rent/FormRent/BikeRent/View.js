@@ -41,7 +41,7 @@ function View({ date, hour, vehicle, bike, currentStep, current, step, setStep, 
           <div className="dates">
             <p className="date">{name}</p>
             <p className="date">{rating}</p>
-            <p className="date">{!weight ? 0 : weight} kg</p>
+            <p className="date">{!weight ? "0kg" : weight}</p>
             <p className="date">{price} $</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ function View({ date, hour, vehicle, bike, currentStep, current, step, setStep, 
           className="cencel"
           onClick={() => navigate("/rental")}
         >
-          <BsFillArrowLeftCircleFill /> Cencel
+          <BsFillArrowLeftCircleFill /> Cancel
         </button>
         <button type="button" className="next" onClick={() => tabHandler()}>
           Continue

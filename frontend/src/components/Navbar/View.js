@@ -7,128 +7,130 @@ import logoImage2 from "../../images/50f9f8de42454aa1acfdccb9be5e1a34.png";
 import userIcon from "../../images/user-solid.svg";
 
 import { FaBars } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
+import {AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineBell, AiOutlineClose} from "react-icons/ai";
+import {CgMenu} from "react-icons/cg";
+import {MdOutlineExpandMore} from "react-icons/md";
+import DropDown from "./DropDown";
+import AuthItems from "./AuthItems";
 
-const Navbar = ({ isAuthenticated, user, logout, authorization }) => {
+let utils = require("../../utils")
+
+const Navbar = ({ rentsRef, isAuthenticated, user, fetchUsers, currentTab, changeCurrentTab, authorization, fetchMessages, message, messages, bike, rentals}) => {
   const [isShow, setShowNav] = useState(false);
   const [activeTab, setActiveTab] = useState(0)
-
+  const [dropDownUser, setDropDownUser] = useState(false)
+  
   const {isAdmin, isUser, isGuest, isAgency} = authorization;
+  
   const navigate = useNavigate();
-  const logoutHandler = () => {
-    logout();
-    navigate("/");
-  };
 
   const navbarShow = () => {
     setShowNav(!isShow);
   };
 
-  return (
-    <>
-      <div className="header-div">
-        <div className="row">
-          <div className="logo">
-            <a href="/">
-              <img src={logoImage2} alt="logo image"></img>
-            </a>
-          </div>
-          <button className="nav-toggle" onClick={navbarShow}>
-            <FaBars />
-          </button>
-        </div>
-        <nav className={isShow ? "showNav" : "notShow"}>
-          <ul>
-            <li>
-              <Link
-                to="/"
-                className={activeTab === 0 ? "active" : null}
-                onClick={() => {
-                  setShowNav(!isShow);
-                  setActiveTab(0);
-                }}
-              >
-                Home
-              </Link>
-            </li>
+  const tabHandler = (name) => {
+    //setActiveTab(id)
+    changeCurrentTab(name)
+    executeScroll()
+  }
 
-            <li>
-              <Link
-                to="/rental"
-                className={activeTab === 1 ? "active" : null}
-                onClick={() => {
-                  setShowNav(!isShow);
-                  setActiveTab(1);
-                }}
-              >
-                Rental
-              </Link>
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+  const executeScroll = () => {
+    window.scrollTo({
+      top: 0,
+    })
+  }
+  const [messagesCount, setMessagesCount] = useState(message.unSeen + message.unSeenToUser)
+  const [countUnSeen, setCountUnSeen] = useState(0)
+
+  const [refreshNavbar, setRefreshNavbar] = useState(0)
+    useEffect(() => {
+      if (!isGuest){
+        fetchMessages(user._id)
+      }
+      setMessagesCount(0)
+    }, [authorization, refreshNavbar, bike, rentals])
+
+
+    useEffect(() => {
+      if (!isGuest){
+      let count = 0;
+      let unSeen = 0;
+      messages.map((item, i) => {
+        if (user._id === item.user){
+          if (!item.seen) count++;
+          else unSeen++;
+        } else {
+          if (!item.seenUserTo) count++;
+          else unSeen++;
+        }
+        if (i === messages.length - 1){
+          setMessagesCount(count)
+          setCountUnSeen(unSeen)
+        }
+      })
+      }
+    })
+
+  //---------- more dropdown
+  const [moreDrop, setMoreDrop] = useState(false)
+  const [messageDrop, setMessageDrop] = useState(false)
+  const [moreDropVisible, setMoreDropVisible] = useState(false)
+
+  const [showResMenu, setShowResMenu] = useState(false)
+
+  const disableResMenu = () => {
+    setShowResMenu(false)
+  }
+  return (
+    <div className="header-div">
+      <div className="menu-div1">
+          <nav className="div-items">
+          {utils.menuItems.map((item, id) => {
+            if (item.name === "menu-icon"){
+              return <div className="icon-menu">
+                {!showResMenu ? <CgMenu className="cgmenu" onClick={() => {setShowResMenu(!showResMenu); setMoreDrop(false); setMessageDrop(false);}} />
+                : showResMenu ? <AiOutlineClose className="cgmenu" onClick={() => setShowResMenu(!showResMenu)} /> : null
+                }
+                {isAuthenticated ? 
+                  <AuthItems showResMenu={showResMenu} setShowResMenu={setShowResMenu} rentsRef={rentsRef} user={user} messages={messages} 
+                  messagesCount={messagesCount} setMessageDrop={setMessageDrop} messageDrop={messageDrop}
+                  setRefreshNavbar={setRefreshNavbar} countUnSeen={countUnSeen} setMessagesCount={setMessagesCount} setMoreDrop={setMoreDrop} moreDrop={moreDrop}/> : null}
+              </div>
+            }
+            if (!item.auth || item.auth && (isAgency || isUser)) 
+            return <li className={!showResMenu && currentTab === item.name ? "li-display active" : !showResMenu ? "li-display" : currentTab === item.name ? "active" : null} 
+            onClick={() => tabHandler(item.name)}>
+              <Link onClick={disableResMenu} to={item.to}>{item.name}</Link>
             </li>
-            {isAuthenticated && ( isAdmin || isAgency || isUser) ? <li>
-              <Link
-                to="/rents"
-                className={activeTab === 5 ? "active" : null}
-                onClick={() => {
-                  setShowNav(!isShow);
-                  setActiveTab(5);
-                }}
-              >
-                My Rents
-              </Link>
-            </li> : null }
-            <li>
-              <Link
-                to="/about"
-                className={activeTab === 2 ? "active" : null}
-                onClick={() => {
-                  setShowNav(!isShow);
-                  setActiveTab(2);
-                }}
-              >
-                About
-              </Link>
+          })}
+        </nav> 
+        {isAuthenticated ? 
+        <AuthItems rentsRef={rentsRef} user={user} messages={messages} showResMenu={showResMenu}
+        messagesCount={messagesCount} setMessageDrop={setMessageDrop} messageDrop={messageDrop}
+        setRefreshNavbar={setRefreshNavbar} countUnSeen={countUnSeen} setMessagesCount={setMessagesCount} setMoreDrop={setMoreDrop} moreDrop={moreDrop}/> : 
+        <nav className="div-items2">
+          {utils.menuItemsRight.map((item, id) => {
+            if (item.to === "/register") {
+              return <li className={!showResMenu && currentTab === item.name ? "li-display active" : !showResMenu ? "li-display registerBtn" : "registerBtn"}
+              onClick={() => tabHandler(item.name)}>
+                <Link onClick={disableResMenu} to={item.to}>{item.name}</Link>
+              </li>
+            }
+            return <li
+            className={!showResMenu && currentTab === item.name ? "li-display active" : !showResMenu ? "li-display" : null}
+            onClick={() => tabHandler(item.name)}>
+              <Link onClick={disableResMenu} to={item.to}>{item.name}</Link>
             </li>
-            {!isAuthenticated ? (
-              <>
-                <li className="text-div">
-                  <span>Please login or register</span>
-                </li>
-                <li>
-                  <Link
-                    to="/login"
-                    className={activeTab === 3 ? "active" : null}
-                    onClick={() => {
-                      setShowNav(!isShow);
-                      setActiveTab(3);
-                    }}
-                  >
-                    SING IN
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/register" className={activeTab === 4 ? "active" : null}
-                    onClick={() => {
-                      setShowNav(!isShow);
-                      setActiveTab(4);
-                    }}>
-                    SING UP
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="text-div auth">
-                  <p>Welcome {user.username}!</p>
-                </li>
-                <li className="text-div auth">
-                  <button onClick={logoutHandler}>LOG OUT</button>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-      </div>
-    </>
+          })}
+        </nav> }
+      </div> 
+    </div>
   );
 };
 

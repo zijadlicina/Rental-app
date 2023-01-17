@@ -1,0 +1,109 @@
+.home-div .home-container .heading div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+.home-div .home-container .heading div h2,h3{
+    font-family: "Mulish", sans-serif;
+    color:  hsl(205, 86%, 17%);
+}
+.home-div .home-container .heading div h2{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: xx-large;
+}
+.home-div .home-container .heading div h3{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: medium;
+}
+.home-div .heading{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   background-color: whitesmoke;
+   padding: 4% 1%;
+}
+.home-slider .heading{
+    cursor:pointer;
+ }
+.home-div .heading span .arrow {
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+    color: hsl(205, 86%, 17%);;
+ }
+ .home-div .heading span .arrow:hover {
+    color: grey;
+ }
+.home-div .heading div{
+    justify-self: center;
+}
+.home-div .heading img{
+    justify-self: flex-end;
+    width: 280px;
+    height: 370px;
+    border-radius: 15%;
+ }
+
+
+ .home-div .home-slider {
+    background-color:white;
+  }
+ .home-div .home-slider .circles{
+   display: flex;
+   justify-content: center;
+   padding: 1%;
+   background-color: whitesmoke;
+ }
+ .home-div .home-slider .circles .circle{
+    height: 20px;
+    width: 20px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    margin-right: 2%;
+  }
+  .home-div .home-slider .circles .active{
+    background-color:hsl(205, 87%, 22%);;;
+  }
+  .home-div .home-slider .cta-btn{
+    width: 70%;
+    margin-top: 3%;
+    background-color: hsl(205, 87%, 22%);
+    color: white;
+    font-size: medium;
+    border: none;
+    border-radius: 25px;
+  }
+  .home-div .home-slider .cta-btn:hover{
+    box-shadow: 5px 5px 6px grey;
+  }
+@media screen and (max-width: 600px) {
+  .home-div .heading{
+    flex-direction: column;
+  }
+  .home-div .home-container .heading div{
+    width: 100%;
+  }
+  .home-div .home-slider .circles{
+    padding-bottom: 3%;
+    background-color: whitesmoke;
+  }
+  .home-div .home-slider .circles .circle{
+    height: 15px;
+    width: 15px;
+  }
+  .home-div .heading .arrow{
+    display: none;
+  }
+  .home-div .home-slider .cta-btn{
+    margin-bottom: 3%;
+    width: 50%;
+    display: none;
+  }
+}

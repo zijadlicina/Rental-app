@@ -8,13 +8,14 @@ import {
   AiOutlineComment,
 } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { Rating } from "@mui/material";
 
 import ImagesGallery from "./ImagesGallery";
 
 function ItemsSlider({ items }) {
   const [current, setCurrent] = useState(0);
   const [previous, setPrevious] = useState(() => {
-    if (current - 1 < 1) return items.length - 1;
+    if (current === 0) return items.length - 1;
     return current - 1;
   })
   const [next, setNext] = useState(() => {
@@ -22,19 +23,39 @@ function ItemsSlider({ items }) {
     return current;
   });
 
-  const { name, types, rating, weight, price } = items[current];
+  const { name, types, rating, weight, price, available, quantity } = items[current];
 
   const [nextItem, setNextItem] = useState(items[next]);
   const [currentItem, setCurrentItem] = useState(items[current]);
   const [prevItem, setPrevItem] = useState(items[previous])
-  console.log("prevItem", prevItem)
 
   const handlerChangeImage = (type) => {
-    console.log(type);
     if (type === "right"){
-
-      setNext(() => {
-
+      let oldCurrent = current;
+      setCurrent((prev) => {
+        if (items.length - 1 === current) return 0;
+        return prev + 1;
+      })
+      setNext((prev) => {
+        if (prev === items.length - 1) return 0;
+        return prev + 1;
+      })
+      setPrevious((prev) => {
+        return oldCurrent;
+      })
+     
+    } else {
+      let oldCurrent = current;
+      setCurrent((prev) => {
+        if (0 === current) return items.length - 1;
+        return prev - 1;
+      })
+      setPrevious((prev) => {
+        if (prev === 0) return items.length - 1;
+        return prev - 1;
+      })
+      setNext((prev) => {
+        return oldCurrent;
       })
     }
   };  
@@ -49,42 +70,38 @@ function ItemsSlider({ items }) {
               return <span>{type}</span>;
             })}
           </div>
+          <div className="rating">
+            <Rating value={rating} />
+          </div>
           <table>
             <tr className="table">
-              <th>UNIT</th>
+              <th>USING</th>
               <th>PRICE</th>
-              <th>RATING</th>
-              <th>WEIGHT</th>
+              <th>QUANTITY</th>
+              <th>AVAILABLE</th>
             </tr>
             <tr>
-              <td>Hour</td>
-              <td>${price}</td>
-              <td style={{ color: "orange" }}>{rating}</td>
-              <td>{weight}kg</td>
+              <td>9</td>
+              <td>{price}$</td>
+              <td>{quantity}</td>
+              <td>{available}</td>
             </tr>
           </table>
-          <div className="replies">
-            <span>
-              2 <IoMdHeartEmpty className="like" />
-            </span>
-            <span className="dislike">
-              2 <AiOutlineDislike />
-            </span>
-            <span className="comment">
-              1 <AiOutlineComment />
-            </span>
-          </div>
+          
         </div>
       </div>
       <div className="div-images">
         <ImagesGallery
-          currentItem={currentItem}
-          nextItem={nextItem}
-          prevItem={prevItem}
+          currentItem={items[current]}
+          nextItem={items[next]}
+          prevItem={items[previous]}
           handlerChangeImage={handlerChangeImage}
         />
       </div>
-      <div className="output" style={{ border: "1px solid blue" }}></div>
+      <div className="output">
+            <button className="read">Read More</button>
+            <button className="rent">Rent Now</button>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 import {
@@ -30,19 +30,17 @@ import { fetchBikes } from "./actions/bikeActions";
 
 function App() {
   useEffect(() => {
-    console.log("refresh");
     store.dispatch(loadUser());
-    store.dispatch(fetchBikes());
   });
-
+  
+  const rentsRef = useRef({})
   return (
-    <Provider store={store}>
+    <Provider store={store} >
       <Router>
-        <Navbar />
+        <Navbar rentsRef={rentsRef}/>
         <Routes>
           <Route exact path="/" element={<Home />} />{" "}
-          {"???? - da li '/' ili '/:id'"}
-          <Route exact path="/about" element={<About />} />{" "}
+            <Route exact path="/about" element={<About />} />{" "}
           <Route exact path="/rental" element={<Rental />} />{" "}
           <Route
             exact
@@ -50,7 +48,7 @@ function App() {
             element={<Private Component={AddRental} />}
           />
           <Route exact path="/rental/rent/:user/:bike" element={<Rent />} />{" "}
-          <Route exact path="/rents" element={<RentList />} />{" "}
+          <Route exact path="/rents" element={<RentList rentsRef={rentsRef}/>} />{" "}
           <Route
             exact
             path="/vehicle/:id"

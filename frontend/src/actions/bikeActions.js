@@ -11,11 +11,12 @@ import {
   FETCH_REVIEW_FAIL,
   ADD_FEEDBACK_SUCCES,
   ADD_FEEDBACK_REQ,
+  CHANGE_CURRENT_BIKE,
 } from "./types";
 import axios from "axios";
 import { cleanErrors, setErrors } from "./errorActions";
 
-import { addFeedbackAlertFail, addFeedbackAlertSucces } from "./alertActions";
+import { addBikeAlertSucces, addFeedbackAlertFail, addFeedbackAlertSucces } from "./alertActions";
 
 export const fetchBikesRequest = () => {
   return {
@@ -55,6 +56,11 @@ export const fetchOneBikeFail = (error) => {
   return {
     type: FETCH_BIKES_FAIL,
     payload: error,
+  };
+};
+export const changeCurrentBike = () => {
+  return {
+    type: CHANGE_CURRENT_BIKE,
   };
 };
 export const addBikeRequest = () => {
@@ -98,19 +104,24 @@ export const addFeedbackSucces = (data) => {
 };
 
 //--------------
-export const addBike = (bike) => {
-  console.log(">bike",bike)
+export const addBike = (navigate, bike) => {
+  if (bike.images.length < 1){
+    for (let i = bike.images.length; i < 1; i++){
+      bike.images.push("https://res.cloudinary.com/djespjbgy/image/upload/v1666017220/picture_cxgxxg.png")
+    }
+  }
   return (dispatch) => {
     dispatch(addBikeRequest());
     axios
       .post(`http://localhost:5001/api/bikes/add`, bike)
       .then((response) => {
         dispatch(addBikeSucces(response.data));
+        dispatch(addBikeAlertSucces(response.data))
+        navigate("/rental")
         dispatch(cleanErrors());
       })
       .catch((err) => {
         const errMsg = err.data;
-        console.log(err.response.data.error);
         dispatch(addBikeFailure(errMsg));
         dispatch(
           setErrors(err.response.data.error, err.status, "ADDBIKE_FAIL")
@@ -123,13 +134,12 @@ export const addBike = (bike) => {
 export const fetchBikes = (query) => {
   return (dispatch) => {
     dispatch(fetchBikesRequest());
-    if (query) query = "?" + query;
-    else query = "";
+    query = query ? "?" + query  : ""
     axios
       .get(`http://localhost:5001/api/bikes${query}`)
       .then((response) => {
         dispatch(fetchBikesSucces(response.data));
-        dispatch(cleanErrors());
+       // dispatch(cleanErrors());
       })
       .catch((err) => {
         const errMsg = err.message;
@@ -140,15 +150,15 @@ export const fetchBikes = (query) => {
 };
 
 //--------------
-export const fetchOneBike = (id) => {
+export const fetchOneBike = (id, setIsFetched) => {
   return (dispatch) => {
     dispatch(fetchOneBikeRequest());
     axios
       .get(`http://localhost:5001/api/bikes/${id}`)
       .then((response) => {
-        console.log("response", response.data)
         dispatch(fetchOneBikeSucces(response.data));
-        dispatch(cleanErrors());
+        setIsFetched(true)
+     //   dispatch(cleanErrors());
       })
       .catch((err) => {
         const errMsg = err.message;
@@ -159,13 +169,11 @@ export const fetchOneBike = (id) => {
 };
 //--------------
 export const fetchReviews = (id) => {
-  console.log("id", id)
   return (dispatch) => {
     dispatch(fetchReviewsRequest());
     axios
       .get(`http://localhost:5001/api/feedbacks/${id}`)
       .then((response) => {
-        console.log("response", response.data)
         dispatch(fetchReviewsSucces(response.data.feedbacks1));
       })
       .catch((err) => {
@@ -176,19 +184,21 @@ export const fetchReviews = (id) => {
   };
 };
 //--------------
-export const addFeedback = (feed) => {
+export const addFeedback = (feed, navigate, rental) => {
   return (dispatch) => {
     dispatch(addFeedbackRequest());
     axios
       .post(`http://localhost:5001/api/feedbacks/`, feed)
       .then((response) => {
+        dispatch(fetchBikes())
         dispatch(addFeedbackSucces(response.data));
         dispatch(addFeedbackAlertSucces(response.data))
+      //  dispatch(changeCurrentBike(response.data))
+        navigate("/vehicle/" + rental.bike._id);
       //  dispatch(cleanErrors());
       })
       .catch((err) => {
         const errMsg = err.data;
-        console.log(err.response.data.error);
      /*   dispatch(addBikeFailure(errMsg));
         dispatch(
           setErrors(err.response.data.error, err.status, "ADDBIKE_FAIL")

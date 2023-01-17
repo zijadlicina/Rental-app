@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
     error: state.error.msg,
     userState: state.auth.user,
     authorization: state.auth.authorization,
-    user: state.auth.user
+    user: state.auth.user,
+    providerState: state.provider.provider
   };
 };
 const mapDispatchToProps = (dispatch) => {

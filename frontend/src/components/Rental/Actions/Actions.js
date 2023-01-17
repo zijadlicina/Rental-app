@@ -3,27 +3,37 @@ import "./Actions.css";
 
 import ViewItems from "./ViewItems/ViewItems";
 import { MdSort } from "react-icons/md";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
-import { Slider } from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Slider } from "@mui/material";
 /* icon for expand and close filter div*/
 import { BiDownArrowCircle, BiUpArrowCircle } from "react-icons/bi";
 
 function Actions({
+  dimensions,
+  search,
+  sort,
+  filter,
+  isAgency,
+  isAdmin,
+  setStatusItems,
+  statusItems,
   view,
   setView,
   changeLimit,
   changePage,
   changeSearch,
   changeFilter,
+  changeSort,
 }) {
   const [dropDownFilter, setDropDownFilter] = useState(true);
-  const [price, setPrice] = useState([0, 500]);
-  const [rating, setRating] = useState([1, 5]);
-
-  useEffect(() => {}, [price, rating]);
+  const [price, setPrice] = useState([filter.price[0], filter.price[1]]);
+  const [rating, setRating] = useState([filter.rating[0], filter.rating[1]]);
 
   const onCommitedHandler = (type) => {
+    changePage(1)
     if (type === "price") {
+      if (price[0] > price[1]) return;
       changeFilter((prev) => {
         return { price, rating: prev.rating };
       });
@@ -34,24 +44,31 @@ function Actions({
     }
   };
   const resetFilter = () => {
+    changePage(1)
     changeFilter((prev) => {
-      return { price: [0, 500], rating: [1, 5] };
+      return { price: [0, 200], rating: [1, 5] };
     });
-    setPrice([0, 500]);
+    setPrice([0, 200]);
     setRating([1, 5]);
+    setStatusItems("yes")
   };
+
+  useEffect(() => {
+
+  }, [statusItems])
 
   return (
     <div className="actions">
       <div className="row-1">
         <div className="sort">
           <label htmlFor="sort">
-            <MdSort />
+            <MdSort className="icon-sort"/>
           </label>
-          <select name="sort" id="sort">
-            <option value="name">Sort By Name</option>
-            <option value="price">Sort By Price</option>
-            <option value="recommand">Sort By Recommand</option>
+          <select name="sort" id="sort" onChange={(e) => changeSort(e.target.value)} 
+          value={sort}>
+            <option value="newest">Newest</option>
+            <option value="used">Most used</option>
+            <option value="best">Best grades</option>
           </select>
         </div>
         <div className="search">
@@ -59,12 +76,14 @@ function Actions({
             type="text"
             id="search"
             name="search"
+            value={search}
             placeholder={"Search"}
             onChange={(e) => changeSearch(e.target.value)}
           ></input>
         </div>
         {/* Different types of viewing items (linear, blocks, slider) */}
         <ViewItems
+          dimensions={dimensions}
           view={view}
           setView={setView}
           changeLimit={changeLimit}
@@ -84,10 +103,24 @@ function Actions({
             onClick={() => setDropDownFilter(!dropDownFilter)}
           />
         )}
-        <div></div>
       </div>
       {!dropDownFilter ? <>
       <div className={dropDownFilter ? "row-filter" : "row-filter-display"}>
+        {isAgency ? 
+        <div className="checkboxs">
+          <FormControl className="control-form">
+            <FormLabel id={statusItems}>Available</FormLabel>
+            <RadioGroup
+              aria-labelledby="statusItems"
+              defaultValue="yes"
+              name="status"
+            >
+              <FormControlLabel value="all" checked={statusItems === "all"} onClick={() => {changePage(1); setStatusItems("all")}} control={<Radio />} label="All" />
+              <FormControlLabel value="yes" checked={statusItems === "yes"} onClick={() => {changePage(1); setStatusItems("yes")}} control={<Radio />} label="Yes" />
+              <FormControlLabel value="no" checked={statusItems === "no"} onClick={() => {changePage(1); setStatusItems("no")}} control={<Radio />} label="No" />
+            </RadioGroup>
+          </FormControl> 
+          </div> : null}
         <div className="price filter">
           <div>
             <h2>Price</h2>
@@ -96,10 +129,10 @@ function Actions({
             size="small"
             valueLabelDisplay="auto"
             min={0}
-            max={500}
+            max={200}
             marks={false}
             step={1}
-            value={price}
+            value={[filter.price[0], filter.price[1]]}
             onChange={(e, newValue) => setPrice(newValue)}
             onChangeCommitted={() => onCommitedHandler("price")}
           />
@@ -150,7 +183,7 @@ function Actions({
             max={5}
             marks={false}
             step={0.1}
-            value={rating}
+            value={[filter.rating[0], filter.rating[1]]}
             onChange={(e, newValue) => setRating(newValue)}
             onChangeCommitted={() => onCommitedHandler("rating")}
           />

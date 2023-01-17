@@ -13,12 +13,12 @@ import { useEffect, useState } from "react";
 const RatingItem = ({ item, idx, setFeed, feed }) => {
   const ratingHandler = (val) => {
     setFeed((prev) => {
-      return {...prev, grad: val}
+      return {...prev, grade: val}
     });
   };
   return (
     <div
-      className={feed.grad === idx ? "active rating-item" : "rating-item"}
+      className={feed.grade === idx ? "active rating-item" : "rating-item"}
       onClick={() => ratingHandler(idx)}
     >
       {idx === 0 ? (

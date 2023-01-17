@@ -10,7 +10,6 @@ const App = () => {
     data.append("file", image);
     data.append("upload_preset", "zike123");
     data.append("cloud_name", "djespjbgy");
-    console.log(data)
     
   };
    const getImage = () => {
@@ -24,7 +23,6 @@ const App = () => {
      })
        .then((resp) => resp.json())
        .then((data) => {
-         console.log(data);
          setUrl2(data.url);
        })
        .catch((err) => console.log(err));

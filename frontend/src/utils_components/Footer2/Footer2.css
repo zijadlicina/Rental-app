@@ -1,0 +1,27 @@
+.div-footer{
+
+}
+.div-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    background-color: #7c82f5;
+}
+.div-footer .footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 3%;
+    height: auto;
+    width: 80%;
+    background-color: #7c82f5;
+    font-family: "Mulish", sans-serif;
+}
+
+.div-footer .footer div{
+    width: 100%;
+    height: auto;
+    margin-right: 6%;
+}

@@ -16,7 +16,6 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 .body-div-fixed {
-  margin-top: 15%;
   display: flex;
   justify-content: center;
   background-color: #f2f2f2;
@@ -91,10 +90,10 @@ body {
   width: 100%;
   padding: 20px;
   font-size: x-small;
-  padding-left: 30px;
+  padding-left: 10%;
   border-radius: 0;
   border: 0.5px solid #a6a9b4;
-  color: #7c7e82;
+  color: #202124;
   font-style: bold;
   box-sizing: border-box;
   outline: none;
@@ -189,5 +188,6 @@ body {
   .container-login {
     width: 80%;
     left: 10%;
+    margin-top: 16%;
   }
 }

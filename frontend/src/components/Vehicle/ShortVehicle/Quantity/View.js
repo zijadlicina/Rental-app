@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Quantity.css";
 
-function Quantity() {
-  let val = 1;
+function Quantity({quantityInput, setQuantityInput}) {
+  const quantityHandler = (e) => {
+    setQuantityInput(e.target.value)
+  }
   return (
     <div className="quantity">
-      <input type="number" value={val}></input>
+      <input type="number" value={quantityInput} onChange={(e) => quantityHandler(e)}></input>
     </div>
   );
 }

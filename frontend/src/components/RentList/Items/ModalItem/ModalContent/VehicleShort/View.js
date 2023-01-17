@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import { Rating } from "@mui/material";
-
-function VehicleShort({ bike }) {
+import {useNavigate,
+} from "react-router-dom";
+function VehicleShort({ bike, providers }) {
   const { _id, images, name, price, rating, provider } = bike;
+  const navigate = useNavigate()
+  const vehicleHandler = () => {
+    navigate("/vehicle/" + _id)
+  }
+
   return (
     <div className="col-a">
       <div className="row">
@@ -15,7 +21,7 @@ function VehicleShort({ bike }) {
       </div>
       <div className="row">
         <span className="title">Provider</span>
-        <span className="field">{name}</span>
+        <span className="field" style={{fontWeight: "bold"}}>{getProviderById(providers, provider).name}</span>
       </div>
       <div className="row">
         <span className="title">name</span>
@@ -38,10 +44,13 @@ function VehicleShort({ bike }) {
         </span>
       </div>
       <div className="row">
-        <button>View More</button>
+        <button onClick={vehicleHandler}>View More</button>
       </div>
     </div>
   );
 }
 
+const getProviderById = (providers, pr) => {
+  return providers.find((x) => x._id === pr._id);
+};
 export default VehicleShort;

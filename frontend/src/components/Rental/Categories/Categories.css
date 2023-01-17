@@ -1,30 +1,118 @@
 /*---*/
 .container-rental .data .categories {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0;
+  padding: 0 5px;
+  padding-top: 1%;
   border-bottom: 2px solid lightgrey;
+}
+.container-rental .data .categories span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: medium;
+  color: #0F0F34;
+  margin-bottom: 3%;
+}
+.container-rental .data .categories .ul-list-2{
+  justify-content: flex-end;
 }
 .container-rental .data .categories ul {
   flex: 100%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .container-rental .data .categories ul li {
   padding: 1% 0;
-  padding-left: 2%;
+  padding: 0 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
 }
-.container-rental .data .categories ul li .cat {
+.container-rental .data .categories ul li .title {
+  width: 70px;
   display: block;
   cursor: pointer;
   color: black;
-  padding: 0 15px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 7%;
+  cursor: default;
+}
+.container-rental .data .categories ul .li-it {
+  display: block;
+  padding: 2px 15px;
+}
+.container-rental .data .categories ul li .cat {
+  cursor: pointer;
+  color: black;
+  font-size: 14px;
+  width: 100%;
+  text-transform: capitalize;
+  padding: 5px;
 }
 .container-rental .data .categories ul li .active {
   border-bottom: 2px solid rgb(131, 157, 246);
 }
-.container-rental .data .categories ul li p:hover:not(.active) {
+.container-rental .data .categories ul li p:hover:not(.active, .title) {
   background-color: violet;
   border-radius: 5px;
+}
+.container-rental .data .categories .tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 15px;
+  width: 80px;
+}
+.container-rental .data .categories .tabs span{
+  width: 75px;
+  padding: 3% 15%;
+  border-radius: 35%;
+  cursor: pointer;
+}
+.container-rental .data .categories .tabs .activeTab{
+  background-color: rgb(131, 157, 246);
+  color: white;
+}
+@media screen and (max-width: 600px) {
+  .container-rental .data .categories {
+    align-items: flex-start;
+    padding: 0 2px;
+  }
+  .container-rental .data .categories span{
+    font-size: small;
+    margin-bottom: 1%;
+  }
+
+  .container-rental .data .categories ul li .title {
+    padding: 0;
+    font-size: small;
+    margin: 0;
+  }
+  .container-rental .data .categories ul .li-it {
+    display: block;
+    padding-top: 20px;
+    width: 55px;
+  }
+  .container-rental .data .categories ul .li-it p {
+    text-align: center;
+    width: 50px;
+    padding: 0 15%;
+    display: block;
+    font-size: small;
+  }
+  .container-rental .data .categories .ul-list-2{
+    justify-content: flex-start;
+  }
 }

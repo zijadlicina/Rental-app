@@ -4,23 +4,56 @@
 
 .body-div-vehicle .vehicle-div div .info .reviews-vehicle {
   margin-top: 2%;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 .body-div-vehicle .vehicle-div div .info .reviews-vehicle .review{
-  display: flex;
-  justify-content: space-evenly;
+  padding: 0 2%;
   background-color: #898b9c;
-  border-radius: 10px;
-  margin-top: 3%;
+  border-radius: 3px;
+  padding: 2% 3%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 2%;
+}
+.body-div-vehicle .vehicle-div div .info .reviews-vehicle .review .column{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+}
+.body-div-vehicle .vehicle-div div .info .reviews-vehicle .review .rows{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+.body-div-vehicle .vehicle-div div .info .reviews-vehicle .review .rows .username{
+  color: black;
+  font-weight: bold;
+  width: 250px;
+}
+.body-div-vehicle .vehicle-div div .info .reviews-vehicle .review  .message{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.body-div-vehicle .vehicle-div div .info .reviews-vehicle .review .message .date{
+  justify-self: flex-end;
+  align-self: flex-end;
+  font-size: small;
 }
 .body-div-vehicle .vehicle-div div .info .reviews-vehicle .newreview{
   box-shadow: 1px 1px 15px #FF71A4;
 }
 .body-div-vehicle .vehicle-div div .info .reviews-vehicle .rating{
-  align-self: flex-end;
+  margin-left: 5%;
 }
 /*
 color: white;

@@ -18,22 +18,17 @@ function ModalItem({
   user,
 }) {
   const [rental, setRental] = useState(null);
-
   useEffect(() => {
     setRental(getRentalById(rentals, currentRental));
   }, []);
-
 
   const [feed, setFeed] = useState({
     userId: user._id,
     rentalId: null,
     grade: 0,
     message: "",
+    feedbackSent: null,
   })
-
-  useEffect(() => {
-    console.log("feed", feed)
-  }, [feed])
 
   return (
     <div className="cont">

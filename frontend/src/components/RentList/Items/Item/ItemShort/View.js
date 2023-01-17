@@ -4,97 +4,27 @@ import { GiDutchBike } from "react-icons/gi";
 import { VscCircleLargeOutline } from "react-icons/vsc";
 import { MdOutlineReadMore, MdFeedback } from "react-icons/md";
 import moment from "moment";
+import ShortAgency from "./ShortAgency";
+import ShortUser from "./ShortUser";
 
-function View({ rentItem, bikes, setModal, setCurrentRental }) {
-  const { _id, dateOut, dateReturned, quantity, status, price } = rentItem;
-  const [bike, setBike] = useState(null);
-  const [loading, setLoading] = useState(false);
-
+function View({ id, rentsRef, setReload, providers, user, rentItem, bike, setModal, setCurrentRental, authorization }) {
+  const {isAgency, isUser} = authorization;
+  const [provider, setProvider] = useState(null)
   useEffect(() => {
-    setLoading(true);
-    setBike(getBikeById(bikes, rentItem.bike._id));
-    setLoading(false);
-  }, []);
-
-  var dif1 = new Date(dateReturned).getTime() - new Date(dateOut).getTime();
-  var days = Math.floor(dif1 / (1000 * 3600 * 24));
-
-  var daysLeft = Math.floor(
-    (new Date(dateReturned).getTime() - new Date(Date.now()).getTime()) /
-      (1000 * 3600 * 24)
-  );
-
-  let statusExpire = status;
-  if (new Date(dateReturned) < Date.now()) statusExpire = false;
+    setProvider(getProviderById(providers, bike.provider))
+  })
+  if (isAgency) return (
+    <ShortAgency id={id} rentsRef={rentsRef} user={user}  setReload={setReload} bike={bike} rentItem={rentItem} setModal={setModal} setCurrentRental={setCurrentRental}/>
+  )
   return (
-    <div className="shortitem">
-      <div className="icons">
-        <div className="row">
-          {!statusExpire ? (
-            <span>Inactive</span>
-          ) : (
-            <span>
-              {daysLeft} of {days} days left
-            </span>
-          )}
-        </div>
-        <span>
-          {statusExpire ? <GiDutchBike className="bike" /> : null}
-          <VscCircleLargeOutline
-            className={statusExpire ? "circle active" : "circle notactive"}
-          />
-        </span>
-      </div>
-      <div className="item">
-        {!bike ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <div className="image">
-              <Image bike={bike} />
-            </div>
-            <div className="info">
-              <Info
-                bike={bike}
-                dateOut={dateOut}
-                dateReturned={dateReturned}
-                quantity={quantity}
-                price={price}
-              />
-              <div className="btns">
-                <button
-                  onClick={() => {
-                    setCurrentRental(_id);
-                    setModal(1);
-                  }}
-                >
-                  <MdOutlineReadMore className="ic" />
-                  <span>Read More</span>
-                </button>
-                {!statusExpire ? (
-                  <button
-                    onClick={() => {
-                      setCurrentRental(_id);
-                      setModal(2);
-                    }}
-                    className="feedback"
-                  >
-                    <MdFeedback className="ic" />
-                    <span>Feedback</span>
-                  </button>
-                ) : null}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+    <ShortUser id={id} rentsRef={rentsRef} user={user} setReload={setReload} bike={bike} rentItem={rentItem} setModal={setModal} setCurrentRental={setCurrentRental}/>
   );
 }
-const getBikeById = (bikes, id) => {
+/*
+const getBikeById = (id) => {
   return bikes.find((x) => x._id === id);
 };
-
+*/
 const Image = ({ bike }) => {
   const { images } = bike;
   return <img src={images[0]} alt="image bike" />;
@@ -150,4 +80,9 @@ const Info = ({
     </div>
   );
 };
+
+const getProviderById = (providers, pr) => {
+  return providers.find((x) => x._id === pr._id);
+};
+
 export default View;

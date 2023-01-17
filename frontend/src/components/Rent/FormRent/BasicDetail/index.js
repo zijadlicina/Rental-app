@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error.msg,
+    current: state.bike.current
   };
 };
 const mapDispatchToProps = (dispatch) => {
