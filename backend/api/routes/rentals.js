@@ -22,6 +22,7 @@ router.get("/", async (req, res, next) => {
   if (req.query.user) {
     let user = await User.findById(req.query.user)
     // is agency
+    /// ---????? populate: Promise.all(niz_promise-a)
     if (user.roles[0] === "1994"){
       if (status === "rejected"){
         let rents = await RentalArchive.find().sort({updatedAt: -1}).populate("bike")

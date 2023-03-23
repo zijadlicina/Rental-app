@@ -43,6 +43,7 @@ const UserSchema = new Schema(
 );
 
 UserSchema.pre("save", async function (next) {
+  console.log("this", this)
   // wont re-hashed it
   if (!this.isModified("password")) {
     next();
